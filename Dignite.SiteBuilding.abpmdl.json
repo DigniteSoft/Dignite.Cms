@@ -1,0 +1,111 @@
+{
+  "folders": {
+    "items": {
+      "src": {},
+      "test": {},
+      "host": {}
+    }
+  },
+  "packages": {
+    "Dignite.SiteBuilding.Domain.Shared": {
+      "path": "src/Dignite.SiteBuilding.Domain.Shared/Dignite.SiteBuilding.Domain.Shared.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.Domain": {
+      "path": "src/Dignite.SiteBuilding.Domain/Dignite.SiteBuilding.Domain.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.Application.Contracts": {
+      "path": "src/Dignite.SiteBuilding.Application.Contracts/Dignite.SiteBuilding.Application.Contracts.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.Application": {
+      "path": "src/Dignite.SiteBuilding.Application/Dignite.SiteBuilding.Application.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.EntityFrameworkCore": {
+      "path": "src/Dignite.SiteBuilding.EntityFrameworkCore/Dignite.SiteBuilding.EntityFrameworkCore.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.MongoDB": {
+      "path": "src/Dignite.SiteBuilding.MongoDB/Dignite.SiteBuilding.MongoDB.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.HttpApi": {
+      "path": "src/Dignite.SiteBuilding.HttpApi/Dignite.SiteBuilding.HttpApi.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.HttpApi.Client": {
+      "path": "src/Dignite.SiteBuilding.HttpApi.Client/Dignite.SiteBuilding.HttpApi.Client.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.TestBase": {
+      "path": "test/Dignite.SiteBuilding.TestBase/Dignite.SiteBuilding.TestBase.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.SiteBuilding.EntityFrameworkCore.Tests": {
+      "path": "test/Dignite.SiteBuilding.EntityFrameworkCore.Tests/Dignite.SiteBuilding.EntityFrameworkCore.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.SiteBuilding.MongoDB.Tests": {
+      "path": "test/Dignite.SiteBuilding.MongoDB.Tests/Dignite.SiteBuilding.MongoDB.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.SiteBuilding.Domain.Tests": {
+      "path": "test/Dignite.SiteBuilding.Domain.Tests/Dignite.SiteBuilding.Domain.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.SiteBuilding.Application.Tests": {
+      "path": "test/Dignite.SiteBuilding.Application.Tests/Dignite.SiteBuilding.Application.Tests.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.SiteBuilding.HttpApi.Host": {
+      "path": "host/Dignite.SiteBuilding.HttpApi.Host/Dignite.SiteBuilding.HttpApi.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.SiteBuilding.Web": {
+      "path": "src/Dignite.SiteBuilding.Web/Dignite.SiteBuilding.Web.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.HttpApi.Client.ConsoleTestApp": {
+      "path": "test/Dignite.SiteBuilding.HttpApi.Client.ConsoleTestApp/Dignite.SiteBuilding.HttpApi.Client.ConsoleTestApp.abppkg.json",
+      "folder": "test"
+    },
+    "Dignite.SiteBuilding.Web.Host": {
+      "path": "host/Dignite.SiteBuilding.Web.Host/Dignite.SiteBuilding.Web.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.SiteBuilding.IdentityServer": {
+      "path": "host/Dignite.SiteBuilding.IdentityServer/Dignite.SiteBuilding.IdentityServer.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.SiteBuilding.Host.Shared": {
+      "path": "host/Dignite.SiteBuilding.Host.Shared/Dignite.SiteBuilding.Host.Shared.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.SiteBuilding.Web.Unified": {
+      "path": "host/Dignite.SiteBuilding.Web.Unified/Dignite.SiteBuilding.Web.Unified.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.SiteBuilding.Blazor": {
+      "path": "src/Dignite.SiteBuilding.Blazor/Dignite.SiteBuilding.Blazor.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.Blazor.Host": {
+      "path": "host/Dignite.SiteBuilding.Blazor.Host/Dignite.SiteBuilding.Blazor.Host.abppkg.json",
+      "folder": "host"
+    },
+    "Dignite.SiteBuilding.Blazor.Server": {
+      "path": "src/Dignite.SiteBuilding.Blazor.Server/Dignite.SiteBuilding.Blazor.Server.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.Blazor.WebAssembly": {
+      "path": "src/Dignite.SiteBuilding.Blazor.WebAssembly/Dignite.SiteBuilding.Blazor.WebAssembly.abppkg.json",
+      "folder": "src"
+    },
+    "Dignite.SiteBuilding.Blazor.Server.Host": {
+      "path": "host/Dignite.SiteBuilding.Blazor.Server.Host/Dignite.SiteBuilding.Blazor.Server.Host.abppkg.json",
+      "folder": "host"
+    }
+  }
+}

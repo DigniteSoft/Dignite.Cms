@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <RootNamespace>Dignite.SiteBuilding</RootNamespace>
+    <PreserveCompilationReferences>true</PreserveCompilationReferences>
+    <UserSecretsId>Dignite.SiteBuilding-c2d31439-b723-48e2-b061-5ebd7aeb6010</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Serilog.AspNetCore" Version="4.1.0" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
+    <PackageReference Include="IdentityModel" Version="5.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.DataProtection.StackExchangeRedis" Version="6.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.0" />
+    <PackageReference Include="Volo.Abp.Autofac" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.Caching.StackExchangeRedis" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.MultiTenancy" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.EntityFrameworkCore.SqlServer" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.Swashbuckle" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.SettingManagement.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.AuditLogging.EntityFrameworkCore" Version="5.0.1" />
+    <PackageReference Include="Volo.Abp.TenantManagement.EntityFrameworkCore" Version="5.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\src\Dignite.SiteBuilding.Admin.Application\Dignite.SiteBuilding.Admin.Application.csproj" />
+    <ProjectReference Include="..\..\src\Dignite.SiteBuilding.Admin.HttpApi\Dignite.SiteBuilding.Admin.HttpApi.csproj" />
+    <ProjectReference Include="..\..\src\Dignite.SiteBuilding.HttpApi\Dignite.SiteBuilding.HttpApi.csproj" />
+    <ProjectReference Include="..\..\src\Dignite.SiteBuilding.Application\Dignite.SiteBuilding.Application.csproj" />
+    <ProjectReference Include="..\..\src\Dignite.SiteBuilding.EntityFrameworkCore\Dignite.SiteBuilding.EntityFrameworkCore.csproj" />
+    <ProjectReference Include="..\Dignite.SiteBuilding.Host.Shared\Dignite.SiteBuilding.Host.Shared.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Logs\**" />
+    <Content Remove="Logs\**" />
+    <EmbeddedResource Remove="Logs\**" />
+    <None Remove="Logs\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,7 @@
+{
+  "modules": {
+    "Dignite.SiteBuilding": {
+      "path": "Dignite.SiteBuilding.abpmdl.json"
+    }
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "extends": "./tsconfig.prod.json",
+  "compilerOptions": {
+    "paths": {
+      "@dignite/site-building": [
+        "projects/site-building/src/public-api.ts"
+      ],
+      "@dignite/site-building/config": [
+        "projects/site-building/config/src/public-api.ts"
+      ],
+      "@proxy": ["projects/site-building/src/lib/proxy/index.ts"],
+      "@proxy/*": ["projects/site-building/src/lib/proxy/*"]
+    }
+  }
+}

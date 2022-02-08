@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <Import Project="..\..\common.props" />
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+    </PropertyGroup>
+    
+    <ItemGroup>
+        <PackageReference Include="Volo.Abp.AspNetCore.Components.WebAssembly.Theming" Version="5.0.1" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\..\..\Dignite.Abp\framework\src\Dignite.Abp.AntDesignBlazorUI.WebAssembly\Dignite.Abp.AntDesignBlazorUI.WebAssembly.csproj" />
+        <ProjectReference Include="..\Dignite.SiteBuilding.Admin.Blazor\Dignite.SiteBuilding.Admin.Blazor.csproj" />
+        <ProjectReference Include="..\Dignite.SiteBuilding.Admin.HttpApi.Client\Dignite.SiteBuilding.Admin.HttpApi.Client.csproj" />
+    </ItemGroup>
+
+</Project>
