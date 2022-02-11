@@ -6,17 +6,15 @@ using Volo.Abp.Application.Services;
 
 namespace Dignite.SiteBuilding.Admin.Pages
 {
-    public interface IPageAppService : IApplicationService
+    public interface IPageAppService
+    : ICrudAppService<
+        PageDto,
+        Guid,
+        GetPagesInput,
+        PageCreateDto,
+        PageUpdateDto>
     {
-        Task<ListResultDto<PageDto>> GetListAsync();
-
-        Task<PageEditOutput> EditAsync(Guid id);
-
-        Task CreateAsync(PageEditDto edit);
-
-        Task UpdateAsync(Guid id, PageEditDto edit);
-
-        Task DeleteAsync(Guid id);
+        Task<ListResultDto<PageDto>> GetAllListAsync();
 
         Task MoveAsync(Guid id,MovePageInput input);
     }

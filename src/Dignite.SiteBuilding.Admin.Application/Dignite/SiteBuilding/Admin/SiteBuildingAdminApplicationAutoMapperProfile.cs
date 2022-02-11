@@ -3,7 +3,6 @@ using Dignite.SiteBuilding.Pages;
 using Dignite.SiteBuilding.Sections;
 using Dignite.SiteBuilding.Admin.Sections;
 using Dignite.SiteBuilding.Users;
-using Dignite.SiteBuilding.Admin.Pages;
 using Dignite.SiteBuilding.Entries;
 using Dignite.SiteBuilding.Admin.Entries;
 
@@ -14,8 +13,10 @@ namespace Dignite.SiteBuilding.Admin
         public SiteBuildingAdminApplicationAutoMapperProfile()
         {
             /**** page *****************************************/
-            CreateMap<Page, PageDto>();
-            CreateMap<Page, PageEditOutput>();
+            CreateMap<Page, PageDto>()
+            .MapExtraProperties()
+                .ForMember(m => m.Name, y => y.Ignore())
+                .ForMember(m => m.Children, y => y.Ignore());
 
 
             /**** entry type *****************************************/
@@ -28,6 +29,7 @@ namespace Dignite.SiteBuilding.Admin
             /**** entity *****************************************/
             CreateMap<Entry, EntryDto>()
                 .MapCustomizeFields()
+                .ForMember(m => m.Page, y => y.Ignore())
                 .ForMember(m => m.Editor, y => y.Ignore());
             CreateMap<Entry, EntryEditDto>();
 

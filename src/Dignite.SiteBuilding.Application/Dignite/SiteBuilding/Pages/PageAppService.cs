@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
 using Microsoft.AspNetCore.Authorization;
 using System;
+using System.Linq;
 
 namespace Dignite.SiteBuilding.Pages
 {
@@ -36,7 +37,7 @@ namespace Dignite.SiteBuilding.Pages
         public async Task<ListResultDto<PageDto>> GetListAsync()
         {
             var result = await _siteRepository.GetListAsync();
-            var dto=new List<PageDto>();
+            var list=new List<PageDto>();
             foreach (var p in result)
             {
                 if (!p.IsActive)
@@ -58,11 +59,33 @@ namespace Dignite.SiteBuilding.Pages
                         }
                     }
                 }
+                list.Add(ObjectMapper.Map<Page, PageDto>(p));
+            }
 
-                dto.Add(ObjectMapper.Map<Page, PageDto>(p));
+            //重构成树开数据结构
+            var dto = new List<PageDto>();
+            dto.AddRange(list.Where(p => !p.ParentId.HasValue).ToList());
+            foreach (var page in dto)
+            {
+                AddChildren(page, list);
             }
 
             return new ListResultDto<PageDto>(dto);
+        }
+
+
+        private void AddChildren(PageDto parent, List<PageDto> list)
+        {
+            var children = list.Where(p => p.ParentId == parent.ParentId).ToList();
+            if (children.Any())
+            {
+                parent.Children = children;
+
+                foreach (var page in children)
+                {
+                    AddChildren(page, list);
+                }
+            }
         }
     }
 }

@@ -80,6 +80,8 @@ namespace Dignite.SiteBuilding
                     options.FileSets.ReplaceEmbeddedByPhysical<SiteBuildingDomainModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Dignite.SiteBuilding.Domain", Path.DirectorySeparatorChar)));
                     options.FileSets.ReplaceEmbeddedByPhysical<SiteBuildingApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Dignite.SiteBuilding.Application.Contracts", Path.DirectorySeparatorChar)));
                     options.FileSets.ReplaceEmbeddedByPhysical<SiteBuildingApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Dignite.SiteBuilding.Application", Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<SiteBuildingAdminApplicationContractsModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Dignite.SiteBuilding.Admin.Application.Contracts", Path.DirectorySeparatorChar)));
+                    options.FileSets.ReplaceEmbeddedByPhysical<SiteBuildingAdminApplicationModule>(Path.Combine(hostingEnvironment.ContentRootPath, string.Format("..{0}..{0}src{0}Dignite.SiteBuilding.Admin.Application", Path.DirectorySeparatorChar)));
                 });
             }
 

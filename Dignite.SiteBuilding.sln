@@ -87,7 +87,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AspNetCore.Comp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AntDesignBlazorUI", "..\Dignite.Abp\framework\src\Dignite.Abp.AntDesignBlazorUI\Dignite.Abp.AntDesignBlazorUI.csproj", "{2098EA9D-8CC3-4A40-875D-E5613CD35085}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Dignite.Abp.AntDesignBlazorUI.WebAssembly", "..\Dignite.Abp\framework\src\Dignite.Abp.AntDesignBlazorUI.WebAssembly\Dignite.Abp.AntDesignBlazorUI.WebAssembly.csproj", "{8C943A1A-EE68-4F4F-872D-8B8743581228}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AntDesignBlazorUI.WebAssembly", "..\Dignite.Abp\framework\src\Dignite.Abp.AntDesignBlazorUI.WebAssembly\Dignite.Abp.AntDesignBlazorUI.WebAssembly.csproj", "{8C943A1A-EE68-4F4F-872D-8B8743581228}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

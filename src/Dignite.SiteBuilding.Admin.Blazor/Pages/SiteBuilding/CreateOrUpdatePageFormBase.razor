@@ -1,0 +1,22 @@
+﻿@using Dignite.SiteBuilding.Admin.Pages
+@using Dignite.SiteBuilding.Localization
+@using Volo.Abp.BlazoriseUI.Components.ObjectExtending
+@using Microsoft.Extensions.Localization
+@inherits ComponentBase
+@code {
+    [Parameter] public PageCreateOrUpdateDtoBase Data { get; set; }
+
+    [Parameter] public AbpBlazorMessageLocalizerHelper<SiteBuildingResource> LH { get; set; }
+    [Parameter] public IStringLocalizer L { get; set; }
+}
+
+<Blazorise.Validation MessageLocalizer="@LH.Localize">
+    <Blazorise.Field>
+        <Blazorise.FieldLabel>@L["DisplayName:RoleName"]</Blazorise.FieldLabel>
+        <Blazorise.TextEdit @bind-Text="@Data.Title" Autofocus="true">
+            <Feedback>
+                <Blazorise.ValidationError/>
+            </Feedback>
+        </Blazorise.TextEdit>
+    </Blazorise.Field>
+</Blazorise.Validation>

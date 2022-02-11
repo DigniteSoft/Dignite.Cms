@@ -9,7 +9,7 @@ var abp=abp||{};(function(){abp.utils=abp.utils||{};abp.utils.updateHTMLDirAndLa
 //# sourceMappingURL=ant-design-blazor.js.map
 ;
 
-window.setTableScrollY=({extraHeight:n,id:t})=>{if(typeof n=="undefined"&&(n=65,document.body.clientWidth<=576)){let t=document.getElementById("main-navbar-nav");t&&(n=n+t.clientHeight)}let i=null;i=t?document.getElementById(t)?document.getElementById(t).getElementsByClassName("ant-table-body")[0]:null:document.getElementsByClassName("ant-table-body")[0];let r=0;if(i)r=i.getBoundingClientRect().top;else{console.warn("ant table not found!");return}let u=`calc(100vh - ${r+n}px)`;i.setAttribute("style","overflow-y: scroll; max-height: "+u)};
+window.setTableScrollY=({extraHeight:n,id:t})=>{if(typeof n=="undefined"&&(n=65,document.body.clientWidth<=576)){let t=document.getElementById("main-navbar-nav");t&&(n=n+t.clientHeight)}let i=null;i=t?document.getElementById(t)?document.getElementById(t).getElementsByClassName("ant-table-body")[0]:null:document.getElementsByClassName("ant-table-body")[0];let r=0;if(i)r=i.getBoundingClientRect().top;else{console.warn("ant-table-body is not found.Set the initial value of scrolly in the ant table component.");return}let u=`calc(100vh - ${r+n}px)`;i.setAttribute("style","overflow-y: scroll; max-height: "+u)};
 
 window.mainMenuToggle=n=>{n===!1?document.body.classList.add("no-side-navbar"):document.body.classList.remove("no-side-navbar")};window.sideNavToggle=()=>{var n=document.getElementById("sideNavbar");n.classList.toggle("show")};
 

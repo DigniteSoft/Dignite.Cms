@@ -1,0 +1,1242 @@
+{
+  "modules": {
+    "siteBuildingAdmin": {
+      "rootPath": "siteBuildingAdmin",
+      "remoteServiceName": "SiteBuildingAdmin",
+      "controllers": {
+        "Dignite.SiteBuilding.Admin.Sections.SectionController": {
+          "controllerName": "Section",
+          "controllerGroupName": "SectionManagement",
+          "type": "Dignite.SiteBuilding.Admin.Sections.SectionController",
+          "interfaces": [
+            {
+              "type": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            }
+          ],
+          "actions": {
+            "NewAsync": {
+              "uniqueName": "NewAsync",
+              "name": "NewAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/sections/new",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "Dignite.SiteBuilding.Admin.Sections.SectionEditOutput",
+                "typeSimple": "Dignite.SiteBuilding.Admin.Sections.SectionEditOutput"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "EditAsyncById": {
+              "uniqueName": "EditAsyncById",
+              "name": "EditAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/sections/{id}/edit",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.SiteBuilding.Admin.Sections.SectionEditOutput",
+                "typeSimple": "Dignite.SiteBuilding.Admin.Sections.SectionEditOutput"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/site-building-admin/sections",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "UpdateAsyncByIdAndInput": {
+              "uniqueName": "UpdateAsyncByIdAndInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/site-building-admin/sections/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.SectionEditDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/site-building-admin/sections/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/sections",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Sections.GetSectionsInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Sections.GetSectionsInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.GetSectionsInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "Filter",
+                  "jsonName": null,
+                  "type": "System.String",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.SiteBuilding.Sections.SectionDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.SiteBuilding.Sections.SectionDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/sections/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.SiteBuilding.Sections.SectionDto",
+                "typeSimple": "Dignite.SiteBuilding.Sections.SectionDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "AddAuthorizerAsyncByIdAndInput": {
+              "uniqueName": "AddAuthorizerAsyncByIdAndInput",
+              "name": "AddAuthorizerAsync",
+              "httpMethod": "POST",
+              "url": "api/site-building-admin/sections/{id}/authorizer",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "UpdateAuthorizerAsyncByIdAndInput": {
+              "uniqueName": "UpdateAuthorizerAsyncByIdAndInput",
+              "name": "UpdateAuthorizerAsync",
+              "httpMethod": "PUT",
+              "url": "api/site-building-admin/sections/{id}/authorizer",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Sections.AuthorizerEditInput",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "RemoveAuthorizerAsyncByIdAndUserId": {
+              "uniqueName": "RemoveAuthorizerAsyncByIdAndUserId",
+              "name": "RemoveAuthorizerAsync",
+              "httpMethod": "DELETE",
+              "url": "api/site-building-admin/sections/{id}/authorizer",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "userId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "userId",
+                  "name": "userId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            },
+            "GetAuthorizersAsyncById": {
+              "uniqueName": "GetAuthorizersAsyncById",
+              "name": "GetAuthorizersAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/sections/{id}/authorizers",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.SiteBuilding.Admin.Sections.SectionAuthorizerDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.SiteBuilding.Admin.Sections.SectionAuthorizerDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Sections.ISectionAppService"
+            }
+          }
+        },
+        "Dignite.SiteBuilding.Admin.Pages.PageController": {
+          "controllerName": "Page",
+          "controllerGroupName": "PageManagement",
+          "type": "Dignite.SiteBuilding.Admin.Pages.PageController",
+          "interfaces": [
+            {
+              "type": "Dignite.SiteBuilding.Admin.Pages.IPageAppService"
+            }
+          ],
+          "actions": {
+            "GetAsyncById": {
+              "uniqueName": "GetAsyncById",
+              "name": "GetAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/pages/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.SiteBuilding.Pages.PageDto",
+                "typeSimple": "Dignite.SiteBuilding.Pages.PageDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Dignite.SiteBuilding.Pages.PageDto,Dignite.SiteBuilding.Pages.PageDto,System.Guid,Dignite.SiteBuilding.Admin.Pages.GetPagesInput>"
+            },
+            "GetAllListAsync": {
+              "uniqueName": "GetAllListAsync",
+              "name": "GetAllListAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/pages/all",
+              "supportedVersions": [],
+              "parametersOnMethod": [],
+              "parameters": [],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.SiteBuilding.Pages.PageDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.ListResultDto<Dignite.SiteBuilding.Pages.PageDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Pages.IPageAppService"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/pages",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Pages.GetPagesInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Pages.GetPagesInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Pages.GetPagesInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "ParentId",
+                  "jsonName": null,
+                  "type": "System.Guid?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.SiteBuilding.Pages.PageDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.SiteBuilding.Pages.PageDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IReadOnlyAppService<Dignite.SiteBuilding.Pages.PageDto,Dignite.SiteBuilding.Pages.PageDto,System.Guid,Dignite.SiteBuilding.Admin.Pages.GetPagesInput>"
+            },
+            "CreateAsyncByEdit": {
+              "uniqueName": "CreateAsyncByEdit",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/site-building-admin/pages",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "edit",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Pages.PageCreateDto, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Pages.PageCreateDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Pages.PageCreateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "edit",
+                  "name": "edit",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Pages.PageCreateDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Pages.PageCreateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.SiteBuilding.Pages.PageDto",
+                "typeSimple": "Dignite.SiteBuilding.Pages.PageDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.ICreateAppService<Dignite.SiteBuilding.Pages.PageDto,Dignite.SiteBuilding.Admin.Pages.PageCreateDto>"
+            },
+            "UpdateAsyncByIdAndEdit": {
+              "uniqueName": "UpdateAsyncByIdAndEdit",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/site-building-admin/pages/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "edit",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Pages.PageUpdateDto, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Pages.PageUpdateDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Pages.PageUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "edit",
+                  "name": "edit",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Pages.PageUpdateDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Pages.PageUpdateDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.SiteBuilding.Pages.PageDto",
+                "typeSimple": "Dignite.SiteBuilding.Pages.PageDto"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IUpdateAppService<Dignite.SiteBuilding.Pages.PageDto,System.Guid,Dignite.SiteBuilding.Admin.Pages.PageUpdateDto>"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/site-building-admin/pages/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Volo.Abp.Application.Services.IDeleteAppService<System.Guid>"
+            },
+            "MoveAsyncByIdAndInput": {
+              "uniqueName": "MoveAsyncByIdAndInput",
+              "name": "MoveAsync",
+              "httpMethod": "PUT",
+              "url": "api/site-building-admin/pages/{id}/move",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                },
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Pages.MovePageInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Pages.MovePageInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Pages.MovePageInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Pages.MovePageInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Pages.MovePageInput",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Pages.IPageAppService"
+            }
+          }
+        },
+        "Dignite.SiteBuilding.Admin.Entries.EntryController": {
+          "controllerName": "Entry",
+          "controllerGroupName": "EntryManagement",
+          "type": "Dignite.SiteBuilding.Admin.Entries.EntryController",
+          "interfaces": [
+            {
+              "type": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            }
+          ],
+          "actions": {
+            "NewAsyncBySectionId": {
+              "uniqueName": "NewAsyncBySectionId",
+              "name": "NewAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/entry/new",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "sectionId",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "sectionId",
+                  "name": "sectionId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.SiteBuilding.Admin.Entries.EntryEditOutput",
+                "typeSimple": "Dignite.SiteBuilding.Admin.Entries.EntryEditOutput"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            },
+            "EditAsyncById": {
+              "uniqueName": "EditAsyncById",
+              "name": "EditAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/entry/{id}/edit",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "Dignite.SiteBuilding.Admin.Entries.EntryEditOutput",
+                "typeSimple": "Dignite.SiteBuilding.Admin.Entries.EntryEditOutput"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            },
+            "CreateAsyncByInput": {
+              "uniqueName": "CreateAsyncByInput",
+              "name": "CreateAsync",
+              "httpMethod": "POST",
+              "url": "api/site-building-admin/entry",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            },
+            "UpdateAsyncByInput": {
+              "uniqueName": "UpdateAsyncByInput",
+              "name": "UpdateAsync",
+              "httpMethod": "PUT",
+              "url": "api/site-building-admin/entry",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.EntryEditDto",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            },
+            "DeleteAsyncById": {
+              "uniqueName": "DeleteAsyncById",
+              "name": "DeleteAsync",
+              "httpMethod": "DELETE",
+              "url": "api/site-building-admin/entry/{id}",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "id",
+                  "typeAsString": "System.Guid, System.Private.CoreLib",
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "id",
+                  "name": "id",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": [],
+                  "bindingSourceId": "Path",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            },
+            "GetListAsyncByInput": {
+              "uniqueName": "GetListAsyncByInput",
+              "name": "GetListAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/entry",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Entries.GetEntriesInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Entries.GetEntriesInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.GetEntriesInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "SectionId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "PageId",
+                  "jsonName": null,
+                  "type": "System.Guid?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "AuditedStatus",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Entries.EntryAuditStatus?",
+                  "typeSimple": "Dignite.SiteBuilding.Entries.EntryAuditStatus?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "IsActive",
+                  "jsonName": null,
+                  "type": "System.Boolean?",
+                  "typeSimple": "boolean?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "CreatorId",
+                  "jsonName": null,
+                  "type": "System.Guid?",
+                  "typeSimple": "string?",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.SiteBuilding.Entries.EntryDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.SiteBuilding.Entries.EntryDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            },
+            "GetFieldSourceAsyncByInput": {
+              "uniqueName": "GetFieldSourceAsyncByInput",
+              "name": "GetFieldSourceAsync",
+              "httpMethod": "GET",
+              "url": "api/site-building-admin/entry/field-source",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Entries.GetEntryChoiceFieldSourceInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Entries.GetEntryChoiceFieldSourceInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.GetEntryChoiceFieldSourceInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "FieldId",
+                  "jsonName": null,
+                  "type": "System.Guid",
+                  "typeSimple": "string",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "SkipCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                },
+                {
+                  "nameOnMethod": "input",
+                  "name": "MaxResultCount",
+                  "jsonName": null,
+                  "type": "System.Int32",
+                  "typeSimple": "number",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "ModelBinding",
+                  "descriptorName": "input"
+                }
+              ],
+              "returnValue": {
+                "type": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.SiteBuilding.Entries.EntryDto>",
+                "typeSimple": "Volo.Abp.Application.Dtos.PagedResultDto<Dignite.SiteBuilding.Entries.EntryDto>"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            },
+            "MoveAsyncByInput": {
+              "uniqueName": "MoveAsyncByInput",
+              "name": "MoveAsync",
+              "httpMethod": "PUT",
+              "url": "api/site-building-admin/entry/move",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Entries.MoveEntriesInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Entries.MoveEntriesInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.MoveEntriesInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Entries.MoveEntriesInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.MoveEntriesInput",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            },
+            "AuditAsyncByInput": {
+              "uniqueName": "AuditAsyncByInput",
+              "name": "AuditAsync",
+              "httpMethod": "PUT",
+              "url": "api/site-building-admin/entry/audit",
+              "supportedVersions": [],
+              "parametersOnMethod": [
+                {
+                  "name": "input",
+                  "typeAsString": "Dignite.SiteBuilding.Admin.Entries.AuditEntriesInput, Dignite.SiteBuilding.Admin.Application.Contracts",
+                  "type": "Dignite.SiteBuilding.Admin.Entries.AuditEntriesInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.AuditEntriesInput",
+                  "isOptional": false,
+                  "defaultValue": null
+                }
+              ],
+              "parameters": [
+                {
+                  "nameOnMethod": "input",
+                  "name": "input",
+                  "jsonName": null,
+                  "type": "Dignite.SiteBuilding.Admin.Entries.AuditEntriesInput",
+                  "typeSimple": "Dignite.SiteBuilding.Admin.Entries.AuditEntriesInput",
+                  "isOptional": false,
+                  "defaultValue": null,
+                  "constraintTypes": null,
+                  "bindingSourceId": "Body",
+                  "descriptorName": ""
+                }
+              ],
+              "returnValue": {
+                "type": "System.Void",
+                "typeSimple": "System.Void"
+              },
+              "allowAnonymous": null,
+              "implementFrom": "Dignite.SiteBuilding.Admin.Entries.IEntryAppService"
+            }
+          }
+        }
+      }
+    }
+  },
+  "types": {}
+}

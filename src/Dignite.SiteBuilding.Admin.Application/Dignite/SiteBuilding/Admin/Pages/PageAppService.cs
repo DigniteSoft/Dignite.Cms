@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Data;
 
 namespace Dignite.SiteBuilding.Admin.Pages
 {
@@ -19,72 +20,103 @@ namespace Dignite.SiteBuilding.Admin.Pages
 
 
         [Authorize(Permissions.SiteBuildingPermissions.Page.Default)]
-        public async Task<ListResultDto<PageDto>> GetListAsync()
+        public virtual async Task<PageDto> GetAsync(Guid id)
+        {
+            return ObjectMapper.Map<Page, PageDto>(
+                await _pageRepository.GetAsync(id)
+            );
+        }
+
+        [Authorize(Permissions.SiteBuildingPermissions.Page.Default)]
+        public virtual async Task<ListResultDto<PageDto>> GetAllListAsync()
         {
             var result = await _pageRepository.GetListAsync();
 
-            return new ListResultDto<PageDto>( 
+            var list = new List<PageDto>(
                 ObjectMapper.Map<List<Page>, List<PageDto>>(
                     result
                     ));
+
+            var dto = new List<PageDto>();
+            dto.AddRange(list.Where(p => !p.ParentId.HasValue).ToList());
+            foreach (var page in dto)
+            {
+                AddChildren(page, list);
+            }
+
+            return new ListResultDto<PageDto>(dto);
         }
 
-        [Authorize(Permissions.SiteBuildingPermissions.Page.Update)]
-        public async Task<PageEditOutput> EditAsync(Guid id)
+
+        [Authorize(Permissions.SiteBuildingPermissions.Page.Default)]
+        public virtual async Task<PagedResultDto<PageDto>> GetListAsync(GetPagesInput input)
         {
-            var result = await _pageRepository.GetAsync(id);
+            var result = await _pageRepository.GetListAsync(input.ParentId);
 
-            return ObjectMapper.Map<Page, PageEditOutput>(result);
+            var dto = 
+                ObjectMapper.Map<List<Page>, List<PageDto>>(
+                    result
+                    );
+
+            return new PagedResultDto<PageDto>(result.Count, dto);
         }
+
 
         [Authorize(Permissions.SiteBuildingPermissions.Page.Create)]
-        public async Task CreateAsync(PageEditDto edit)
+        public async Task<PageDto> CreateAsync(PageCreateDto input)
         {
-            var path = await GetPath(edit.ParentId, edit.Name);
+            var path = await GetPath(input.ParentId, input.Name);
             await CheckPathExistenceAsync(path);
 
             var page = new Page(
                 GuidGenerator.Create(),
-                edit.ParentId,
-                edit.IsActive,
-                edit.Title,
+                input.ParentId,
+                input.IsActive,
+                input.Title,
                 path,
                 CurrentTenant.Id);
-            page.Description = edit.Description;
-            page.Keywords = edit.Keywords;
-            page.PermissionName= edit.PermissionName;
-            page.TemplateFile=edit.TemplateFile;
+            page.Description = input.Description;
+            page.Keywords = input.Keywords;
+            page.PermissionName= input.PermissionName;
+            page.TemplateFile=input.TemplateFile;
 
 
             page.SetPosition(
-                (await _pageRepository.GetListAsync(edit.ParentId))
+                (await _pageRepository.GetListAsync(input.ParentId))
                 .Select(x => x.Position)
                 .DefaultIfEmpty(0)
                 .Max() +1);
 
             await _pageRepository.InsertAsync(page);
+
+            return ObjectMapper.Map<Page, PageDto>(page);
         }
 
         [Authorize(Permissions.SiteBuildingPermissions.Page.Update)]
-        public async Task UpdateAsync(Guid id, PageEditDto edit)
+        public async Task<PageDto> UpdateAsync(Guid id, PageUpdateDto input)
         {
-            var path = await GetPath(edit.ParentId, edit.Name);
             var page = await _pageRepository.GetAsync(id);
-            if(page.ParentId!=edit.ParentId || !page.Path.Equals(path, StringComparison.OrdinalIgnoreCase))
+
+            page.SetConcurrencyStampIfNotNull(input.ConcurrencyStamp);
+
+            var path = await GetPath(input.ParentId, input.Name);
+            if (page.ParentId!=input.ParentId || !page.Path.Equals(path, StringComparison.OrdinalIgnoreCase))
                 await CheckPathExistenceAsync(path);
 
 
-            page.IsActive = edit.IsActive;
-            page.Title = edit.Title;
+            page.IsActive = input.IsActive;
+            page.Title = input.Title;
             page.Path = path;
-            page.Description = edit.Description;
-            page.ParentId = edit.ParentId;
-            page.Description = edit.Description;
-            page.Keywords = edit.Keywords;
-            page.PermissionName = edit.PermissionName;
-            page.TemplateFile = edit.TemplateFile;
+            page.Description = input.Description;
+            page.ParentId = input.ParentId;
+            page.Description = input.Description;
+            page.Keywords = input.Keywords;
+            page.PermissionName = input.PermissionName;
+            page.TemplateFile = input.TemplateFile;
 
             await _pageRepository.UpdateAsync(page);
+
+            return ObjectMapper.Map<Page, PageDto>(page);
         }
 
         [Authorize(Permissions.SiteBuildingPermissions.Page.Delete)]
@@ -151,6 +183,20 @@ namespace Dignite.SiteBuilding.Admin.Pages
             }
 
             return path;
+        }
+
+        private void AddChildren(PageDto parent, List<PageDto> list)
+        {
+            var children = list.Where(p => p.ParentId == parent.ParentId).ToList();
+            if (children.Any())
+            { 
+                parent.Children = children;
+
+                foreach (var page in children)
+                {
+                    AddChildren(page, list);
+                }
+            }
         }
     }
 }

@@ -81,7 +81,7 @@ namespace Dignite.SiteBuilding.Entries
         /// <returns></returns>
         public async Task<PagedResultDto<EntryDto>> GetListAsync(GetEntriesInput input)
         {
-            var page = await _pageAppService.GetAsync(input.PageId);
+            var page = await _pageAppService.GetAsync(input.PageId); //内部有授权验证（不是一个好的设计）。
             var section = await _sectionRepository.GetAsync(input.SectionId, true);
 
             var count = await _entryRepository.GetCountAsync(input.SectionId, input.PageId, input.CreatorId, EntryAuditStatus.Allowed, true);

@@ -1,9 +1,12 @@
 ﻿using System;
+using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
+using Volo.Abp.Domain.Entities;
+using Volo.Abp.MultiTenancy;
 
 namespace Dignite.SiteBuilding.Pages
 {
-    public class PageDto: FullAuditedEntityDto<Guid>
+    public class PageDto: ExtensibleFullAuditedEntityDto<Guid>, IMultiTenant, IHasConcurrencyStamp
     {
         /// <summary>
         /// 
@@ -51,5 +54,15 @@ namespace Dignite.SiteBuilding.Pages
         /// Template file of this page
         /// </summary>
         public string TemplateFile { get; set; }
+
+        /// <summary>
+        /// 子页面
+        /// </summary>
+        public ICollection<PageDto> Children { get; set; }
+
+
+        public Guid? TenantId { get; set; }
+
+        public string ConcurrencyStamp { get; set; }
     }
 }

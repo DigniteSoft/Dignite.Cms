@@ -22,32 +22,40 @@ namespace Dignite.SiteBuilding.Admin.Pages
 
 
         [HttpGet]
-        public async Task<ListResultDto<PageDto>> GetListAsync()
+        [Route("{id}")]
+        public virtual async Task<PageDto> GetAsync(Guid id)
         {
-            return await _siteAppService.GetListAsync();
+            return await _siteAppService.GetAsync(id);
+        }
+
+        [HttpGet]
+        [Route("all")]
+        public virtual async Task<ListResultDto<PageDto>> GetAllListAsync()
+        {
+            return await _siteAppService.GetAllListAsync();
         }
 
 
         [HttpGet]
-        [Route("{id}/edit")]
-        public async Task<PageEditOutput> EditAsync(Guid id)
+        public async Task<PagedResultDto<PageDto>> GetListAsync(GetPagesInput input)
         {
-            return await _siteAppService.EditAsync(id);
+            return await _siteAppService.GetListAsync(input);
         }
 
 
+
         [HttpPost]
-        public async Task CreateAsync(PageEditDto edit)
+        public async Task<PageDto> CreateAsync(PageCreateDto edit)
         {
-            await _siteAppService.CreateAsync(edit);
+            return await _siteAppService.CreateAsync(edit);
         }
 
 
         [HttpPut]
         [Route("{id}")]
-        public async Task UpdateAsync(Guid id, PageEditDto edit)
+        public async Task<PageDto> UpdateAsync(Guid id, PageUpdateDto edit)
         {
-            await _siteAppService.UpdateAsync(id,edit);
+            return await _siteAppService.UpdateAsync(id,edit);
         }
 
 

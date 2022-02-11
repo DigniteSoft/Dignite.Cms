@@ -11,7 +11,9 @@ namespace Dignite.SiteBuilding
         public SiteBuildingApplicationAutoMapperProfile()
         {
             /**** site *****************************************/
-            CreateMap<Page, PageDto>();
+            CreateMap<Page, PageDto>()
+                .ForMember(m => m.Name, y => y.Ignore())
+                .ForMember(m => m.Children, y => y.Ignore());
 
 
             /**** entry type *****************************************/
@@ -22,6 +24,7 @@ namespace Dignite.SiteBuilding
             /**** entity *****************************************/
             CreateMap<Entry, EntryDto>()
                 .MapCustomizeFields()
+                .ForMember(m => m.Page, y => y.Ignore())
                 .ForMember(m => m.Editor, y => y.Ignore());
 
             /**** user *****************************************/

@@ -1,15 +1,21 @@
 ﻿@page "/site-building/pages"
-@using System.ComponentModel
-@using AntDesign.TableModels
-@using System.Text.Json;
+
 @using Dignite.SiteBuilding.Permissions
+@using Dignite.SiteBuilding.Localization
+@using Dignite.SiteBuilding.Admin.Pages
+@using Dignite.SiteBuilding.Pages
 @using Microsoft.AspNetCore.Authorization
-@using Volo.Abp.AspNetCore.Components.Web.Theming
-@using Microsoft.JSInterop;
-@inject IJSRuntime JS
+@using Volo.Abp.BlazoriseUI.Components.ObjectExtending
 @attribute [Authorize(SiteBuildingPermissions.Page.Default)]
-@inherits AbpComponentBase
+@inject AbpBlazorMessageLocalizerHelper<SiteBuildingResource> LH
+
+@inherits AbpCrudPageBase<IPageAppService, PageDto, Guid, GetPagesInput, PageCreateDto, PageUpdateDto>
 <PageTitle>@L["Pages"]</PageTitle>
+@* ************************* PAGE HEADER ************************* *@
+<Volo.Abp.AspNetCore.Components.Web.Theming.Layout.PageHeader Title="@L["Roles"]"
+            BreadcrumbItems="@BreadcrumbItems"
+            Toolbar="@Toolbar">
+</Volo.Abp.AspNetCore.Components.Web.Theming.Layout.PageHeader>
 <PageHeader>
     <PageHeaderTitle>@L["Pages"]</PageHeaderTitle>
     <PageHeaderExtra>
@@ -19,115 +25,73 @@
     </PageHeaderExtra>
 </PageHeader>
 
-<div id="pages-table">
-<Table @ref="table"
-        TItem="WeatherForecast"
-        DataSource="@forecasts"
-        Total="_total"
-        @bind-PageIndex="_pageIndex"
-        @bind-PageSize="_pageSize"
-        @bind-SelectedRows="selectedRows"
-        OnChange="OnChange"
-        ScrollY="300px"
->
-    <Selection Key="@(context.Id.ToString())" />
-    <Column @bind-Field="@context.Id" Sortable />
-    <Column @bind-Field="@context.Date" Format="yyyy-MM-dd" Sortable />
-    <Column @bind-Field="@context.TemperatureC" Sortable />
-    <Column Title="Temp. (F)" Field="@context.TemperatureF" />
-    <Column Title="Hot" Field="@context.Hot">
-        <Switch @bind-Value="@context.Hot"></Switch>
-    </Column>
-    <Column @bind-Field="@context.Summary" Sortable />
-    <ActionColumn>
-        <Space>
-            <SpaceItem><Button Danger OnClick="()=>Delete(context.Id)">Delete</Button></SpaceItem>
-        </Space>
-    </ActionColumn>
-</Table>
-</div>
 
-@code {
+@* ************************* DATA GRID ************************* *@
+<ExtensibleAntDesignTable TItem="PageDto"
+                        Data="@Entities"
+                        ReadData="@OnTableReadAsync"
+                        TotalItems="@TotalCount"
+                        PageSize="@PageSize"
+                        CurrentPage="@CurrentPage"
+                        Columns="@PagesTableColumns">
+</ExtensibleAntDesignTable>
 
-    WeatherForecast[] forecasts;
-
-    IEnumerable<WeatherForecast> selectedRows;
-    ITable table;
-
-    int _pageIndex = 1;
-    int _pageSize = 20;
-    int _total = 0;
-
-    protected override async Task OnInitializedAsync()
-    {
-        forecasts = await GetForecastAsync(1, 50);
-        _total = 50;
-    }
-
-    public class WeatherForecast
-    {
-        public int Id { get; set; }
-
-        [DisplayName("Date")]
-        public DateTime? Date { get; set; }
-
-        [DisplayName("Temp. (C)")]
-        public int TemperatureC { get; set; }
-
-        [DisplayName("Summary")]
-        public string Summary { get; set; }
-
-        public int TemperatureF => 32 + (int)(TemperatureC / 0.5556);
-
-        public bool Hot { get; set; }
-    }
-
-    private static readonly string[] Summaries = new[]
-    {
-        "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-    };
-
-    public async Task OnChange(QueryModel<WeatherForecast> queryModel)
-    {
-        Console.WriteLine(JsonSerializer.Serialize(queryModel));
-    }
-
-    public Task<WeatherForecast[]> GetForecastAsync(int pageIndex, int pageSize)
-    {
-        var rng = new Random();
-        return Task.FromResult(Enumerable.Range((pageIndex - 1) * pageSize + 1, pageSize).Select(index =>
-        {
-            var temperatureC = rng.Next(-20, 55);
-            return new WeatherForecast
-            {
-                Id = index,
-                Date = DateTime.Now.AddDays(index),
-                TemperatureC = temperatureC,
-                Summary = Summaries[rng.Next(Summaries.Length)],
-                Hot = temperatureC > 30,
-            };
-        }).ToArray());
-    }
-
-    public void RemoveSelection(int id)
-    {
-        var selected = selectedRows.Where(x => x.Id != id);
-        selectedRows = selected;
-    }
-
-    private void Delete(int id)
-    {
-        forecasts = forecasts.Where(x => x.Id != id).ToArray();
-        _total = forecasts.Length;
-    }
-
-
-    protected override async Task OnAfterRenderAsync(bool firstRender)
-    {
-        if (firstRender)
-        {
-            await JS.InvokeVoidAsync("setTableScrollY",new { id="pages-table"});
-        }
-    }
-
+@* ************************* CREATE MODAL ************************* *@
+@if (HasCreatePermission)
+{
+    <Blazorise.Modal @ref="CreateModal" Closing="@ClosingCreateModal">
+        <Blazorise.ModalContent Centered="true">
+            <Blazorise.Form>
+                <Blazorise.ModalHeader>
+                    <Blazorise.ModalTitle>@L["NewRole"]</Blazorise.ModalTitle>
+                    <Blazorise.CloseButton Clicked="CloseCreateModalAsync"/>
+                </Blazorise.ModalHeader>
+                <Blazorise.ModalBody>
+                    <Blazorise.Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
+                        <Blazorise.Validation MessageLocalizer="@LH.Localize">
+                            <Blazorise.Field>
+                                <Blazorise.FieldLabel>@L["DisplayName:RoleName"]</Blazorise.FieldLabel>
+                                <Blazorise.TextEdit @bind-Text="@NewEntity.Name" Autofocus="true">
+                                    <Feedback>
+                                        <Blazorise.ValidationError/>
+                                    </Feedback>
+                                </Blazorise.TextEdit>
+                            </Blazorise.Field>
+                        </Blazorise.Validation>
+                        <CreateOrUpdatePageFormBase Data="@NewEntity" LH="@LH" L="@L"></CreateOrUpdatePageFormBase>
+                        <ExtensionProperties TEntityType="PageCreateDto" TResourceType="SiteBuildingResource" Entity="@NewEntity" LH="@LH"/>
+                    </Blazorise.Validations>
+                </Blazorise.ModalBody>
+                <Blazorise.ModalFooter>
+                    <Blazorise.Button Color="@Blazorise.Color.Secondary" Clicked="CloseCreateModalAsync">@L["Cancel"]</Blazorise.Button>
+                    <SubmitButton Clicked="@CreateEntityAsync"/>
+                </Blazorise.ModalFooter>
+            </Blazorise.Form>
+        </Blazorise.ModalContent>
+    </Blazorise.Modal>
+}
+@* ************************* EDIT MODAL ************************* *@
+@if (HasUpdatePermission)
+{
+    <Blazorise.Modal @ref="EditModal" Closing="@ClosingEditModal">
+        <Blazorise.ModalContent Centered="true">
+            <Blazorise.Form>
+                <Blazorise.ModalHeader>
+                    <Blazorise.ModalTitle>@L["Edit"]</Blazorise.ModalTitle>
+                    <Blazorise.CloseButton Clicked="CloseEditModalAsync"/>
+                </Blazorise.ModalHeader>
+                <Blazorise.ModalBody>
+                    <Blazorise.Validations @ref="@EditValidationsRef" Model="@EditingEntity" ValidateOnLoad="false">
+                        <input type="hidden" name="ConcurrencyStamp" @bind-value="EditingEntity.ConcurrencyStamp"/>
+                        <CreateOrUpdatePageFormBase Data="@NewEntity" LH="@LH" L="@L"></CreateOrUpdatePageFormBase>
+                        <ExtensionProperties TEntityType="PageUpdateDto" TResourceType="SiteBuildingResource" Entity="@EditingEntity" LH="@LH"/>
+                    </Blazorise.Validations>
+                </Blazorise.ModalBody>
+                <Blazorise.ModalFooter>
+                    <Blazorise.Button Color="Blazorise.Color.Secondary" Clicked="CloseEditModalAsync">@L["Cancel"]</Blazorise.Button>
+                    <SubmitButton Clicked="@UpdateEntityAsync"/>
+                </Blazorise.ModalFooter>
+            </Blazorise.Form>
+        </Blazorise.ModalContent>
+    </Blazorise.Modal>
 }

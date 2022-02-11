@@ -1,11 +1,18 @@
 ﻿using Dignite.SiteBuilding.Pages;
 using System;
 using System.ComponentModel.DataAnnotations;
+using Volo.Abp.ObjectExtending;
 
 namespace Dignite.SiteBuilding.Admin.Pages
 {
-    public class PageEditDto
+    public abstract class PageCreateOrUpdateDtoBase: ExtensibleObject
     {
+        protected PageCreateOrUpdateDtoBase() : base(false)
+        {
+
+        }
+
+
         /// <summary>
         /// 
         /// </summary>
@@ -14,6 +21,7 @@ namespace Dignite.SiteBuilding.Admin.Pages
         /// <summary>
         /// 
         /// </summary>
+        [Required]
         public bool IsActive { get; set; }
 
 
