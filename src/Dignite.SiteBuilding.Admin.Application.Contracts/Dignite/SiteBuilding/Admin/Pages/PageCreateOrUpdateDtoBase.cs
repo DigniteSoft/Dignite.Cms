@@ -28,7 +28,7 @@ namespace Dignite.SiteBuilding.Admin.Pages
         /// <summary>
         /// Title of this page.
         /// </summary>
-        [Required]
+        [Required] 
         [StringLength(PageConsts.MaxTitleLength)]
         public virtual string Title { get; set; }
 
@@ -51,7 +51,7 @@ namespace Dignite.SiteBuilding.Admin.Pages
         /// <summary>
         /// Keywords of this page
         /// </summary>
-        [StringLength(PageConsts.MaxKeywordsLength)]
+        //[StringLength(PageConsts.MaxKeywordsLength)]
         public string[] Keywords { get; set; }
 
         /// <summary>

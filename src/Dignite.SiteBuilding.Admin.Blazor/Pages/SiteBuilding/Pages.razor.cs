@@ -3,6 +3,7 @@ using Blazorise;
 using Dignite.SiteBuilding.Localization;
 using Dignite.SiteBuilding.Pages;
 using Dignite.SiteBuilding.Permissions;
+using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -92,7 +93,7 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
         protected virtual async Task OnTableReadAsync(QueryModel<PageDto> e)
         {
             CurrentSorting = e.SortModel
-                .OrderByDescending(c=>c.Priority)
+                .OrderByDescending(c => c.Priority)
                 .Select(c => c.FieldName + (c.Sort == "ascend" ? " ASC" : " DESC"))
                 .JoinAsString(",");
             CurrentPage = e.PageIndex;
@@ -100,6 +101,33 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
             await GetEntitiesAsync();
 
             await InvokeAsync(StateHasChanged);
+        }
+
+        protected async Task CreateEntityAsync1()
+        {
+            Console.WriteLine("Create1");
+            try
+            {
+                var validate = true;
+                if (CreateValidationsRef != null)
+                {
+                    validate = await CreateValidationsRef.ValidateAll();
+                }
+                if (validate)
+                {
+                    await OnCreatingEntityAsync();
+
+                    await CheckCreatePolicyAsync();
+                    var createInput = MapToCreateInput(NewEntity);
+                    await AppService.CreateAsync(createInput);
+
+                    await OnCreatedEntityAsync();
+                }
+            }
+            catch (Exception ex)
+            {
+                await HandleErrorAsync(ex);
+            }
         }
     }
 }

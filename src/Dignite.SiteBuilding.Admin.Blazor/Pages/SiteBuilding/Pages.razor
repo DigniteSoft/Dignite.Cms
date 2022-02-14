@@ -12,7 +12,7 @@
 @inherits AbpCrudPageBase<IPageAppService, PageDto, Guid, GetPagesInput, PageCreateDto, PageUpdateDto>
 <PageTitle>@L["Pages"]</PageTitle>
 @* ************************* PAGE HEADER ************************* *@
-<Volo.Abp.AspNetCore.Components.Web.Theming.Layout.PageHeader Title="@L["Roles"]"
+<Volo.Abp.AspNetCore.Components.Web.Theming.Layout.PageHeader Title="@L["Pages"]"
             BreadcrumbItems="@BreadcrumbItems"
             Toolbar="@Toolbar">
 </Volo.Abp.AspNetCore.Components.Web.Theming.Layout.PageHeader>
@@ -43,14 +43,14 @@
         <Blazorise.ModalContent Centered="true">
             <Blazorise.Form>
                 <Blazorise.ModalHeader>
-                    <Blazorise.ModalTitle>@L["NewRole"]</Blazorise.ModalTitle>
+                    <Blazorise.ModalTitle>@L["NewPage"]</Blazorise.ModalTitle>
                     <Blazorise.CloseButton Clicked="CloseCreateModalAsync"/>
                 </Blazorise.ModalHeader>
                 <Blazorise.ModalBody>
                     <Blazorise.Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
                         <Blazorise.Validation MessageLocalizer="@LH.Localize">
                             <Blazorise.Field>
-                                <Blazorise.FieldLabel>@L["DisplayName:RoleName"]</Blazorise.FieldLabel>
+                                <Blazorise.FieldLabel>@L["DisplayName:PageName"]</Blazorise.FieldLabel>
                                 <Blazorise.TextEdit @bind-Text="@NewEntity.Name" Autofocus="true">
                                     <Feedback>
                                         <Blazorise.ValidationError/>
@@ -64,7 +64,7 @@
                 </Blazorise.ModalBody>
                 <Blazorise.ModalFooter>
                     <Blazorise.Button Color="@Blazorise.Color.Secondary" Clicked="CloseCreateModalAsync">@L["Cancel"]</Blazorise.Button>
-                    <SubmitButton Clicked="@CreateEntityAsync"/>
+                    <SubmitButton Clicked="@CreateEntityAsync1"/>
                 </Blazorise.ModalFooter>
             </Blazorise.Form>
         </Blazorise.ModalContent>
