@@ -93,7 +93,12 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
         protected virtual async Task OnTableReadAsync(QueryModel<PageDto> e)
         {
             CurrentSorting = e.SortModel
+<<<<<<< Updated upstream
                 .OrderByDescending(c => c.Priority)
+=======
+                .Where(s=>!s.Sort.IsNullOrEmpty())
+                .OrderByDescending(c=>c.Priority)
+>>>>>>> Stashed changes
                 .Select(c => c.FieldName + (c.Sort == "ascend" ? " ASC" : " DESC"))
                 .JoinAsString(",");
             CurrentPage = e.PageIndex;
