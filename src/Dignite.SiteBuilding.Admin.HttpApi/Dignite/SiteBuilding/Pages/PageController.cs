@@ -13,11 +13,11 @@ namespace Dignite.SiteBuilding.Admin.Pages
     [ControllerName("PageManagement")]
     public class PageController : SiteBuildingAdminController, IPageAppService
     {
-        private readonly IPageAppService _siteAppService;
+        private readonly IPageAppService _pageAppService;
 
         public PageController(IPageAppService siteAppService)
         {
-            _siteAppService = siteAppService;
+            _pageAppService = siteAppService;
         }
 
 
@@ -25,21 +25,21 @@ namespace Dignite.SiteBuilding.Admin.Pages
         [Route("{id}")]
         public virtual async Task<PageDto> GetAsync(Guid id)
         {
-            return await _siteAppService.GetAsync(id);
+            return await _pageAppService.GetAsync(id);
         }
 
         [HttpGet]
         [Route("all")]
         public virtual async Task<ListResultDto<PageDto>> GetAllListAsync()
         {
-            return await _siteAppService.GetAllListAsync();
+            return await _pageAppService.GetAllListAsync();
         }
 
 
         [HttpGet]
         public async Task<PagedResultDto<PageDto>> GetListAsync(GetPagesInput input)
         {
-            return await _siteAppService.GetListAsync(input);
+            return await _pageAppService.GetListAsync(input);
         }
 
 
@@ -47,7 +47,7 @@ namespace Dignite.SiteBuilding.Admin.Pages
         [HttpPost]
         public async Task<PageDto> CreateAsync(PageCreateDto edit)
         {
-            return await _siteAppService.CreateAsync(edit);
+            return await _pageAppService.CreateAsync(edit);
         }
 
 
@@ -55,7 +55,7 @@ namespace Dignite.SiteBuilding.Admin.Pages
         [Route("{id}")]
         public async Task<PageDto> UpdateAsync(Guid id, PageUpdateDto edit)
         {
-            return await _siteAppService.UpdateAsync(id,edit);
+            return await _pageAppService.UpdateAsync(id,edit);
         }
 
 
@@ -63,14 +63,14 @@ namespace Dignite.SiteBuilding.Admin.Pages
         [Route("{id}")]
         public async Task DeleteAsync(Guid id)
         {
-            await _siteAppService.DeleteAsync(id);
+            await _pageAppService.DeleteAsync(id);
         }
 
         [HttpPut]
         [Route("{id}/move")]
         public async Task MoveAsync(Guid id, MovePageInput input)
         {
-            await _siteAppService.MoveAsync(id, input);
+            await _pageAppService.MoveAsync(id, input);
         }
     }
 }

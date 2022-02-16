@@ -1,4 +1,4 @@
-﻿@page "/site-building/pages"
+﻿@page "/site-building/pages/{parentId:guid?}"
 
 @using Dignite.SiteBuilding.Permissions
 @using Dignite.SiteBuilding.Localization
@@ -12,14 +12,10 @@
 @inherits AbpCrudPageBase<IPageAppService, PageDto, Guid, GetPagesInput, PageCreateDto, PageUpdateDto>
 <PageTitle>@L["Pages"]</PageTitle>
 @* ************************* PAGE HEADER ************************* *@
-<Volo.Abp.AspNetCore.Components.Web.Theming.Layout.PageHeader Title="@L["Pages"]"
-            BreadcrumbItems="@BreadcrumbItems"
-            Toolbar="@Toolbar">
-</Volo.Abp.AspNetCore.Components.Web.Theming.Layout.PageHeader>
 <PageHeader>
     <PageHeaderTitle>@L["Pages"]</PageHeaderTitle>
     <PageHeaderExtra>
-        <button class="btn btn-outline-primary btn-sm rounded-pill" type="submit">
+        <button class="btn btn-outline-primary btn-sm rounded-pill" type="button" @onclick="OpenCreateModalAsync">
             <i class="fa fa-plus"></i> @L["Create"]
         </button>
     </PageHeaderExtra>
@@ -48,23 +44,13 @@
                 </Blazorise.ModalHeader>
                 <Blazorise.ModalBody>
                     <Blazorise.Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
-                        <Blazorise.Validation MessageLocalizer="@LH.Localize">
-                            <Blazorise.Field>
-                                <Blazorise.FieldLabel>@L["DisplayName:PageName"]</Blazorise.FieldLabel>
-                                <Blazorise.TextEdit @bind-Text="@NewEntity.Name" Autofocus="true">
-                                    <Feedback>
-                                        <Blazorise.ValidationError/>
-                                    </Feedback>
-                                </Blazorise.TextEdit>
-                            </Blazorise.Field>
-                        </Blazorise.Validation>
-                        <CreateOrUpdatePageFormBase Data="@NewEntity" LH="@LH" L="@L"></CreateOrUpdatePageFormBase>
+                        <CreateOrUpdatePageFormShared Data="@NewEntity" LH="@LH" L="@L"></CreateOrUpdatePageFormShared>
                         <ExtensionProperties TEntityType="PageCreateDto" TResourceType="SiteBuildingResource" Entity="@NewEntity" LH="@LH"/>
                     </Blazorise.Validations>
                 </Blazorise.ModalBody>
                 <Blazorise.ModalFooter>
                     <Blazorise.Button Color="@Blazorise.Color.Secondary" Clicked="CloseCreateModalAsync">@L["Cancel"]</Blazorise.Button>
-                    <SubmitButton Clicked="@CreateEntityAsync1"/>
+                    <SubmitButton Clicked="@CreateEntityAsync"/>
                 </Blazorise.ModalFooter>
             </Blazorise.Form>
         </Blazorise.ModalContent>
@@ -83,7 +69,7 @@
                 <Blazorise.ModalBody>
                     <Blazorise.Validations @ref="@EditValidationsRef" Model="@EditingEntity" ValidateOnLoad="false">
                         <input type="hidden" name="ConcurrencyStamp" @bind-value="EditingEntity.ConcurrencyStamp"/>
-                        <CreateOrUpdatePageFormBase Data="@NewEntity" LH="@LH" L="@L"></CreateOrUpdatePageFormBase>
+                        <CreateOrUpdatePageFormShared Data="@EditingEntity" LH="@LH" L="@L"></CreateOrUpdatePageFormShared>
                         <ExtensionProperties TEntityType="PageUpdateDto" TResourceType="SiteBuildingResource" Entity="@EditingEntity" LH="@LH"/>
                     </Blazorise.Validations>
                 </Blazorise.ModalBody>

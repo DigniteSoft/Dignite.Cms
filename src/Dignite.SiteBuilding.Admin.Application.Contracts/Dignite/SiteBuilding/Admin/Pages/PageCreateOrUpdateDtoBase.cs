@@ -7,7 +7,7 @@ namespace Dignite.SiteBuilding.Admin.Pages
 {
     public abstract class PageCreateOrUpdateDtoBase: ExtensibleObject
     {
-        protected PageCreateOrUpdateDtoBase() : base(false)
+        public PageCreateOrUpdateDtoBase() : base(false)
         {
 
         }
@@ -33,7 +33,7 @@ namespace Dignite.SiteBuilding.Admin.Pages
         public virtual string Title { get; set; }
 
         /// <summary>
-        /// Page path
+        /// Page path name
         /// </summary>
         [Required]
         [StringLength(PageConsts.MaxNameLength)]

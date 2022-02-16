@@ -1,4 +1,6 @@
 ﻿using AutoMapper;
+using Dignite.SiteBuilding.Admin.Pages;
+using Dignite.SiteBuilding.Pages;
 
 namespace Dignite.SiteBuilding.Admin.Blazor
 {
@@ -6,10 +8,11 @@ namespace Dignite.SiteBuilding.Admin.Blazor
     {
         public SiteBuildingAdminBlazorAutoMapperProfile()
         {
-            /* You can configure your AutoMapper mapping configuration here.
-             * Alternatively, you can split your mapping configurations
-             * into multiple profile classes for a better organization. */
+            CreateMap<PageDto, PageCreateDto>()
+                .MapExtraProperties();
 
+            CreateMap<PageDto, PageUpdateDto>()
+                .MapExtraProperties();
         }
     }
 }

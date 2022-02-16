@@ -16,6 +16,9 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
 {
     public partial class Pages
     {
+        [Parameter]
+        public Guid? ParentId { get; set; }
+
         protected PageToolbar Toolbar { get; } = new();
 
         protected List<TableColumn> PagesTableColumns => TableColumns.Get<Pages>();
@@ -28,6 +31,12 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
             CreatePolicyName = SiteBuildingPermissions.Page.Create;
             UpdatePolicyName = SiteBuildingPermissions.Page.Update;
             DeletePolicyName = SiteBuildingPermissions.Page.Delete;
+        }
+
+        protected override async Task OnInitializedAsync()
+        {
+            await base.OnInitializedAsync();
+            NewEntity.ParentId = ParentId;
         }
 
         protected override ValueTask SetEntityActionsAsync()
@@ -69,6 +78,18 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
                         Title = L["Title"],
                         Data = nameof(PageDto.Title)
                     },
+                    new TableColumn
+                    {
+                        Title = L["CreationTime"],
+                        Data = nameof(PageDto.CreationTime),
+                        DisplayFormat="yyyy-MM-dd"
+                    },
+                    new TableColumn
+                    {
+                        Title = L["LastModificationTime"],
+                        Data = nameof(PageDto.LastModificationTime),
+                        DisplayFormat="yyyy-MM-dd"
+                    }
                 });
 
             return base.SetTableColumnsAsync();
@@ -93,12 +114,8 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
         protected virtual async Task OnTableReadAsync(QueryModel<PageDto> e)
         {
             CurrentSorting = e.SortModel
-<<<<<<< Updated upstream
-                .OrderByDescending(c => c.Priority)
-=======
                 .Where(s=>!s.Sort.IsNullOrEmpty())
                 .OrderByDescending(c=>c.Priority)
->>>>>>> Stashed changes
                 .Select(c => c.FieldName + (c.Sort == "ascend" ? " ASC" : " DESC"))
                 .JoinAsString(",");
             CurrentPage = e.PageIndex;
@@ -108,31 +125,6 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
             await InvokeAsync(StateHasChanged);
         }
 
-        protected async Task CreateEntityAsync1()
-        {
-            Console.WriteLine("Create1");
-            try
-            {
-                var validate = true;
-                if (CreateValidationsRef != null)
-                {
-                    validate = await CreateValidationsRef.ValidateAll();
-                }
-                if (validate)
-                {
-                    await OnCreatingEntityAsync();
 
-                    await CheckCreatePolicyAsync();
-                    var createInput = MapToCreateInput(NewEntity);
-                    await AppService.CreateAsync(createInput);
-
-                    await OnCreatedEntityAsync();
-                }
-            }
-            catch (Exception ex)
-            {
-                await HandleErrorAsync(ex);
-            }
-        }
     }
 }

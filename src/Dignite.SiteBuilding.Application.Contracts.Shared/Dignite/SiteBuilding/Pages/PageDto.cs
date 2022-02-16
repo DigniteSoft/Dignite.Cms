@@ -55,6 +55,8 @@ namespace Dignite.SiteBuilding.Pages
         /// </summary>
         public string TemplateFile { get; set; }
 
+        public string PermissionName { get; set; }
+
         /// <summary>
         /// 子页面
         /// </summary>

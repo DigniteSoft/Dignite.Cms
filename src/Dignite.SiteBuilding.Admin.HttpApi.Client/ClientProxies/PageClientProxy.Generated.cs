@@ -39,7 +39,6 @@ public partial class PageClientProxy : ClientProxyBase<IPageAppService>, IPageAp
 
     public virtual async Task<PageDto> CreateAsync(PageCreateDto edit)
     {
-        Console.WriteLine("Client.Create1");
         return await RequestAsync<PageDto>(nameof(CreateAsync), new ClientProxyRequestTypeValue
         {
             { typeof(PageCreateDto), edit }

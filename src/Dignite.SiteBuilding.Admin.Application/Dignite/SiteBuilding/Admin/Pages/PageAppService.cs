@@ -65,31 +65,38 @@ namespace Dignite.SiteBuilding.Admin.Pages
         [Authorize(Permissions.SiteBuildingPermissions.Page.Create)]
         public async Task<PageDto> CreateAsync(PageCreateDto input)
         {
-            var path = await GetPath(input.ParentId, input.Name);
-            await CheckPathExistenceAsync(path);
+            try
+            {
+                var path = await GetPath(input.ParentId, input.Name);
+                await CheckPathExistenceAsync(path);
 
-            var page = new Page(
-                GuidGenerator.Create(),
-                input.ParentId,
-                input.IsActive,
-                input.Title,
-                path,
-                CurrentTenant.Id);
-            page.Description = input.Description;
-            page.Keywords = input.Keywords;
-            page.PermissionName= input.PermissionName;
-            page.TemplateFile=input.TemplateFile;
+                var page = new Page(
+                    GuidGenerator.Create(),
+                    input.ParentId,
+                    input.IsActive,
+                    input.Title,
+                    path,
+                    CurrentTenant.Id);
+                page.Description = input.Description;
+                page.Keywords = input.Keywords;
+                page.PermissionName = input.PermissionName;
+                page.TemplateFile = input.TemplateFile;
 
 
-            page.SetPosition(
-                (await _pageRepository.GetListAsync(input.ParentId))
-                .Select(x => x.Position)
-                .DefaultIfEmpty(0)
-                .Max() +1);
+                page.SetPosition(
+                    (await _pageRepository.GetListAsync(input.ParentId))
+                    .Select(x => x.Position)
+                    .DefaultIfEmpty(0)
+                    .Max() + 1);
 
-            await _pageRepository.InsertAsync(page);
+                await _pageRepository.InsertAsync(page);
 
-            return ObjectMapper.Map<Page, PageDto>(page);
+                return ObjectMapper.Map<Page, PageDto>(page);
+            }
+            catch (Exception ex)
+            {
+                return new PageDto();
+            }
         }
 
         [Authorize(Permissions.SiteBuildingPermissions.Page.Update)]
