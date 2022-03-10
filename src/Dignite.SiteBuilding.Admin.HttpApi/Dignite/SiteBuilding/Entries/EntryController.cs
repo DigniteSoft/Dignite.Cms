@@ -23,7 +23,7 @@ namespace Dignite.SiteBuilding.Admin.Entries
 
         [HttpGet]
         [Route("new")]
-        public async Task<EntryEditOutput> NewAsync(Guid sectionId)
+        public async Task<NewEntryOutput> NewAsync(Guid sectionId)
         {
             return await _entryAppService.NewAsync(sectionId);
         }
@@ -31,7 +31,7 @@ namespace Dignite.SiteBuilding.Admin.Entries
 
         [HttpGet]
         [Route("{id}/edit")]
-        public async Task<EntryEditOutput> EditAsync(Guid id)
+        public async Task<EditEntryOutput> EditAsync(Guid id)
         {
             return await _entryAppService.EditAsync(id);
         }
@@ -44,9 +44,9 @@ namespace Dignite.SiteBuilding.Admin.Entries
 
 
         [HttpPost]
-        public async Task CreateAsync(EntryEditDto input)
+        public async Task<EntryDto> CreateAsync(EntryCreateDto input)
         {
-            await _entryAppService.CreateAsync(input);
+            return await _entryAppService.CreateAsync(input);
         }
 
         /// <summary>
@@ -56,9 +56,9 @@ namespace Dignite.SiteBuilding.Admin.Entries
         /// <returns></returns>
 
         [HttpPut]
-        public async Task UpdateAsync(EntryEditDto input)
+        public async Task<EntryDto> UpdateAsync(Guid id,EntryUpdateDto input)
         {
-            await _entryAppService.UpdateAsync(input);
+            return await _entryAppService.UpdateAsync(id,input);
         }
 
         /// <summary>
@@ -84,6 +84,20 @@ namespace Dignite.SiteBuilding.Admin.Entries
         public async Task<PagedResultDto<EntryDto>> GetListAsync(GetEntriesInput input)
         {
             return await _entryAppService.GetListAsync(input);
+        }
+
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<EntryDto> GetAsync(Guid id)
+        {
+            return await _entryAppService.GetAsync(id);
         }
 
 

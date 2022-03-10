@@ -64,7 +64,7 @@ namespace Dignite.SiteBuilding.EntityFrameworkCore
                 //Properties
                 b.Property(q => q.DisplayName).IsRequired().HasMaxLength(Sections.SectionConsts.MaxDisplayNameLength);
                 b.Property(q => q.Name).IsRequired().HasMaxLength(Sections.SectionConsts.MaxNameLength);
-                b.Property(q => q.TemplateFile).IsRequired().HasMaxLength(Pages.PageConsts.MaxTemplateFileLength);
+                b.Property(q => q.TemplateFile).HasMaxLength(Pages.PageConsts.MaxTemplateFileLength);
                 b.Property(q => q.EntryTemplateFile).HasMaxLength(Pages.PageConsts.MaxTemplateFileLength);
 
                 //Relations
@@ -107,7 +107,6 @@ namespace Dignite.SiteBuilding.EntityFrameworkCore
                 //Properties
                 b.Property(q => q.DisplayName).IsRequired().HasMaxLength(Sections.FieldDefinitionConsts.MaxDisplayNameLength);
                 b.Property(q => q.Name).IsRequired().HasMaxLength(Sections.FieldDefinitionConsts.MaxNameLength);
-                b.Property(q => q.Description).HasMaxLength(Sections.FieldDefinitionConsts.MaxDescriptionLength);
                 b.Property(q => q.FieldControlProviderName).IsRequired().HasMaxLength(Sections.FieldDefinitionConsts.MaxFieldControlProviderNameLength);
 
                 //Indexes

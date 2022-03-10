@@ -1,6 +1,8 @@
 ﻿using AutoMapper;
 using Dignite.SiteBuilding.Admin.Pages;
 using Dignite.SiteBuilding.Pages;
+using Dignite.SiteBuilding.Admin.Sections;
+using Dignite.SiteBuilding.Sections;
 
 namespace Dignite.SiteBuilding.Admin.Blazor
 {

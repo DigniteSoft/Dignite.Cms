@@ -1,0 +1,29 @@
+﻿@page "/site-building/admin/entries/{id:guid}/edit"
+
+
+@using Dignite.SiteBuilding.Permissions
+@using Dignite.SiteBuilding.Localization
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@inherits AbpComponentBase
+
+
+@attribute [Authorize(SiteBuildingPermissions.Entry.Update)]
+@inject AbpBlazorMessageLocalizerHelper<SiteBuildingResource> LH
+
+@code{
+}
+    
+<PageTitle>@L["EditEntry"]</PageTitle>
+
+@* ************************* PAGE HEADER ************************* *@
+<PageHeader Title="@L["EditEntry"]"
+            Toolbar="@Toolbar">
+</PageHeader>
+  
+@* ************************* CREATE  ************************* *@        
+<Blazorise.Form>
+    <Blazorise.Validations @ref="@ValidationsRef" Model="@Entity" ValidateOnLoad="false">
+        <CreateOrUpdateEntryFormShared Entry="@Entity" Section="@EditEntryOutput.Section" LH="@LH" L="@L"></CreateOrUpdateEntryFormShared>
+    </Blazorise.Validations>
+</Blazorise.Form>

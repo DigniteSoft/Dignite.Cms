@@ -13,17 +13,23 @@ namespace Dignite.SiteBuilding.Sections
     {
         public FieldDefinition(
             Guid id,  
+            Guid sectionId,
             string displayName, 
             string name, 
             string defaultValue,
+            string fieldControlProviderName,
             FieldControlConfigurationDictionary configuration,  
+            int position,
             Guid? tenantId)
         {
             Id = id;
+            SectionId = sectionId;
             DisplayName = displayName;
             Name = name;
             DefaultValue = defaultValue;
+            FieldControlProviderName = fieldControlProviderName;
             Configuration = configuration;
+            Position = position;
             TenantId = tenantId;
         }
 
@@ -47,13 +53,6 @@ namespace Dignite.SiteBuilding.Sections
         [NotNull]
         public virtual string Name { get; set; }
 
-
-        /// <summary>
-        /// Description
-        /// </summary>
-        [CanBeNull]
-        public string Description { get; set; }
-
         /// <summary>
         /// Default value of the field.
         /// </summary>
@@ -61,7 +60,7 @@ namespace Dignite.SiteBuilding.Sections
         public string DefaultValue { get; set; }
 
         [NotNull]
-        public string FieldControlProviderName { get; }
+        public string FieldControlProviderName { get; set; }
 
         [NotNull]
         public virtual FieldControlConfigurationDictionary Configuration { get; set; }

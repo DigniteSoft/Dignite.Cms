@@ -1,32 +1,28 @@
-﻿using System;
-using System.ComponentModel.DataAnnotations;
-using Dignite.Abp.FieldCustomizing;
-using System.Collections.Generic;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq;
-using Dignite.SiteBuilding.Entries;
+﻿using Dignite.Abp.FieldCustomizing;
 using Dignite.SiteBuilding.Admin.Sections;
+using Dignite.SiteBuilding.Entries;
+using Microsoft.Extensions.DependencyInjection;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Linq;
 
 namespace Dignite.SiteBuilding.Admin.Entries
 {
-    public class EntryEditDto: CustomizableObject
+    public abstract class EntryCreateOrUpdateDtoBase: CustomizableObject
     {
-        public EntryEditDto()
+        public EntryCreateOrUpdateDtoBase()
         {
             this.CustomizedFields = new CustomizeFieldDictionary();
         }
 
-        public EntryEditDto(Guid id,Guid sectionId) :this()
+        public EntryCreateOrUpdateDtoBase( Guid sectionId) : this()
         {
-            Id = id;
             SectionId = sectionId;
             PublishTime = DateTime.Now;
             IsActive = true;
         }
 
-
-        [Required]
-        public Guid Id { get; set; }
 
 
         /// <summary>
@@ -38,6 +34,7 @@ namespace Dignite.SiteBuilding.Admin.Entries
         /// <summary>
         /// 
         /// </summary>
+        [Required]
         public virtual Guid PageId { get; set; }
 
 
@@ -79,6 +76,18 @@ namespace Dignite.SiteBuilding.Admin.Entries
                         fd.Configuration
                         )).ToList();
 
+        }
+        public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            var validationErrors = new List<ValidationResult>();
+            if (PageId.Equals(Guid.Empty))
+            {
+                validationErrors.Add(new ValidationResult("请选择页面！"));
+            }
+
+            validationErrors.AddRange(base.Validate(validationContext));
+
+            return validationErrors;
         }
     }
 }

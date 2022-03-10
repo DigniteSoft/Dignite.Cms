@@ -1,27 +1,25 @@
-﻿using AntDesign.TableModels;
+﻿using AntDesign;
 using Blazorise;
 using Dignite.SiteBuilding.Localization;
 using Dignite.SiteBuilding.Pages;
 using Dignite.SiteBuilding.Permissions;
-using Microsoft.AspNetCore.Components;
 using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Components.Web.Extensibility.EntityActions;
 using Volo.Abp.AspNetCore.Components.Web.Extensibility.TableColumns;
 using Volo.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
 
-namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
+namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Pages
 {
     public partial class Pages
-    {
-        [Parameter]
-        public Guid? ParentId { get; set; }
+    {       
+        private Guid? ParentId { get; set; }
 
         protected PageToolbar Toolbar { get; } = new();
 
         protected List<TableColumn> PagesTableColumns => TableColumns.Get<Pages>();
+
 
         public Pages()
         {
@@ -33,11 +31,6 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
             DeletePolicyName = SiteBuildingPermissions.Page.Delete;
         }
 
-        protected override async Task OnInitializedAsync()
-        {
-            await base.OnInitializedAsync();
-            NewEntity.ParentId = ParentId;
-        }
 
         protected override ValueTask SetEntityActionsAsync()
         {
@@ -82,13 +75,13 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
                     {
                         Title = L["CreationTime"],
                         Data = nameof(PageDto.CreationTime),
-                        DisplayFormat="yyyy-MM-dd"
-                    },
+                        DisplayFormat="{0:yyyy-MM-dd}"
+                  },
                     new TableColumn
                     {
                         Title = L["LastModificationTime"],
                         Data = nameof(PageDto.LastModificationTime),
-                        DisplayFormat="yyyy-MM-dd"
+                        DisplayFormat="{0:yyyy-MM-dd}"
                     }
                 });
 
@@ -111,20 +104,24 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding
             return base.SetToolbarItemsAsync();
         }
 
-        protected virtual async Task OnTableReadAsync(QueryModel<PageDto> e)
+        protected override Task OnCreatingEntityAsync()
         {
-            CurrentSorting = e.SortModel
-                .Where(s=>!s.Sort.IsNullOrEmpty())
-                .OrderByDescending(c=>c.Priority)
-                .Select(c => c.FieldName + (c.Sort == "ascend" ? " ASC" : " DESC"))
-                .JoinAsString(",");
-            CurrentPage = e.PageIndex;
-
-            await GetEntitiesAsync();
-
-            await InvokeAsync(StateHasChanged);
+            NewEntity.ParentId = ParentId;
+            return base.OnCreatingEntityAsync();
         }
 
+        protected override Task UpdateGetListInputAsync()
+        {
+            GetListInput.ParentId = ParentId;
+            base.UpdateGetListInputAsync();
 
+            return Task.CompletedTask;
+        }
+
+        async Task OnTreeNodeClick(TreeEventArgs<PageDto> e)
+        {
+            ParentId = e.Node.DataItem.Id;
+            await base.GetEntitiesAsync();
+        }
     }
 }

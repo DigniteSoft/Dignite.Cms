@@ -7,51 +7,27 @@ using Volo.Abp.Application.Services;
 
 namespace Dignite.SiteBuilding.Admin.Entries
 {
-    public interface IEntryAppService : IApplicationService
+    public interface IEntryAppService
+    : ICrudAppService<
+        EntryDto,
+        Guid,
+        GetEntriesInput,
+        EntryCreateDto,
+        EntryUpdateDto>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <param name="sectionId"></param>
         /// <returns></returns>
-        Task<EntryEditOutput> NewAsync(Guid sectionId);
+        Task<NewEntryOutput> NewAsync(Guid sectionId);
 
         /// <summary>
         /// 
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<EntryEditOutput> EditAsync(Guid id);
-
-        /// <summary>
-        /// 创建或更新条目
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-
-        Task CreateAsync(EntryEditDto input);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        Task UpdateAsync(EntryEditDto input);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="id"></param>
-        /// <returns></returns>
-        Task DeleteAsync(Guid id);
-
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        Task<PagedResultDto<EntryDto>> GetListAsync(GetEntriesInput input);
+        Task<EditEntryOutput> EditAsync(Guid id);
 
         /// <summary>
         /// 获取条目选择字段的数据源

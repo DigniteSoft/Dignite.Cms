@@ -1,7 +1,6 @@
 {
   "culture": "en",
   "texts": {
-    "ManageYourProfile":  "Manage your profile",
-    "SamplePageMessage": "A sample page for the SiteBuilding module"
+    "DisplayName:DisplayName": "DisplayName"
   }
 }

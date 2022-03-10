@@ -1,0 +1,37 @@
+﻿@page "/site-building/admin/sections"
+@attribute [Authorize(SiteBuildingPermissions.Section.Default)]
+
+@using Dignite.SiteBuilding.Permissions
+@using Dignite.SiteBuilding.Localization
+@using Dignite.SiteBuilding.Admin.Sections
+@using Dignite.SiteBuilding.Sections
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.BlazoriseUI.Components.ObjectExtending
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@inject AbpBlazorMessageLocalizerHelper<SiteBuildingResource> LH
+
+@inherits AbpCrudPageBase<ISectionAppService, SectionDto, Guid, GetSectionsInput, SectionCreateDto, SectionUpdateDto>
+
+<PageTitle>@L["Sections"]</PageTitle>
+
+<Card>
+    <CardHeader>
+        @* ************************* PAGE HEADER ************************* *@
+        <PageHeader Title="@L["Sections"]"
+                    BreadcrumbItems="@BreadcrumbItems"
+                    Toolbar="@Toolbar">
+        </PageHeader>
+    </CardHeader>
+    <CardBody>
+        @* ************************* DATA GRID ************************* *@
+        <AbpExtensibleDataGrid TItem="SectionDto"
+                               Data="Entities"
+                               ReadData="OnDataGridReadAsync"
+                               TotalItems="TotalCount"
+                               ShowPager="true"
+                               PageSize="PageSize"
+                               CurrentPage="@CurrentPage"
+                               Columns="@SectionManagementTableColumns">
+        </AbpExtensibleDataGrid>
+    </CardBody>
+</Card>

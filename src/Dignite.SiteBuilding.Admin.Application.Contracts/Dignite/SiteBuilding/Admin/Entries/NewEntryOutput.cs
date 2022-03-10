@@ -2,10 +2,10 @@
 
 namespace Dignite.SiteBuilding.Admin.Entries
 {
-    public class EntryEditOutput
+    public class NewEntryOutput
     {
         public SectionDto Section { get; set; }
 
-        public EntryEditDto Entry { get; set; }
+        public EntryCreateDto Entry { get; set; }
     }
 }

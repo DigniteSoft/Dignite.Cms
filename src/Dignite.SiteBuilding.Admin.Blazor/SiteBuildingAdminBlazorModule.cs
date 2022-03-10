@@ -10,6 +10,7 @@ using Volo.Abp.Threading;
 using Volo.Abp.ObjectExtending.Modularity;
 using Dignite.SiteBuilding.Admin.Pages;
 using Dignite.Abp.ObjectExtending;
+using Dignite.Abp.FieldCustomizing.Blazor;
 
 namespace Dignite.SiteBuilding.Admin.Blazor
 {
@@ -17,7 +18,8 @@ namespace Dignite.SiteBuilding.Admin.Blazor
         typeof(SiteBuildingAdminApplicationContractsModule),
         typeof(AbpAspNetCoreComponentsWebThemingModule),
         typeof(AbpAutoMapperModule),
-        typeof(DigniteAbpAntDesignBlazorUIModule)
+        typeof(DigniteAbpAntDesignBlazorUIModule),
+        typeof(DigniteAbpFieldCustomizingBlazorComponentsModule)
         )]
     public class SiteBuildingAdminBlazorModule : AbpModule
     {

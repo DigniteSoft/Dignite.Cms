@@ -8,6 +8,11 @@ namespace Dignite.SiteBuilding.Pages
 {
     public class PageDto: ExtensibleFullAuditedEntityDto<Guid>, IMultiTenant, IHasConcurrencyStamp
     {
+        public PageDto()
+        {
+            Children = new List<PageDto>();
+        }
+
         /// <summary>
         /// 
         /// </summary>
@@ -60,7 +65,7 @@ namespace Dignite.SiteBuilding.Pages
         /// <summary>
         /// 子页面
         /// </summary>
-        public ICollection<PageDto> Children { get; set; }
+        public IList<PageDto> Children { get; set; }
 
 
         public Guid? TenantId { get; set; }

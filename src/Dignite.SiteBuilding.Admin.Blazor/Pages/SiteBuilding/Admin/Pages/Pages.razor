@@ -1,4 +1,4 @@
-﻿@page "/site-building/pages/{parentId:guid?}"
+﻿@page "/site-building/admin/pages"
 
 @using Dignite.SiteBuilding.Permissions
 @using Dignite.SiteBuilding.Localization
@@ -11,26 +11,39 @@
 
 @inherits AbpCrudPageBase<IPageAppService, PageDto, Guid, GetPagesInput, PageCreateDto, PageUpdateDto>
 <PageTitle>@L["Pages"]</PageTitle>
-@* ************************* PAGE HEADER ************************* *@
-<PageHeader>
-    <PageHeaderTitle>@L["Pages"]</PageHeaderTitle>
-    <PageHeaderExtra>
-        <button class="btn btn-outline-primary btn-sm rounded-pill" type="button" @onclick="OpenCreateModalAsync">
-            <i class="fa fa-plus"></i> @L["Create"]
-        </button>
-    </PageHeaderExtra>
-</PageHeader>
 
 
-@* ************************* DATA GRID ************************* *@
-<ExtensibleAntDesignTable TItem="PageDto"
-                        Data="@Entities"
-                        ReadData="@OnTableReadAsync"
-                        TotalItems="@TotalCount"
-                        PageSize="@PageSize"
-                        CurrentPage="@CurrentPage"
-                        Columns="@PagesTableColumns">
-</ExtensibleAntDesignTable>
+<Row>
+    <Column ColumnSize="ColumnSize.Is2">
+        @* ************************* PAGE TREE ************************* *@
+        <PageTree OnNodeClickCallback="OnTreeNodeClick"></PageTree>
+    </Column>
+    <Column ColumnSize="ColumnSize.Is10">    
+        @* ************************* PAGE HEADER ************************* *@
+        <AntDesign.PageHeader>
+            <PageHeaderTitle>@L["Pages"]</PageHeaderTitle>
+            <PageHeaderExtra>
+                <button class="btn btn-outline-primary btn-sm rounded-pill" type="button" @onclick="OpenCreateModalAsync">
+                    <i class="fa fa-plus"></i> @L["Create"]
+                </button>
+            </PageHeaderExtra>
+        </AntDesign.PageHeader>
+
+
+        @* ************************* DATA GRID ************************* *@
+        <AbpExtensibleDataGrid TItem="PageDto"
+                                Data="@Entities"
+                                ReadData="@OnDataGridReadAsync"
+                                TotalItems="@TotalCount"
+                                ShowPager="false"
+                                PageSize="@PageSize"
+                                CurrentPage="@CurrentPage"
+                                Columns="@PagesTableColumns">
+        </AbpExtensibleDataGrid>
+    </Column>
+</Row>
+
+
 
 @* ************************* CREATE MODAL ************************* *@
 @if (HasCreatePermission)

@@ -7,50 +7,26 @@ using Volo.Abp.Application.Services;
 
 namespace Dignite.SiteBuilding.Admin.Sections
 {
-    public interface ISectionAppService : IApplicationService
+    public interface ISectionAppService
+    : ICrudAppService<
+        SectionDto,
+        Guid,
+        GetSectionsInput,
+        SectionCreateDto,
+        SectionUpdateDto>
     {
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        Task<SectionEditOutput> NewAsync();
+        Task<NewSectionOutput> NewAsync();
 
         /// <summary>
         /// 
         /// </summary>
         /// <returns></returns>
-        Task<SectionEditOutput> EditAsync(Guid id);
+        Task<EditSectionOutput> EditAsync(Guid id);
 
-        /// <summary>
-        /// 创建
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-
-        Task CreateAsync(SectionEditDto input);
-
-        /// <summary>
-        /// 更新版本
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        Task UpdateAsync(Guid id, SectionEditDto input);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        Task DeleteAsync(Guid id);
-
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="input"></param>
-        /// <returns></returns>
-        Task<PagedResultDto<SectionDto>> GetListAsync(GetSectionsInput input);
-
-        Task<SectionDto> GetAsync(Guid id);
 
         /// <summary>
         /// 授权人员管理条目

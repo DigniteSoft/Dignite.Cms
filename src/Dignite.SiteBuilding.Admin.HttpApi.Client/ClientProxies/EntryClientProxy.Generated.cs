@@ -16,35 +16,36 @@ namespace Dignite.SiteBuilding.Admin.Entries.ClientProxies;
 [ExposeServices(typeof(IEntryAppService), typeof(EntryClientProxy))]
 public partial class EntryClientProxy : ClientProxyBase<IEntryAppService>, IEntryAppService
 {
-    public virtual async Task<EntryEditOutput> NewAsync(Guid sectionId)
+    public virtual async Task<NewEntryOutput> NewAsync(Guid sectionId)
     {
-        return await RequestAsync<EntryEditOutput>(nameof(NewAsync), new ClientProxyRequestTypeValue
+        return await RequestAsync<NewEntryOutput>(nameof(NewAsync), new ClientProxyRequestTypeValue
         {
             { typeof(Guid), sectionId }
         });
     }
 
-    public virtual async Task<EntryEditOutput> EditAsync(Guid id)
+    public virtual async Task<EditEntryOutput> EditAsync(Guid id)
     {
-        return await RequestAsync<EntryEditOutput>(nameof(EditAsync), new ClientProxyRequestTypeValue
+        return await RequestAsync<EditEntryOutput>(nameof(EditAsync), new ClientProxyRequestTypeValue
         {
             { typeof(Guid), id }
         });
     }
 
-    public virtual async Task CreateAsync(EntryEditDto input)
+    public virtual async Task<EntryDto> CreateAsync(EntryCreateDto input)
     {
-        await RequestAsync(nameof(CreateAsync), new ClientProxyRequestTypeValue
+        return await RequestAsync<EntryDto>(nameof(CreateAsync), new ClientProxyRequestTypeValue
         {
-            { typeof(EntryEditDto), input }
+            { typeof(EntryCreateDto), input }
         });
     }
 
-    public virtual async Task UpdateAsync(EntryEditDto input)
+    public virtual async Task<EntryDto> UpdateAsync(Guid id, EntryUpdateDto input)
     {
-        await RequestAsync(nameof(UpdateAsync), new ClientProxyRequestTypeValue
+        return await RequestAsync<EntryDto>(nameof(UpdateAsync), new ClientProxyRequestTypeValue
         {
-            { typeof(EntryEditDto), input }
+            { typeof(Guid), id },
+            { typeof(EntryUpdateDto), input }
         });
     }
 
@@ -61,6 +62,14 @@ public partial class EntryClientProxy : ClientProxyBase<IEntryAppService>, IEntr
         return await RequestAsync<PagedResultDto<EntryDto>>(nameof(GetListAsync), new ClientProxyRequestTypeValue
         {
             { typeof(GetEntriesInput), input }
+        });
+    }
+
+    public virtual async Task<EntryDto> GetAsync(Guid id)
+    {
+        return await RequestAsync<EntryDto>(nameof(GetAsync), new ClientProxyRequestTypeValue
+        {
+            { typeof(Guid), id }
         });
     }
 

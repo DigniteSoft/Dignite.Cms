@@ -21,25 +21,25 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Menus
             var l = context.GetLocalizer<SiteBuildingResource>();
 
             //Add main menu items.
-            var rootMenuItem = new ApplicationMenuItem(SiteBuildingAdminMenus.Prefix, displayName: l["SiteBuilding"], url: "~/site-building", icon: "fa fa-globe");
+            var rootMenuItem = new ApplicationMenuItem(SiteBuildingAdminMenus.Prefix, displayName: l["SiteBuilding"], url: "~/site-building/admin", icon: "fa fa-globe");
             context.Menu.AddItem(rootMenuItem);
 
             rootMenuItem.AddItem(new ApplicationMenuItem(
                     SiteBuildingAdminMenus.Pages,
                     l["Pages"],
-                    url: "~/site-building/pages",
+                    url: "~/site-building/admin/pages",
                     icon: "fa fa-file").RequirePermissions(SiteBuildingPermissions.Page.Default));
 
             rootMenuItem.AddItem(new ApplicationMenuItem(
                     SiteBuildingAdminMenus.Entries,
                     l["Sections"],
-                    url: "~/site-building/sections",
+                    url: "~/site-building/admin/sections",
                     icon: "fa fa-file-alt").RequirePermissions(SiteBuildingPermissions.Entry.Default));
 
             rootMenuItem.AddItem(new ApplicationMenuItem(
                     SiteBuildingAdminMenus.Users,
                     l["Users"],
-                    url: "~/site-building/users",
+                    url: "~/site-building/admin/users",
                     icon: "fa fa-users").RequirePermissions(SiteBuildingPermissions.User.Default));
 
             return Task.CompletedTask;

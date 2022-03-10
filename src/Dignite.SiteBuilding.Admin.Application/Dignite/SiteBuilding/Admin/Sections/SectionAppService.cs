@@ -35,11 +35,13 @@ namespace Dignite.SiteBuilding.Admin.Sections
         /// </summary>
         /// <returns></returns>
         [Authorize(Permissions.SiteBuildingPermissions.Section.Create)]
-        public Task<SectionEditOutput> NewAsync()
+        public Task<NewSectionOutput> NewAsync()
         {
-            var output = new SectionEditOutput();
+            var output = new NewSectionOutput();
 
-            output.Section = new SectionEditDto();
+            output.Section = new SectionCreateDto() {
+                IsActive = true,
+            };
 
             output.AllFieldProviders = _fieldControlProviders.Select(p => 
                 new FieldControlProviderDto(
@@ -58,13 +60,13 @@ namespace Dignite.SiteBuilding.Admin.Sections
         /// <param name="input"></param>
         /// <returns></returns>
         [Authorize(Permissions.SiteBuildingPermissions.Section.Update)]
-        public async Task<SectionEditOutput> EditAsync(Guid id)
+        public async Task<EditSectionOutput> EditAsync(Guid id)
         {
             var section = await _sectionRepository.GetAsync(id,true);
-            var output = new SectionEditOutput();
+            var output = new EditSectionOutput();
 
 
-            output.Section = ObjectMapper.Map<Section, SectionEditDto>(section);
+            output.Section = ObjectMapper.Map<Section, SectionUpdateDto>(section);
             output.AllFieldProviders = _fieldControlProviders.Select(p =>
                 new FieldControlProviderDto(
                     p.Name,
@@ -83,7 +85,7 @@ namespace Dignite.SiteBuilding.Admin.Sections
         /// <returns></returns>
 
         [Authorize(Permissions.SiteBuildingPermissions.Section.Create)]
-        public async Task CreateAsync(SectionEditDto input)
+        public async Task<SectionDto> CreateAsync(SectionCreateDto input)
         {
             await CheckNameExistenceAsync(input.Name);
 
@@ -94,18 +96,25 @@ namespace Dignite.SiteBuilding.Admin.Sections
             
 
             //
-            foreach (var fd in input.FieldDefinitions)
+            for(int i=0;i<input.FieldDefinitions.Count;i++)
             {
-                section.AddFieldDefinition(new FieldDefinition(fd.Id, fd.DisplayName,fd.Name,fd.DefaultValue, fd.Configuration, tenantId)
-                {
-                    SectionId=section.Id,
-                    Description = fd.Description,
-                    Position = fd.Position
-                });
+                var fd = input.FieldDefinitions.ElementAt(i);
+                section.AddFieldDefinition(
+                    new FieldDefinition(fd.Id,
+                        section.Id, 
+                        fd.DisplayName,
+                        fd.Name,
+                        fd.DefaultValue, 
+                        fd.FieldControlProviderName, 
+                        fd.Configuration,
+                        i, 
+                        tenantId)
+                    );
             }
 
             //
             await _sectionRepository.InsertAsync(section);
+            return ObjectMapper.Map<Section, SectionDto>(section);
         }
 
         /// <summary>
@@ -114,7 +123,7 @@ namespace Dignite.SiteBuilding.Admin.Sections
         /// <param name="input"></param>
         /// <returns></returns>
         [Authorize(Permissions.SiteBuildingPermissions.Section.Update)]
-        public async Task UpdateAsync(Guid id, SectionEditDto input)
+        public async Task<SectionDto> UpdateAsync(Guid id, SectionUpdateDto input)
         {
             var section = await _sectionRepository.GetAsync(id);
             if (!section.Name.Equals(input.Name,StringComparison.OrdinalIgnoreCase))
@@ -133,20 +142,26 @@ namespace Dignite.SiteBuilding.Admin.Sections
 
 
             //更新字段
-            foreach (var fd in input.FieldDefinitions)
+            for (int i = 0; i < input.FieldDefinitions.Count; i++)
             {
+                var fd = input.FieldDefinitions.ElementAt(i);
                 if (section.FieldDefinitions.Any(m => m.Id == fd.Id))
                 {
-                    section.UpdateFieldDefinition(fd.Id,fd.DisplayName,fd.Name,fd.DefaultValue,fd.Description, fd.Configuration,fd.Position);
+                    section.UpdateFieldDefinition(fd.Id,fd.DisplayName,fd.Name,fd.DefaultValue, fd.Configuration,i);
                 }
                 else
                 {
-                    section.AddFieldDefinition(new FieldDefinition(fd.Id,  fd.DisplayName, fd.Name, fd.DefaultValue, fd.Configuration, tenantId)
-                    {
-                        SectionId = section.Id,
-                        Description = fd.Description,
-                        Position = fd.Position
-                    });
+                    section.AddFieldDefinition(new FieldDefinition(
+                        fd.Id, 
+                        section.Id, 
+                        fd.DisplayName, 
+                        fd.Name, 
+                        fd.DefaultValue, 
+                        fd.FieldControlProviderName, 
+                        fd.Configuration,
+                        i, 
+                        tenantId)
+                    );
                 }
             }
             foreach (var fd in section.FieldDefinitions)
@@ -159,6 +174,7 @@ namespace Dignite.SiteBuilding.Admin.Sections
 
             //
             await _sectionRepository.UpdateAsync(section);
+            return ObjectMapper.Map<Section, SectionDto>(section);
         }
 
         /// <summary>
@@ -192,8 +208,9 @@ namespace Dignite.SiteBuilding.Admin.Sections
         [Authorize(Permissions.SiteBuildingPermissions.Section.Default)]
         public async Task<SectionDto> GetAsync(Guid id)
         {
+            var result = await _sectionRepository.GetAsync(id, true);
             return ObjectMapper.Map<Section, SectionDto>(
-                await _sectionRepository.GetAsync(id, true)
+                result
                 );
         }
 

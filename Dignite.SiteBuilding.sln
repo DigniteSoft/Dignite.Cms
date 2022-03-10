@@ -89,7 +89,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AntDesignBlazor
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AntDesignBlazorUI.WebAssembly", "..\Dignite.Abp\framework\src\Dignite.Abp.AntDesignBlazorUI.WebAssembly\Dignite.Abp.AntDesignBlazorUI.WebAssembly.csproj", "{8C943A1A-EE68-4F4F-872D-8B8743581228}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Volo.Abp.Http.Client", "..\..\source-code\abp\framework\src\Volo.Abp.Http.Client\Volo.Abp.Http.Client.csproj", "{1609FB0C-0F2E-4D63-9211-72971E8479E5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.FieldCustomizing.Blazor", "..\Dignite.Abp\framework\src\Dignite.Abp.FieldCustomizing.Blazor\Dignite.Abp.FieldCustomizing.Blazor.csproj", "{B989970C-5A5C-408B-81C7-8346440323AA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -241,10 +241,10 @@ Global
 		{8C943A1A-EE68-4F4F-872D-8B8743581228}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8C943A1A-EE68-4F4F-872D-8B8743581228}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8C943A1A-EE68-4F4F-872D-8B8743581228}.Release|Any CPU.Build.0 = Release|Any CPU
-		{1609FB0C-0F2E-4D63-9211-72971E8479E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{1609FB0C-0F2E-4D63-9211-72971E8479E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{1609FB0C-0F2E-4D63-9211-72971E8479E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{1609FB0C-0F2E-4D63-9211-72971E8479E5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B989970C-5A5C-408B-81C7-8346440323AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B989970C-5A5C-408B-81C7-8346440323AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B989970C-5A5C-408B-81C7-8346440323AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B989970C-5A5C-408B-81C7-8346440323AA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

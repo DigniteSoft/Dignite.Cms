@@ -13,6 +13,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\..\..\Dignite.Abp\framework\src\Dignite.Abp.AntDesignBlazorUI\Dignite.Abp.AntDesignBlazorUI.csproj" />
+		<ProjectReference Include="..\..\..\Dignite.Abp\framework\src\Dignite.Abp.FieldCustomizing.Blazor\Dignite.Abp.FieldCustomizing.Blazor.csproj" />
 		<ProjectReference Include="..\Dignite.SiteBuilding.Admin.Application.Contracts\Dignite.SiteBuilding.Admin.Application.Contracts.csproj" />
 	</ItemGroup>
 </Project>

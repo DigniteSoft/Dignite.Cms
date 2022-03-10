@@ -8,6 +8,10 @@ namespace Dignite.SiteBuilding.Admin.Sections
     /// </summary>
     public class FieldControlProviderDto
     {
+        public FieldControlProviderDto()
+        {
+        }
+
         public FieldControlProviderDto(string formProviderName, string formDisplayName, FieldControlType fieldControlType)
         {
             Name = formProviderName;
@@ -15,10 +19,10 @@ namespace Dignite.SiteBuilding.Admin.Sections
             FieldControlType = fieldControlType;
         }
 
-        public string Name { get; }
+        public string Name { get; set; }
 
-        public string DisplayName { get; }
+        public string DisplayName { get; set; }
 
-        public FieldControlType FieldControlType { get; }
+        public FieldControlType FieldControlType { get; set; }
     }
 }

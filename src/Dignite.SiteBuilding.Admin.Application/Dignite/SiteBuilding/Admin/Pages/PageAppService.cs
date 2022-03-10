@@ -65,8 +65,6 @@ namespace Dignite.SiteBuilding.Admin.Pages
         [Authorize(Permissions.SiteBuildingPermissions.Page.Create)]
         public async Task<PageDto> CreateAsync(PageCreateDto input)
         {
-            try
-            {
                 var path = await GetPath(input.ParentId, input.Name);
                 await CheckPathExistenceAsync(path);
 
@@ -92,11 +90,6 @@ namespace Dignite.SiteBuilding.Admin.Pages
                 await _pageRepository.InsertAsync(page);
 
                 return ObjectMapper.Map<Page, PageDto>(page);
-            }
-            catch (Exception ex)
-            {
-                return new PageDto();
-            }
         }
 
         [Authorize(Permissions.SiteBuildingPermissions.Page.Update)]
@@ -194,7 +187,7 @@ namespace Dignite.SiteBuilding.Admin.Pages
 
         private void AddChildren(PageDto parent, List<PageDto> list)
         {
-            var children = list.Where(p => p.ParentId == parent.ParentId).ToList();
+            var children = list.Where(p => p.ParentId == parent.Id).ToList();
             if (children.Any())
             { 
                 parent.Children = children;

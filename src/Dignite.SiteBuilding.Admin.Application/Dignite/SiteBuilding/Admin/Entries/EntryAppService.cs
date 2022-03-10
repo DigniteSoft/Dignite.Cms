@@ -1,6 +1,5 @@
 ﻿using Dignite.Abp.FieldCustomizing;
 using Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice;
-using Dignite.SiteBuilding.Admin.Entries;
 using Dignite.SiteBuilding.Entries;
 using Dignite.SiteBuilding.Sections;
 using Dignite.SiteBuilding.Users;
@@ -42,12 +41,12 @@ namespace Dignite.SiteBuilding.Admin.Entries
         /// <param name="input"></param>
         /// <returns></returns>
         [Authorize(Permissions.SiteBuildingPermissions.Entry.Create)]
-        public async Task<EntryEditOutput> NewAsync(Guid sectionId)
+        public async Task<NewEntryOutput> NewAsync(Guid sectionId)
         {
             var section = await _sectionRepository.GetAsync(sectionId,true);
-            var output = new EntryEditOutput();
+            var output = new NewEntryOutput();
             output.Section = ObjectMapper.Map<Section,SectionDto>(section);
-            output.Entry = new EntryEditDto(GuidGenerator.Create(), sectionId);
+            output.Entry = new EntryCreateDto( sectionId);
             output.Entry.SetDefaultsForCustomizeFields(
                 section.FieldDefinitions
                 .Select(fd => new BasicCustomizeFieldDefinition(
@@ -63,16 +62,16 @@ namespace Dignite.SiteBuilding.Admin.Entries
         }
 
         [Authorize(Permissions.SiteBuildingPermissions.Entry.Update)]
-        public async Task<EntryEditOutput> EditAsync(Guid id)
+        public async Task<EditEntryOutput> EditAsync(Guid id)
         {
             var entry = await _entryRepository.GetAsync(id, true);
 
             await AuthorizationService.CheckAsync(entry, CommonOperations.Update);
 
             var section = await _sectionRepository.GetAsync(entry.SectionId,true);
-            var output = new EntryEditOutput();
+            var output = new EditEntryOutput();
             output.Section = ObjectMapper.Map<Section, SectionDto>(section);
-            output.Entry = ObjectMapper.Map<Entry, EntryEditDto>(entry);
+            output.Entry = ObjectMapper.Map<Entry, EntryUpdateDto>(entry);
 
 
             output.Entry.SetDefaultsForCustomizeFields(
@@ -96,12 +95,13 @@ namespace Dignite.SiteBuilding.Admin.Entries
         /// <returns></returns>
 
         [Authorize(Permissions.SiteBuildingPermissions.Entry.Create)]
-        public async Task CreateAsync(EntryEditDto input)
+        public async Task<EntryDto> CreateAsync(EntryCreateDto input)
         {
             if(!input.Slug.IsNullOrWhiteSpace())
             await CheckSlugExistenceAsync(input.PageId,input.Slug);
 
-            var entry = new Entry(input.Id, input.SectionId, input.PageId,input.IsActive,input.Slug, input.PublishTime, CurrentTenant.Id);
+            var id = GuidGenerator.Create();
+            var entry = new Entry(id, input.SectionId, input.PageId,input.IsActive,input.Slug, input.PublishTime, CurrentTenant.Id);
             await AuthorizationService.CheckAsync(entry, CommonOperations.Create);
             //
             if (await AuthorizationService.IsGrantedAsync(Permissions.SiteBuildingPermissions.Entry.Audit))
@@ -111,9 +111,10 @@ namespace Dignite.SiteBuilding.Admin.Entries
 
             //
             entry.CustomizedFields = input.CustomizedFields;
-            entry.SetPosition((await _entryRepository.GetMaxPositionAsync(input.SectionId, input.PageId))+1);            
+            //entry.SetPosition((await _entryRepository.GetMaxPositionAsync(input.SectionId, input.PageId))+1);            
 
             await _entryRepository.InsertAsync(entry);
+            return ObjectMapper.Map<Entry, EntryDto>(entry);
         }
 
         /// <summary>
@@ -122,11 +123,15 @@ namespace Dignite.SiteBuilding.Admin.Entries
         /// <param name="input"></param>
         /// <returns></returns>
         [Authorize(Permissions.SiteBuildingPermissions.Entry.Update)]
-        public async Task UpdateAsync(EntryEditDto input)
+        public async Task<EntryDto> UpdateAsync(Guid id, EntryUpdateDto input)
         {
-            var entry = await _entryRepository.GetAsync(input.Id, true);
+            var entry = await _entryRepository.GetAsync(id, true);
 
-            if (input.PageId!=entry.PageId || !input.Slug.Equals(entry.Slug,StringComparison.OrdinalIgnoreCase))
+            if (!input.Slug.IsNullOrWhiteSpace()
+                && (input.PageId!=entry.PageId 
+                    || !input.Slug.Equals(entry.Slug,StringComparison.OrdinalIgnoreCase)
+                    )
+                )
                 await CheckSlugExistenceAsync( input.PageId, input.Slug);
 
 
@@ -146,6 +151,7 @@ namespace Dignite.SiteBuilding.Admin.Entries
 
 
             await _entryRepository.UpdateAsync(entry);
+            return ObjectMapper.Map<Entry, EntryDto>(entry);
         }
 
         /// <summary>
@@ -194,6 +200,20 @@ namespace Dignite.SiteBuilding.Admin.Entries
 
             return await GetListAsync(section,input.PageId,input.CreatorId,input.AuditedStatus,input.IsActive,input.MaxResultCount,input.SkipCount);
 
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [Authorize(Permissions.SiteBuildingPermissions.Entry.Default)]
+        public async Task<EntryDto> GetAsync(Guid id)
+        {
+            var result = await _entryRepository.GetAsync(id, true);
+            return ObjectMapper.Map<Entry, EntryDto>(
+                result
+                );
         }
 
 

@@ -319,7 +319,6 @@ namespace Dignite.SiteBuilding.Migrations
                         .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("TemplateFile")
-                        .IsRequired()
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
 

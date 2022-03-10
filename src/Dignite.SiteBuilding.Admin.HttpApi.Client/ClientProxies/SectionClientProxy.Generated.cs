@@ -16,33 +16,33 @@ namespace Dignite.SiteBuilding.Admin.Sections.ClientProxies;
 [ExposeServices(typeof(ISectionAppService), typeof(SectionClientProxy))]
 public partial class SectionClientProxy : ClientProxyBase<ISectionAppService>, ISectionAppService
 {
-    public virtual async Task<SectionEditOutput> NewAsync()
+    public virtual async Task<NewSectionOutput> NewAsync()
     {
-        return await RequestAsync<SectionEditOutput>(nameof(NewAsync));
+        return await RequestAsync<NewSectionOutput>(nameof(NewAsync));
     }
 
-    public virtual async Task<SectionEditOutput> EditAsync(Guid id)
+    public virtual async Task<EditSectionOutput> EditAsync(Guid id)
     {
-        return await RequestAsync<SectionEditOutput>(nameof(EditAsync), new ClientProxyRequestTypeValue
+        return await RequestAsync<EditSectionOutput>(nameof(EditAsync), new ClientProxyRequestTypeValue
         {
             { typeof(Guid), id }
         });
     }
 
-    public virtual async Task CreateAsync(SectionEditDto input)
+    public virtual async Task<SectionDto> CreateAsync(SectionCreateDto input)
     {
-        await RequestAsync(nameof(CreateAsync), new ClientProxyRequestTypeValue
+        return await RequestAsync<SectionDto>(nameof(CreateAsync), new ClientProxyRequestTypeValue
         {
-            { typeof(SectionEditDto), input }
+            { typeof(SectionCreateDto), input }
         });
     }
 
-    public virtual async Task UpdateAsync(Guid id, SectionEditDto input)
+    public virtual async Task<SectionDto> UpdateAsync(Guid id, SectionUpdateDto input)
     {
-        await RequestAsync(nameof(UpdateAsync), new ClientProxyRequestTypeValue
+        return await RequestAsync<SectionDto>(nameof(UpdateAsync), new ClientProxyRequestTypeValue
         {
             { typeof(Guid), id },
-            { typeof(SectionEditDto), input }
+            { typeof(SectionUpdateDto), input }
         });
     }
 

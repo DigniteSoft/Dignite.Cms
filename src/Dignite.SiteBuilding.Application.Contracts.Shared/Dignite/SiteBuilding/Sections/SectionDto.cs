@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using Volo.Abp.Application.Dtos;
 
@@ -36,7 +37,7 @@ namespace Dignite.SiteBuilding.Sections
         /// </summary>
         public bool IsActive { get; set; }
 
-
-        public virtual ICollection<FieldDefinitionDto> FieldDefinitions { get; protected set; }
+        [JsonProperty(NullValueHandling = NullValueHandling.Ignore)]
+        public virtual ICollection<FieldDefinitionDto> FieldDefinitions { get; set; }
     }
 }

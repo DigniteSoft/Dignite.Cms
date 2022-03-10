@@ -1,0 +1,65 @@
+﻿@using Dignite.Abp.FieldCustomizing
+@using Dignite.SiteBuilding.Localization
+@inherits ComponentBase
+
+<Row>
+    <Column ColumnSize="ColumnSize.Is8">
+        <Card Background="@Background.White">
+            <CardBody>                
+                @if (Section != null)
+                {
+                    <!------------- field definitions ------------------------------------->
+                    @foreach (var fd in Section.FieldDefinitions)
+                    {
+                        var component = fieldControlComponentSelector.Get(fd.FieldControlProviderName);
+                        var parameters = new Dictionary<string, object>();
+                        parameters.Add("CustomizeField", new Abp.FieldCustomizing.CustomizeField(Entry, fd));
+                        <DynamicComponent Type="@component.GetType()" Parameters="@parameters"></DynamicComponent>
+                    }   
+                }
+
+            </CardBody>
+        </Card>
+    </Column>
+    <Column ColumnSize="ColumnSize.Is4">        
+        <Field>
+            <FieldLabel>@L["DisplayName:SelectPage"]</FieldLabel>
+            <AntDesign.TreeSelect TItem="Dignite.SiteBuilding.Pages.PageDto" 
+                Style="width:100%;"
+                DataSource="allPages.Items"
+                Value="@Entry.PageId.ToString()"
+                ValueChanged="@OnPageListSelected"
+                Placeholder="@L["DisplayName:SelectPage"]"
+                AllowClear
+                TitleExpression="data => data.Title"
+                KeyExpression="data => data.Id.ToString()"
+                ChildrenExpression="data => data.Children"
+				IsLeafExpression="data => data.Children == null "
+                TreeDefaultExpandAll>
+            </AntDesign.TreeSelect>
+        </Field>
+        <Blazorise.Field>
+            <Blazorise.Check TValue="bool" @bind-Checked="@Entry.IsActive">@L["DisplayName:IsActive"]</Blazorise.Check>
+        </Blazorise.Field>
+        <Validation MessageLocalizer="@LH.Localize">
+            <Field>
+                <Blazorise.FieldLabel>@L["DisplayName:Slug"]</Blazorise.FieldLabel>
+                <Blazorise.TextEdit @bind-Text="@Entry.Slug">
+                    <Feedback>
+                        <Blazorise.ValidationError/>
+                    </Feedback>
+                </Blazorise.TextEdit>
+            </Field>
+        </Validation>
+        <Validation MessageLocalizer="@LH.Localize">
+            <Field>
+                <FieldLabel>@L["DisplayName:PublishTime"]</FieldLabel>
+                <DateEdit TValue="DateTime" InputMode="DateInputMode.DateTime" @bind-Date="@Entry.PublishTime">                    
+                    <Feedback>
+                        <Blazorise.ValidationError/>
+                    </Feedback>
+                </DateEdit>
+            </Field>
+        </Validation>
+    </Column>
+</Row>

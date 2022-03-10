@@ -16,9 +16,17 @@ namespace Dignite.SiteBuilding.Sections
     public class Section : FullAuditedAggregateRoot<Guid>,IMultiTenant
     {
         protected Section()
-        { }
+        {
+            fieldDefinitions = new List<FieldDefinition>();
+        }
 
-        public Section(Guid id, string displayName, string name, string templateFile, [CanBeNull]string entryTemplateFile , Guid? tenantId)
+        public Section(
+            Guid id, 
+            string displayName, 
+            string name,
+            [CanBeNull]string templateFile, 
+            [CanBeNull]string entryTemplateFile , 
+            Guid? tenantId):this()
         {
             Id = id;
             DisplayName = displayName;
@@ -62,8 +70,15 @@ namespace Dignite.SiteBuilding.Sections
         /// </summary>
         public virtual bool IsActive { get; set; }
 
-
-        public virtual ICollection<FieldDefinition> FieldDefinitions { get; protected set; }
+        protected ICollection<FieldDefinition> fieldDefinitions;
+        public virtual ICollection<FieldDefinition> FieldDefinitions
+        {
+            get { 
+                return fieldDefinitions
+                    .OrderBy(fd => fd.Position)
+                    .ToList(); 
+            }
+        }
 
         public virtual ICollection<Entry> Entries { get; protected set; }
         public virtual ICollection<SectionGrant> Authorizers { get; protected set; }
@@ -72,7 +87,7 @@ namespace Dignite.SiteBuilding.Sections
         public virtual void AddFieldDefinition(FieldDefinition field)
         {
             field.SectionId = this.Id;
-            this.FieldDefinitions.Add(field);
+            this.fieldDefinitions.Add(field);
         }
 
         public virtual void UpdateFieldDefinition(
@@ -80,24 +95,22 @@ namespace Dignite.SiteBuilding.Sections
             string displayName,
             string name,
             string defaultValue,
-            string description,
             FieldControlConfigurationDictionary configuration,
             int position
             )
         {
-            var fd = this.FieldDefinitions.Single(m => m.Id == fieldId);
+            var fd = this.fieldDefinitions.Single(m => m.Id == fieldId);
 
             fd.DisplayName = displayName;
             fd.Name = name;
             fd.DefaultValue = defaultValue;
-            fd.Description = description;
             fd.Configuration = configuration;
             fd.Position = position;
         }
 
         public virtual void DeleteFieldDefinition(Guid fieldId)
         {
-            this.FieldDefinitions.RemoveAll(m => m.Id == fieldId);
+            this.fieldDefinitions.RemoveAll(m => m.Id == fieldId);
         }
     }
 }

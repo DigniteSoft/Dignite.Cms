@@ -6,8 +6,14 @@ using System.Linq;
 
 namespace Dignite.SiteBuilding.Admin.Sections
 {
-    public class SectionEditDto : IValidatableObject
+    public abstract class SectionCreateOrUpdateDtoBase : IValidatableObject
     {
+        protected SectionCreateOrUpdateDtoBase()
+        {
+            this.FieldDefinitions = new List<FieldDefinitionEditDto>();
+        }
+
+
         /// <summary>
         /// Display Name of this entity type.
         /// </summary>
@@ -55,7 +61,7 @@ namespace Dignite.SiteBuilding.Admin.Sections
 
             foreach (var fieldDefinition in FieldDefinitions)
             {
-                if (FieldDefinitions.Any(fd => fd.Name.Equals(fieldDefinition.Name, StringComparison.InvariantCultureIgnoreCase)))
+                if (FieldDefinitions.Count(fd => fd.Name.Equals(fieldDefinition.Name, StringComparison.InvariantCultureIgnoreCase))>1)
                 {
                     validationErrors.Add(
                       new ValidationResult(

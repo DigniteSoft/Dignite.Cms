@@ -21,7 +21,7 @@ namespace Dignite.SiteBuilding.Admin
 
             /**** entry type *****************************************/
             CreateMap<Section, SectionDto>();
-            CreateMap<Section, SectionEditDto>();
+            CreateMap<Section, SectionUpdateDto>();
             CreateMap<FieldDefinition, FieldDefinitionDto>();
             CreateMap<FieldDefinition, FieldDefinitionEditDto>();
 
@@ -31,7 +31,7 @@ namespace Dignite.SiteBuilding.Admin
                 .MapCustomizeFields()
                 .ForMember(m => m.Page, y => y.Ignore())
                 .ForMember(m => m.Editor, y => y.Ignore());
-            CreateMap<Entry, EntryEditDto>();
+            CreateMap<Entry, EntryUpdateDto>();
 
 
             /**** user *****************************************/

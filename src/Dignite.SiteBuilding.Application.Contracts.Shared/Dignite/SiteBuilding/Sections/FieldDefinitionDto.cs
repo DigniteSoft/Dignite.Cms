@@ -1,12 +1,14 @@
-﻿using Dignite.Abp.FieldCustomizing.FieldControls;
+﻿using Dignite.Abp.FieldCustomizing;
+using Dignite.Abp.FieldCustomizing.FieldControls;
 using JetBrains.Annotations;
 using System;
-using Volo.Abp.Application.Dtos;
 
 namespace Dignite.SiteBuilding.Sections
 {
-    public class FieldDefinitionDto : EntityDto<Guid>
+    public class FieldDefinitionDto : ICustomizeFieldDefinition
     {
+        public Guid Id { get; set; }
+
         public virtual Guid SectionId { get; set; }
 
 
@@ -22,13 +24,6 @@ namespace Dignite.SiteBuilding.Sections
         [NotNull]
         public virtual string Name { get; set; }
 
-
-        /// <summary>
-        /// Description
-        /// </summary>
-        [CanBeNull]
-        public string Description { get; set; }
-
         /// <summary>
         /// Default value of the field.
         /// </summary>
@@ -36,7 +31,7 @@ namespace Dignite.SiteBuilding.Sections
         public string DefaultValue { get; set; }
 
         [NotNull]
-        public string FieldControlProviderName { get; }
+        public string FieldControlProviderName { get; set; }
 
         [NotNull]
         public virtual FieldControlConfigurationDictionary Configuration { get; set; }

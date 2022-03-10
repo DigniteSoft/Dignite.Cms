@@ -26,7 +26,7 @@ namespace Dignite.SiteBuilding.Admin.Sections
         /// <returns></returns>
         [HttpGet]
         [Route("new")]
-        public async Task<SectionEditOutput> NewAsync()
+        public async Task<NewSectionOutput> NewAsync()
         {
             return await _sectionAppService.NewAsync();
         }
@@ -39,24 +39,24 @@ namespace Dignite.SiteBuilding.Admin.Sections
 
         [HttpGet]
         [Route("{id}/edit")]
-        public async Task<SectionEditOutput> EditAsync(Guid id)
+        public async Task<EditSectionOutput> EditAsync(Guid id)
         {
             return await _sectionAppService.EditAsync(id);
         }
 
 
         [HttpPost]
-        public async Task CreateAsync(SectionEditDto input)
+        public async Task<SectionDto> CreateAsync(SectionCreateDto input)
         {
-            await _sectionAppService.CreateAsync(input);
+            return await _sectionAppService.CreateAsync(input);
         }
 
 
         [HttpPut]
         [Route("{id}")]
-        public async Task UpdateAsync(Guid id, SectionEditDto input)
+        public async Task<SectionDto> UpdateAsync(Guid id, SectionUpdateDto input)
         {
-            await _sectionAppService.UpdateAsync(id, input);
+            return await _sectionAppService.UpdateAsync(id, input);
         }
 
         /// <summary>
