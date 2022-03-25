@@ -6,25 +6,28 @@
     [Parameter]public EventCallback<TreeEventArgs<PageDto>> OnNodeClickCallback { get; set; }
 
     [Inject] IPageAppService PageAppService { get; set; }
-    
+
     private IReadOnlyList<PageDto> AllPages = new List<PageDto>();
-        
+
     protected override async Task OnInitializedAsync()
     {
         await base.OnInitializedAsync();
 
         AllPages= (await PageAppService.GetAllListAsync()).Items;
     }
-    
-    void onDrop(TreeEventArgs<PageDto> e)
+
+    async Task onDropAsync(TreeEventArgs<PageDto> e)
     {
         TreeNode<PageDto> parentNode = GetParentNode(e.Node, e.TargetNode);
 
         e.Node.DataItem.ParentId = parentNode == null ? null : parentNode.DataItem.Id;
         e.Node.DataItem.Path = parentNode == null ? e.Node.DataItem.Name : parentNode.DataItem.Path.EnsureEndsWith('/') + e.Node.DataItem.Name;
 
-        PageAppService.UpdateAsync(e.Node.DataItem.Id, ObjectMapper.Map<PageDto, PageUpdateDto>(e.Node.DataItem));
-            
+        await PageAppService.MoveAsync(e.Node.DataItem.Id, new MovePageInput
+            {
+                ParentId=e.Node.DataItem.ParentId,
+                BeforId=e.TargetNode.DataItem.Id ==parentNode.DataItem.Id?null:e.TargetNode.DataItem.Id
+            });
     }
 
 
@@ -72,5 +75,5 @@
         ChildrenExpression="x => x.DataItem.Children"
         IsLeafExpression="x => x.DataItem.Children?.Count == 0"
         KeyExpression="x => x.DataItem.Id.ToString()"
-        TItem="PageDto" OnDragEnd="e=> { }" OnDrop="onDrop"  OnClick="OnNodeClickCallback">
+        TItem="PageDto" OnDragEnd="e=> { }" OnDrop="onDropAsync"  OnClick="OnNodeClickCallback">
 </AntDesign.Tree>

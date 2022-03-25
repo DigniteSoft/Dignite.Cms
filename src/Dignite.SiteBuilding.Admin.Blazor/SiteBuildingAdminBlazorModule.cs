@@ -42,8 +42,6 @@ namespace Dignite.SiteBuilding.Admin.Blazor
             {
                 options.AdditionalAssemblies.Add(typeof(SiteBuildingAdminBlazorModule).Assembly);
             });
-
-            context.Services.AddAntDesign();
         }
 
         public override void PostConfigureServices(ServiceConfigurationContext context)

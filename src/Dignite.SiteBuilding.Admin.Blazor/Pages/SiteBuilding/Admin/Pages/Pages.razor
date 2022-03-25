@@ -31,7 +31,7 @@
 
 
         @* ************************* DATA GRID ************************* *@
-        <AbpExtensibleDataGrid TItem="PageDto"
+        <DigniteAbpExtensibleDataGrid TItem="PageDto"
                                 Data="@Entities"
                                 ReadData="@OnDataGridReadAsync"
                                 TotalItems="@TotalCount"
@@ -39,7 +39,7 @@
                                 PageSize="@PageSize"
                                 CurrentPage="@CurrentPage"
                                 Columns="@PagesTableColumns">
-        </AbpExtensibleDataGrid>
+        </DigniteAbpExtensibleDataGrid>
     </Column>
 </Row>
 
