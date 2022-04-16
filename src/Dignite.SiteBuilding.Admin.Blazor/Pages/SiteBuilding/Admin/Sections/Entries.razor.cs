@@ -63,11 +63,6 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Sections
                 {
                     new TableColumn
                     {
-                        Title = L["Actions"],
-                        Actions = EntityActions.Get<Sections>()
-                    },
-                    new TableColumn
-                    {
                         Title = L["CreationTime"],
                         Data = nameof(EntryDto.CreationTime),
                         DisplayFormat="{0:yyyy-MM-dd}"
@@ -78,6 +73,11 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Sections
                         Data = nameof(EntryDto.PublishTime),
                         DisplayFormat="{0:yyyy-MM-dd}"
                     },
+                    new TableColumn
+                    {
+                        Title = L["Actions"],
+                        Actions = EntityActions.Get<Sections>()
+                    }
                 });
 
             return base.SetTableColumnsAsync();

@@ -14,24 +14,24 @@
 
 <PageTitle>@L["Entry"]</PageTitle>
 
+
+@* ************************* PAGE HEADER ************************* *@
+<PageHeader Title="@L["Entry"]"
+            BreadcrumbItems="@BreadcrumbItems"
+            Toolbar="@Toolbar">
+</PageHeader>
+
+@* ************************* DATA GRID ************************* *@
 <Card>
-    <CardHeader>
-        @* ************************* PAGE HEADER ************************* *@
-        <PageHeader Title="@L["Entry"]"
-                    BreadcrumbItems="@BreadcrumbItems"
-                    Toolbar="@Toolbar">
-        </PageHeader>
-    </CardHeader>
     <CardBody>
-        @* ************************* DATA GRID ************************* *@
-        <AbpExtensibleDataGrid TItem="EntryDto"
-                               Data="Entities"
-                               ReadData="OnDataGridReadAsync"
-                               TotalItems="TotalCount"
-                               ShowPager="true"
-                               PageSize="PageSize"
-                               CurrentPage="@CurrentPage"
-                               Columns="@EntryManagementTableColumns">
-        </AbpExtensibleDataGrid>
+<DigniteAbpExtensibleDataGrid TItem="EntryDto"
+                        Data="Entities"
+                        ReadData="OnDataGridReadAsync"
+                        TotalItems="TotalCount"
+                        ShowPager="true"
+                        PageSize="PageSize"
+                        CurrentPage="@CurrentPage"
+                        Columns="@EntryManagementTableColumns">
+</DigniteAbpExtensibleDataGrid>
     </CardBody>
 </Card>

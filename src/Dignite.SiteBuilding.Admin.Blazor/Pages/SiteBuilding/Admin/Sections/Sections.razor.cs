@@ -21,6 +21,7 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Sections
 
         protected List<TableColumn> SectionManagementTableColumns => TableColumns.Get<Sections>();
 
+
         public Sections()
         {
             ObjectMapperContext = typeof(SiteBuildingAdminBlazorModule);
@@ -30,6 +31,7 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Sections
             UpdatePolicyName = SiteBuildingPermissions.Section.Update;
             DeletePolicyName = SiteBuildingPermissions.Section.Delete;
         }
+
 
         protected override ValueTask SetEntityActionsAsync()
         {
@@ -62,11 +64,6 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Sections
                 {
                     new TableColumn
                     {
-                        Title = L["Actions"],
-                        Actions = EntityActions.Get<Sections>()
-                    },
-                    new TableColumn
-                    {
                         Title = L["DisplayName"],
                         Data = nameof(SectionDto.DisplayName),
                         Component = typeof(SectionDisplayNameComponent)
@@ -75,6 +72,11 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Sections
                     {
                         Title = L["SectionName"],
                         Data = nameof(SectionDto.Name)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["Actions"],
+                        Actions = EntityActions.Get<Sections>()
                     },
                 });
 

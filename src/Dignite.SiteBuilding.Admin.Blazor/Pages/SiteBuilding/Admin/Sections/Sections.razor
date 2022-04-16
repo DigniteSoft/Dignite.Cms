@@ -1,6 +1,7 @@
 ﻿@page "/site-building/admin/sections"
 @attribute [Authorize(SiteBuildingPermissions.Section.Default)]
 
+@using Blazorise.DataGrid
 @using Dignite.SiteBuilding.Permissions
 @using Dignite.SiteBuilding.Localization
 @using Dignite.SiteBuilding.Admin.Sections
@@ -14,24 +15,25 @@
 
 <PageTitle>@L["Sections"]</PageTitle>
 
+
+@* ************************* PAGE HEADER ************************* *@
+<PageHeader Title="@L["Sections"]"
+            BreadcrumbItems="@BreadcrumbItems"
+            Toolbar="@Toolbar">
+</PageHeader>
+
+@* ************************* DATA GRID ************************* *@
 <Card>
-    <CardHeader>
-        @* ************************* PAGE HEADER ************************* *@
-        <PageHeader Title="@L["Sections"]"
-                    BreadcrumbItems="@BreadcrumbItems"
-                    Toolbar="@Toolbar">
-        </PageHeader>
-    </CardHeader>
     <CardBody>
-        @* ************************* DATA GRID ************************* *@
-        <AbpExtensibleDataGrid TItem="SectionDto"
-                               Data="Entities"
-                               ReadData="OnDataGridReadAsync"
-                               TotalItems="TotalCount"
-                               ShowPager="true"
-                               PageSize="PageSize"
-                               CurrentPage="@CurrentPage"
-                               Columns="@SectionManagementTableColumns">
-        </AbpExtensibleDataGrid>
+    <DigniteAbpExtensibleDataGrid TItem="SectionDto"
+                            Data="Entities"
+                            ReadData="OnDataGridReadAsync"
+                            TotalItems="TotalCount"
+                            ShowPager="true"
+                            PageSize="PageSize"
+                            CurrentPage="@CurrentPage"
+                            Columns="@SectionManagementTableColumns">
+    </DigniteAbpExtensibleDataGrid>
     </CardBody>
 </Card>
+

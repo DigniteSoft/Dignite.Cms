@@ -63,11 +63,6 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Pages
                 {
                     new TableColumn
                     {
-                        Title = L["Actions"],
-                        Actions = EntityActions.Get<Pages>()
-                    },
-                    new TableColumn
-                    {
                         Title = L["Title"],
                         Data = nameof(PageDto.Title)
                     },
@@ -82,7 +77,12 @@ namespace Dignite.SiteBuilding.Admin.Blazor.Pages.SiteBuilding.Admin.Pages
                         Title = L["LastModificationTime"],
                         Data = nameof(PageDto.LastModificationTime),
                         DisplayFormat="{0:yyyy-MM-dd}"
-                    }
+                    },
+                    new TableColumn
+                    {
+                        Title = L["Actions"],
+                        Actions = EntityActions.Get<Pages>()
+                    },
                 });
 
             return base.SetTableColumnsAsync();
