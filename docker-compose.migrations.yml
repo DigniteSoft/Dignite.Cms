@@ -8,6 +8,6 @@ services:
     depends_on:
       - sqlserver
     environment:
-      - IdentityServer_DB=SiteBuilding_Identity
-      - SiteBuilding_DB=SiteBuilding_ModuleDb
+      - IdentityServer_DB=Cms_Identity
+      - Cms_DB=Cms_ModuleDb
       - SA_PASSWORD=yourStrong(!)Password

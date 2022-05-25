@@ -1,0 +1,30 @@
+﻿@page "/cms/admin/sections/create"
+
+
+@using Dignite.Cms.Permissions
+@using Dignite.Cms.Localization
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@inherits AbpComponentBase
+
+
+@attribute [Authorize(CmsPermissions.Section.Create)]
+@inject AbpBlazorMessageLocalizerHelper<CmsResource> LH
+
+@code{
+}
+    
+<PageTitle>@L["CreateSection"]</PageTitle>
+
+@* ************************* PAGE HEADER ************************* *@
+<PageHeader Title="@L["CreateSection"]"
+            Toolbar="@Toolbar">
+</PageHeader>
+  
+@* ************************* CREATE  ************************* *@        
+
+<Blazorise.Form>
+    <Blazorise.Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
+        <CreateOrUpdateSectionFormShared Data="@NewEntity" AllFieldControlProviders="@NewEntityOutput.AllFieldProviders" LH="@LH" L="@L" SectionValidationsRef="@CreateValidationsRef"></CreateOrUpdateSectionFormShared>
+    </Blazorise.Validations>
+</Blazorise.Form>

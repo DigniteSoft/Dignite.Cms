@@ -1,0 +1,37 @@
+﻿@page "/cms/admin/sections/{id:guid}/entries/"
+@attribute [Authorize(CmsPermissions.Entry.Default)]
+
+@using Dignite.Cms.Permissions
+@using Dignite.Cms.Localization
+@using Dignite.Cms.Admin.Entries
+@using Dignite.Cms.Entries
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.BlazoriseUI.Components.ObjectExtending
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@inject AbpBlazorMessageLocalizerHelper<CmsResource> LH
+
+@inherits AbpCrudPageBase<IEntryAppService, EntryDto, Guid, GetEntriesInput, EntryCreateDto, EntryUpdateDto>
+
+<PageTitle>@L["Entry"]</PageTitle>
+
+
+@* ************************* PAGE HEADER ************************* *@
+<PageHeader Title="@L["Entry"]"
+            BreadcrumbItems="@BreadcrumbItems"
+            Toolbar="@Toolbar">
+</PageHeader>
+
+@* ************************* DATA GRID ************************* *@
+<Card>
+    <CardBody>
+<DigniteAbpExtensibleDataGrid TItem="EntryDto"
+                        Data="Entities"
+                        ReadData="OnDataGridReadAsync"
+                        TotalItems="TotalCount"
+                        ShowPager="true"
+                        PageSize="PageSize"
+                        CurrentPage="@CurrentPage"
+                        Columns="@EntryManagementTableColumns">
+</DigniteAbpExtensibleDataGrid>
+    </CardBody>
+</Card>

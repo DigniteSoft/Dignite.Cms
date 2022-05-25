@@ -1,0 +1,29 @@
+﻿@page "/cms/admin/sections/{id:guid}/edit"
+
+@using Dignite.Cms.Permissions
+@using Dignite.Cms.Localization
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@inherits AbpComponentBase
+
+
+@attribute [Authorize(CmsPermissions.Section.Update)]
+@inject AbpBlazorMessageLocalizerHelper<CmsResource> LH
+
+@code{
+}
+    
+<PageTitle>@L["Edit"] @EditingEntity.DisplayName</PageTitle>
+
+@* ************************* PAGE HEADER ************************* *@
+<PageHeader Title="@L["Edit"]"
+            Toolbar="@Toolbar">
+</PageHeader>
+  
+@* ************************* CREATE  ************************* *@        
+<Blazorise.Form>
+    <Blazorise.Validations @ref="@CreateValidationsRef" Model="@EditingEntity" ValidateOnLoad="false">
+        <CreateOrUpdateSectionFormShared Data="@EditingEntity" AllFieldControlProviders="@EditingEntityOutput.AllFieldProviders" LH="@LH" L="@L" SectionValidationsRef="@CreateValidationsRef"></CreateOrUpdateSectionFormShared>
+    </Blazorise.Validations>
+</Blazorise.Form>
+

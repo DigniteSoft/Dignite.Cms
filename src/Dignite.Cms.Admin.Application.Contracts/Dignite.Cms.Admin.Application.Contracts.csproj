@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>Dignite.Cms.Admin.Application.Contracts</AssemblyName>
+    <PackageId>Dignite.Cms.Admin.Application.Contracts</PackageId>
+        <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dignite.Cms.Application.Contracts.Shared\Dignite.Cms.Application.Contracts.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

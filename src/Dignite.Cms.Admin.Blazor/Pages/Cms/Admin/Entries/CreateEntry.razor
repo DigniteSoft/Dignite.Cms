@@ -1,0 +1,29 @@
+﻿@page "/cms/admin/entries/create"
+
+
+@using Dignite.Cms.Permissions
+@using Dignite.Cms.Localization
+@using Microsoft.AspNetCore.Authorization
+@using Volo.Abp.AspNetCore.Components.Web.Theming.Layout
+@inherits AbpComponentBase
+
+
+@attribute [Authorize(CmsPermissions.Entry.Create)]
+@inject AbpBlazorMessageLocalizerHelper<CmsResource> LH
+
+@code{
+}
+    
+<PageTitle>@L["CreateEntry"]</PageTitle>
+
+@* ************************* PAGE HEADER ************************* *@
+<PageHeader Title="@L["CreateEntry"]"
+            Toolbar="@Toolbar">
+</PageHeader>
+  
+@* ************************* CREATE  ************************* *@        
+<Blazorise.Form>
+    <Blazorise.Validations @ref="@CreateValidationsRef" Model="@NewEntity" ValidateOnLoad="false">
+        <CreateOrUpdateEntryFormShared Entry="@NewEntity" Section="@NewEntityOutput.Section" LH="@LH" L="@L"></CreateOrUpdateEntryFormShared>
+    </Blazorise.Validations>
+</Blazorise.Form>

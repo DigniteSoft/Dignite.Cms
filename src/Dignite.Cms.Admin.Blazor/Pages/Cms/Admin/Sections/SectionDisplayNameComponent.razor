@@ -1,0 +1,10 @@
+﻿@using Dignite.Cms.Sections
+
+<a href="@(string.Format("/cms/admin/sections/{0}/entries", Data.As<SectionDto>().Id))">
+    @(Data.As<SectionDto>().DisplayName)
+</a>
+
+
+@code {    
+    [Parameter] public object Data { get; set; }
+}

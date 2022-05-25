@@ -5,14 +5,14 @@ WORKDIR /templates/service/host/IdentityServerHost
 RUN dotnet restore
 RUN dotnet ef migrations script -i -o migrations-IdentityServerHost.sql
 
-WORKDIR /templates/service/host/Dignite.SiteBuilding.Host
+WORKDIR /templates/service/host/Dignite.Cms.Host
 RUN dotnet restore
-RUN dotnet ef migrations script -i -o migrations-SiteBuilding.sql
+RUN dotnet ef migrations script -i -o migrations-Cms.sql
 
 FROM mcr.microsoft.com/mssql-tools AS final
 WORKDIR /src
 COPY --from=build /templates/service/host/IdentityServerHost/migrations-IdentityServerHost.sql migrations-IdentityServerHost.sql
-COPY --from=build /templates/service/host/Dignite.SiteBuilding.Host/migrations-SiteBuilding.sql migrations-SiteBuilding.sql
+COPY --from=build /templates/service/host/Dignite.Cms.Host/migrations-Cms.sql migrations-Cms.sql
 COPY --from=build /templates/service/database/entrypoint.sh .
 RUN /bin/bash -c "sed -i $'s/\r$//' entrypoint.sh"
 RUN chmod +x ./entrypoint.sh

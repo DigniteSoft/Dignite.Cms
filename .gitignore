@@ -251,9 +251,13 @@ paket-files/
 .idea/
 *.sln.iml
 
-# SiteBuilding
-host/Dignite.SiteBuilding.IdentityServer/Logs/logs.txt
-host/Dignite.SiteBuilding.HttpApi.Host/Logs/logs.txt
-host/Dignite.SiteBuilding.Web.Host/Logs/logs.txt
-host/Dignite.SiteBuilding.Web.Unified/Logs/logs.txt
-host/Dignite.SiteBuilding.Blazor.Server.Host/Logs/logs.txt
+# cms
+host/Dignite.cms.IdentityServer/Logs/logs.txt
+host/Dignite.cms.HttpApi.Host/Logs/logs.txt
+host/Dignite.cms.Web.Host/Logs/logs.txt
+host/Dignite.cms.Web.Unified/Logs/logs.txt
+host/Dignite.cms.Blazor.Server.Host/Logs/logs.txt
+
+# node_modules
+node_modules/
+libs/

@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Dignite.Cms.Application.Contracts.Shared\Dignite.Cms.Application.Contracts.Shared.csproj" />
+  </ItemGroup>
+
+</Project>

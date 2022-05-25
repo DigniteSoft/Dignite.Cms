@@ -16,7 +16,7 @@ services:
   site-building:
     build:
       context: ../../
-      dockerfile: templates/service/host/Dignite.SiteBuilding.Host/Dockerfile
+      dockerfile: templates/service/host/Dignite.Cms.Host/Dockerfile
     depends_on:
       - sqlserver
       - identity-server
