@@ -9,7 +9,7 @@
             <ListGroup Mode="ListGroupMode.Selectable" Flush>
                 @foreach(var fc in AllFieldControlProviders)
                 {
-                <ListGroupItem Name="@fc.Name" Color="Color.None" @onclick="@(e => AddFieldAsync(e, fc.Name))">@fc.DisplayName</ListGroupItem>
+                <ListGroupItem Name="@fc.Name" Color="Color.Light" @onclick="@(e => AddFieldAsync(e, fc.Name))">@fc.DisplayName</ListGroupItem>
                 }
             </ListGroup>
         </Card>

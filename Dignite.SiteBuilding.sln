@@ -85,10 +85,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AspNetCore.Mvc.
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AspNetCore.Components.Web.PureTheme", "..\Dignite.Abp\modules\pure-theme\src\Dignite.Abp.AspNetCore.Components.Web.PureTheme\Dignite.Abp.AspNetCore.Components.Web.PureTheme.csproj", "{C165574F-9C36-472C-ABCA-2DE8F993D126}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AntDesignBlazorUI", "..\Dignite.Abp\framework\src\Dignite.Abp.AntDesignBlazorUI\Dignite.Abp.AntDesignBlazorUI.csproj", "{2098EA9D-8CC3-4A40-875D-E5613CD35085}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.AntDesignBlazorUI.WebAssembly", "..\Dignite.Abp\framework\src\Dignite.Abp.AntDesignBlazorUI.WebAssembly\Dignite.Abp.AntDesignBlazorUI.WebAssembly.csproj", "{8C943A1A-EE68-4F4F-872D-8B8743581228}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.FieldCustomizing.Blazor", "..\Dignite.Abp\framework\src\Dignite.Abp.FieldCustomizing.Blazor\Dignite.Abp.FieldCustomizing.Blazor.csproj", "{B989970C-5A5C-408B-81C7-8346440323AA}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Dignite.Abp.BlazoriseUI", "..\Dignite.Abp\framework\src\Dignite.Abp.BlazoriseUI\Dignite.Abp.BlazoriseUI.csproj", "{F3AD9BDF-78FF-43EB-8FCD-AEDCC5975431}"
@@ -235,14 +231,6 @@ Global
 		{C165574F-9C36-472C-ABCA-2DE8F993D126}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C165574F-9C36-472C-ABCA-2DE8F993D126}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C165574F-9C36-472C-ABCA-2DE8F993D126}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2098EA9D-8CC3-4A40-875D-E5613CD35085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2098EA9D-8CC3-4A40-875D-E5613CD35085}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2098EA9D-8CC3-4A40-875D-E5613CD35085}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2098EA9D-8CC3-4A40-875D-E5613CD35085}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8C943A1A-EE68-4F4F-872D-8B8743581228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8C943A1A-EE68-4F4F-872D-8B8743581228}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8C943A1A-EE68-4F4F-872D-8B8743581228}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8C943A1A-EE68-4F4F-872D-8B8743581228}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B989970C-5A5C-408B-81C7-8346440323AA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{B989970C-5A5C-408B-81C7-8346440323AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B989970C-5A5C-408B-81C7-8346440323AA}.Release|Any CPU.ActiveCfg = Release|Any CPU

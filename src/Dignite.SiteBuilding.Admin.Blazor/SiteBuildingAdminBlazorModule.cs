@@ -5,7 +5,6 @@ using Volo.Abp.AspNetCore.Components.Web.Theming.Routing;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
-using Dignite.Abp.AntDesignBlazorUI;
 using Volo.Abp.Threading;
 using Volo.Abp.ObjectExtending.Modularity;
 using Dignite.SiteBuilding.Admin.Pages;
@@ -19,7 +18,6 @@ namespace Dignite.SiteBuilding.Admin.Blazor
         typeof(SiteBuildingAdminApplicationContractsModule),
         typeof(AbpAspNetCoreComponentsWebThemingModule),
         typeof(AbpAutoMapperModule),
-        typeof(DigniteAbpAntDesignBlazorUIModule),
         typeof(DigniteAbpFieldCustomizingBlazorComponentsModule),
         typeof(DigniteAbpBlazoriseUIModule)
         )]
@@ -44,6 +42,7 @@ namespace Dignite.SiteBuilding.Admin.Blazor
             {
                 options.AdditionalAssemblies.Add(typeof(SiteBuildingAdminBlazorModule).Assembly);
             });
+            context.Services.AddAntDesign();
         }
 
         public override void PostConfigureServices(ServiceConfigurationContext context)

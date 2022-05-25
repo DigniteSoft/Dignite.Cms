@@ -8,8 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="5.1.3" />
-	  <PackageReference Include="Volo.Abp.Users.Domain" Version="5.1.3" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="5.2.1" />
+	  <PackageReference Include="Volo.Abp.Users.Domain" Version="5.2.1" />
     <ProjectReference Include="..\Dignite.SiteBuilding.Domain.Shared\Dignite.SiteBuilding.Domain.Shared.csproj" />
   </ItemGroup>
 
