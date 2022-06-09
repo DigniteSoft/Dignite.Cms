@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Validation" Version="5.2.1" />
     <ProjectReference Include="..\..\..\Dignite.Abp\framework\src\Dignite.Abp.FieldCustomizing\Dignite.Abp.FieldCustomizing.csproj" />
+    <ProjectReference Include="..\..\..\Dignite.Abp\modules\FileManagement\src\Dignite.Abp.FileManagement.Domain.Shared\Dignite.Abp.FileManagement.Domain.Shared.csproj" />
   </ItemGroup>
 
   <ItemGroup>

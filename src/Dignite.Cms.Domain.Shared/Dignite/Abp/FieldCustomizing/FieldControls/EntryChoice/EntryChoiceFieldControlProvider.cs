@@ -12,9 +12,10 @@ namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
 
         public const string ProviderName = "EntryChoice";
 
+
         public override string Name => ProviderName;
 
-        public override string DisplayName => L["DisplayName:Dignite.EntryChoice"];
+        public override string DisplayName => L["EntryChoiceControl"];
 
         public override FieldControlType ControlType => FieldControlType.Simple;
 

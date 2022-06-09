@@ -21,11 +21,17 @@ namespace Dignite.Cms.Entries
         }
 
 
-        public async Task<bool> AnyAsync(Guid pageId, string slug, Guid? ignoredId = null, CancellationToken cancellationToken = default)
+        public async Task<bool> SlugExistsAsync(Guid pageId, string slug, Guid? ignoredId = null, CancellationToken cancellationToken = default)
         {
             return await (await GetDbSetAsync())
                        .WhereIf(ignoredId != null, ct => ct.Id != ignoredId)
                        .AnyAsync(e => e.PageId== pageId && e.Slug == slug, GetCancellationToken(cancellationToken));
+        }
+
+        public async Task<bool> AnyAsync(Guid pageId, CancellationToken cancellationToken = default)
+        {
+            return await (await GetDbSetAsync())
+                       .AnyAsync(e => e.PageId == pageId, GetCancellationToken(cancellationToken));
         }
 
 

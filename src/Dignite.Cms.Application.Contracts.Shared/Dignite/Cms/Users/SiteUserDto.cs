@@ -10,6 +10,10 @@ namespace Dignite.Cms.Users
 
         public string UserName { get; set; }
 
+        public virtual string Name { get; set; }
+
+        public virtual string Surname { get; set; }
+
         public string Email { get; set; }
 
         public bool EmailConfirmed { get; set; }

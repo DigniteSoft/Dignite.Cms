@@ -31,7 +31,8 @@ namespace Dignite.Cms.Admin
                 .MapCustomizeFields()
                 .ForMember(m => m.Page, y => y.Ignore())
                 .ForMember(m => m.Editor, y => y.Ignore());
-            CreateMap<Entry, EntryUpdateDto>();
+            CreateMap<Entry, EntryUpdateDto>()
+                .ForMember(m => m.CustomizedFieldFiles, y => y.Ignore());
 
 
             /**** user *****************************************/

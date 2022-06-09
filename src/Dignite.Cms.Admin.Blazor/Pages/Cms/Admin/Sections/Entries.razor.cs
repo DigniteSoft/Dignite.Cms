@@ -63,14 +63,47 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
                 {
                     new TableColumn
                     {
-                        Title = L["CreationTime"],
-                        Data = nameof(EntryDto.CreationTime),
-                        DisplayFormat="{0:yyyy-MM-dd}"
+                        Title = L["Title"],
+                        Data = nameof(EntryDto.Title)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["Page"],
+                        Data = nameof(EntryDto.Page),
+                        ValueConverter=(val)=>val.As<EntryDto>().Page.Title
+                    },
+                    new TableColumn
+                    {
+                        Title = L["Slug"],
+                        Data = nameof(EntryDto.Slug)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["AuditStatus"],
+                        Data = nameof(EntryDto.AuditStatus),
+                        ValueConverter=(val)=>L["EntryAuditStatus."+val.As<EntryDto>().AuditStatus]
+                    },
+                    new TableColumn
+                    {
+                        Title = L["IsActive"],
+                        Data = nameof(EntryDto.IsActive)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["Editor"],
+                        Data = nameof(EntryDto.Editor),
+                        ValueConverter=(val)=>val.As<EntryDto>().Editor.Surname+val.As<EntryDto>().Editor.Name
                     },
                     new TableColumn
                     {
                         Title = L["PublishTime"],
                         Data = nameof(EntryDto.PublishTime),
+                        DisplayFormat="{0:yyyy-MM-dd}"
+                    },
+                    new TableColumn
+                    {
+                        Title = L["CreationTime"],
+                        Data = nameof(EntryDto.CreationTime),
                         DisplayFormat="{0:yyyy-MM-dd}"
                     },
                     new TableColumn
@@ -91,7 +124,7 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
 
         protected override ValueTask SetToolbarItemsAsync()
         {
-            Toolbar.AddButton(L["NewEntry"],
+            Toolbar.AddButton(L["New"],
                 async () => Navigation.NavigateTo($"/cms/admin/entries/create?sectionId={Id}"),
                 IconName.Add,
                 requiredPolicyName: CreatePolicyName);

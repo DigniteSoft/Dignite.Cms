@@ -21,26 +21,34 @@ namespace Dignite.Cms.Admin.Blazor.Menus
             var l = context.GetLocalizer<CmsResource>();
 
             //Add main menu items.
-            var rootMenuItem = new ApplicationMenuItem(CmsAdminMenus.Prefix, displayName: l["Cms"], url: "~/cms/admin", icon: "fa fa-globe");
+            var rootMenuItem = new ApplicationMenuItem(CmsAdminMenus.Prefix, displayName: l["Cms"], url: "~/cms/admin", icon: "fa fa-file-o");
             context.Menu.AddItem(rootMenuItem);
 
-            rootMenuItem.AddItem(new ApplicationMenuItem(
+
+            var cms = new ApplicationMenuItem(
+                    "cms",
+                    l["Cms"]
+                );
+            rootMenuItem.AddItem(cms);
+
+            cms.AddItem(new ApplicationMenuItem(
                     CmsAdminMenus.Pages,
                     l["Pages"],
                     url: "~/cms/admin/pages",
                     icon: "fa fa-file").RequirePermissions(CmsPermissions.Page.Default));
 
-            rootMenuItem.AddItem(new ApplicationMenuItem(
+            cms.AddItem(new ApplicationMenuItem(
                     CmsAdminMenus.Entries,
                     l["Sections"],
                     url: "~/cms/admin/sections",
                     icon: "fa fa-file-alt").RequirePermissions(CmsPermissions.Entry.Default));
-
-            rootMenuItem.AddItem(new ApplicationMenuItem(
+            /*
+            cms.AddItem(new ApplicationMenuItem(
                     CmsAdminMenus.Users,
                     l["Users"],
                     url: "~/cms/admin/users",
                     icon: "fa fa-users").RequirePermissions(CmsPermissions.User.Default));
+            */
 
             return Task.CompletedTask;
         }

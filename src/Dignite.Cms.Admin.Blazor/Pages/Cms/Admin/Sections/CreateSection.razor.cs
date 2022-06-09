@@ -2,6 +2,7 @@
 using Dignite.Cms.Admin.Sections;
 using Dignite.Cms.Localization;
 using Dignite.Cms.Permissions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Components;
 using System;
 using System.Threading.Tasks;
@@ -49,8 +50,7 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
         {
             Toolbar.AddButton(L["Save"],
                 SaveAsync,
-                IconName.Save,
-                requiredPolicyName: CmsPermissions.Section.Create);
+                IconName.Save);
             return ValueTask.CompletedTask;
         }
 

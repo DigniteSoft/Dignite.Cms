@@ -6,12 +6,14 @@ using Volo.Abp.Validation;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 using Dignite.Abp.FieldCustomizing;
+using Dignite.Abp.FileManagement;
 
 namespace Dignite.Cms
 {
     [DependsOn(
         typeof(AbpValidationModule),
-        typeof(DigniteAbpFieldCustomizingModule)
+        typeof(DigniteAbpFieldCustomizingModule),
+        typeof(FileManagementDomainSharedModule)
     )]
     public class CmsDomainSharedModule : AbpModule
     {

@@ -20,7 +20,7 @@
                 <!-------------base section info------------------------------------->
                 <Blazorise.Validation MessageLocalizer="@LH.Localize">
                     <Blazorise.Field>
-                        <Blazorise.FieldLabel>@L["DisplayName:DisplayName"]</Blazorise.FieldLabel>
+                        <Blazorise.FieldLabel>@L["DisplayName"]</Blazorise.FieldLabel>
                         <Blazorise.TextEdit @bind-Text="@Data.DisplayName" Autofocus="true">
                             <Feedback>
                                 <Blazorise.ValidationError/>
@@ -30,7 +30,7 @@
                 </Blazorise.Validation>
                 <Blazorise.Validation MessageLocalizer="@LH.Localize">
                     <Blazorise.Field>
-                        <Blazorise.FieldLabel>@L["DisplayName:Name"]</Blazorise.FieldLabel>
+                        <Blazorise.FieldLabel>@L["UniqueName"]</Blazorise.FieldLabel>
                         <Blazorise.TextEdit @bind-Text="@Data.Name">
                             <Feedback>
                                 <Blazorise.ValidationError/>
@@ -40,7 +40,7 @@
                 </Blazorise.Validation>
                 <Blazorise.Validation MessageLocalizer="@LH.Localize">
                     <Blazorise.Field>
-                        <Blazorise.FieldLabel>@L["DisplayName:TemplateFile"]</Blazorise.FieldLabel>
+                        <Blazorise.FieldLabel>@L["TemplateFile"]</Blazorise.FieldLabel>
                         <Blazorise.TextEdit @bind-Text="@Data.TemplateFile">
                             <Feedback>
                                 <Blazorise.ValidationError/>
@@ -49,7 +49,7 @@
                     </Blazorise.Field>
                 </Blazorise.Validation>
                 <Blazorise.Field>
-                    <Blazorise.Check TValue="bool" @bind-Checked="@Data.IsActive">@L["DisplayName:IsActive"]</Blazorise.Check>
+                    <Blazorise.Check TValue="bool" @bind-Checked="@Data.IsActive">@L["IsActive"]</Blazorise.Check>
                 </Blazorise.Field>
                 
                 <Blazorise.Validations  Model="@Data.FieldDefinitions" ValidateOnLoad="false">

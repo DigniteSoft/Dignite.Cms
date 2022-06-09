@@ -4,8 +4,10 @@ using Dignite.Cms.Localization;
 using Dignite.Cms.Permissions;
 using Microsoft.AspNetCore.Components;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Volo.Abp.AspNetCore.Components.Web.Theming.PageToolbars;
+using Volo.Abp.Content;
 
 namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Entries
 {
@@ -67,6 +69,26 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Entries
                 }
                 if (validate)
                 {
+                    //如果含有文件，需要读取文件流
+                    foreach (var field in Entity.CustomizedFields)
+                    {
+                        if (field.Value!=null && field.Value.GetType() == typeof(List<IFileEntry>))
+                        {
+                            var remoteStreamContents = new List<IRemoteStreamContent>();
+                            foreach (var file in (List<IFileEntry>)field.Value)
+                            {
+                                remoteStreamContents.Add(
+                                    new RemoteStreamContent(
+                                        file.OpenReadStream(long.MaxValue),
+                                        file.Name,
+                                        file.Type
+                                        ));
+                            }
+                            Entity.CustomizedFieldFiles.Add(field.Key, remoteStreamContents);
+                            Entity.CustomizedFields[field.Key] = null;
+                        }
+                    }
+
                     await EntryAppService.UpdateAsync(Id, Entity);
                     Navigation.NavigateTo($"/cms/admin/sections/{Entity.SectionId}/entries");
                 }

@@ -9,6 +9,7 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc" Version="5.2.1" />
+    <ProjectReference Include="..\..\..\Dignite.Abp\modules\FileManagement\src\Dignite.Abp.FileManagement.HttpApi\Dignite.Abp.FileManagement.HttpApi.csproj" />
     <ProjectReference Include="..\Dignite.Cms.Application.Contracts\Dignite.Cms.Application.Contracts.csproj" />
   </ItemGroup>
 

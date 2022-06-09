@@ -25,6 +25,11 @@ namespace Dignite.Cms.Entries
 
 
         /// <summary>
+        /// 
+        /// </summary>
+        public virtual string Title { get; set; }
+
+        /// <summary>
         /// 审核情况
         /// </summary>
         public virtual EntryAuditStatus AuditStatus { get; protected set; }

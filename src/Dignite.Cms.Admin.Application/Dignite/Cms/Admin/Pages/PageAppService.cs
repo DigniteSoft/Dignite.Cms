@@ -1,4 +1,5 @@
-﻿using Dignite.Cms.Pages;
+﻿using Dignite.Cms.Entries;
+using Dignite.Cms.Pages;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
@@ -12,12 +13,13 @@ namespace Dignite.Cms.Admin.Pages
     public class PageAppService : CmsAdminAppServiceBase, IPageAppService
     {
         private readonly IPageRepository _pageRepository;
+        private readonly IEntryRepository _entryRepository;
 
-        public PageAppService(IPageRepository pageRepository)
+        public PageAppService(IPageRepository pageRepository, IEntryRepository entryRepository)
         {
             _pageRepository = pageRepository;
+            _entryRepository = entryRepository;
         }
-
 
         [Authorize(Permissions.CmsPermissions.Page.Default)]
         public virtual async Task<PageDto> GetAsync(Guid id)
@@ -122,6 +124,10 @@ namespace Dignite.Cms.Admin.Pages
         [Authorize(Permissions.CmsPermissions.Page.Delete)]
         public async Task DeleteAsync(Guid id)
         {
+            if (await _entryRepository.AnyAsync(id))
+            {
+                throw new Volo.Abp.UserFriendlyException("禁止删除含有条目的页面！");
+            }
             await _pageRepository.DeleteAsync(id);
         }
 

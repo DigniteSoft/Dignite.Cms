@@ -1,14 +1,23 @@
 ﻿using Dignite.Abp.FieldCustomizing;
 using Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice;
+using Dignite.Abp.FileManagement;
+using Dignite.Cms.Blobs;
 using Dignite.Cms.Entries;
 using Dignite.Cms.Sections;
 using Dignite.Cms.Users;
 using Microsoft.AspNetCore.Authorization;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using Volo.Abp.Application.Dtos;
+using System.Text.Json;
+using System.Text.Encodings.Web;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Dignite.Cms.Pages;
+using Dignite.Cms.Admin.Pages;
 
 namespace Dignite.Cms.Admin.Entries
 {
@@ -19,19 +28,25 @@ namespace Dignite.Cms.Admin.Entries
         private readonly ISectionRepository _sectionRepository;
         private readonly IFieldDefinitionRepository _fieldDefinitionRepository;
         private readonly ISectionGrantRepository _sectionAuthorizerRepository;
+        private readonly IFilesAppService _filesAppService;
+        private readonly IPageAppService _pageAppService;
 
         public EntryAppService(
             ISiteUserLookupService userLookupService,
             IEntryRepository entryRepository, 
             ISectionRepository sectionRepository,
             IFieldDefinitionRepository fieldDefinitionRepository,
-            ISectionGrantRepository sectionAuthorizerRepository)
+            ISectionGrantRepository sectionAuthorizerRepository,
+            IFilesAppService filesAppService,
+            IPageAppService pageAppService)
         {
             UserLookupService = userLookupService;
             _entryRepository = entryRepository;
             _sectionRepository = sectionRepository;
             _fieldDefinitionRepository= fieldDefinitionRepository;
             _sectionAuthorizerRepository = sectionAuthorizerRepository;
+            _filesAppService = filesAppService;
+            _pageAppService = pageAppService;
         }
 
 
@@ -97,11 +112,12 @@ namespace Dignite.Cms.Admin.Entries
         [Authorize(Permissions.CmsPermissions.Entry.Create)]
         public async Task<EntryDto> CreateAsync(EntryCreateDto input)
         {
+
             if(!input.Slug.IsNullOrWhiteSpace())
-            await CheckSlugExistenceAsync(input.PageId,input.Slug);
+                await CheckSlugExistenceAsync(input.PageId,input.Slug);
 
             var id = GuidGenerator.Create();
-            var entry = new Entry(id, input.SectionId, input.PageId,input.IsActive,input.Slug, input.PublishTime, CurrentTenant.Id);
+            var entry = new Entry(id, input.SectionId, input.PageId,input.Title, input.IsActive,input.Slug, input.PublishTime, CurrentTenant.Id);
             await AuthorizationService.CheckAsync(entry, CommonOperations.Create);
             //
             if (await AuthorizationService.IsGrantedAsync(Permissions.CmsPermissions.Entry.Audit))
@@ -111,8 +127,29 @@ namespace Dignite.Cms.Admin.Entries
 
             //
             entry.CustomizedFields = input.CustomizedFields;
-            //entry.SetPosition((await _entryRepository.GetMaxPositionAsync(input.SectionId, input.PageId))+1);            
 
+            //上传文件
+            //当前仅支持简单类型字段，后期再增加复杂类型的字段
+            foreach(var fieldFile in input.CustomizedFieldFiles)
+            {
+                var fileList = new List<FileDto>();
+                foreach (var file in fieldFile.Value) {
+
+                    var fileInfo = await _filesAppService.SaveAsync(
+                        ContainerConsts.FileEditFieldFileBlobContainerName,
+                        new SaveStreamInput()
+                        {
+                            EntityType = EntityTypeConsts.Entry,
+                            EntityId = id.ToString(),
+                            File = file
+                        }
+                        );
+                    fileList.Add(fileInfo);
+                }
+                entry.CustomizedFields[fieldFile.Key] = JsonConvert.SerializeObject(fileList, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            }
+
+            //          
             await _entryRepository.InsertAsync(entry);
             return ObjectMapper.Map<Entry, EntryDto>(entry);
         }
@@ -144,6 +181,7 @@ namespace Dignite.Cms.Admin.Entries
 
             //
             entry.PageId= input.PageId;
+            entry.Title=input.Title;
             entry.Slug = input.Slug;
             entry.PublishTime = input.PublishTime;
             entry.IsActive = input.IsActive;
@@ -308,7 +346,7 @@ namespace Dignite.Cms.Admin.Entries
 
         protected virtual async Task CheckSlugExistenceAsync(Guid pageId, string slug)
         {
-            if (await _entryRepository.AnyAsync(pageId,slug))
+            if (await _entryRepository.SlugExistsAsync(pageId,slug))
             {
                 throw new EntrySlugAlreadyExistException( pageId, slug);
             }
@@ -327,12 +365,17 @@ namespace Dignite.Cms.Admin.Entries
 
             foreach (var entry in result)
             {
+                //
+                entry.Page = await _pageAppService.GetAsync(entry.PageId);
+
+                //
                 var editorUser = await UserLookupService.FindByIdAsync(entry.CreatorId.Value);
                 if (editorUser != null)
                 {
                     entry.Editor = ObjectMapper.Map<SiteUser, SiteUserDto>(editorUser);
                 }
 
+                //
                 entry.SetDefaultsForCustomizeFields(
                     section.FieldDefinitions
                     .Select(fd => new BasicCustomizeFieldDefinition(

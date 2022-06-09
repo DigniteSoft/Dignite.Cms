@@ -13,7 +13,7 @@
 <input type="hidden" name="ParentId" @bind-value="@Data.ParentId"/>
 <Blazorise.Validation MessageLocalizer="@LH.Localize">
     <Blazorise.Field>
-        <Blazorise.FieldLabel>@L["DisplayName:Title"]</Blazorise.FieldLabel>
+        <Blazorise.FieldLabel>@L["Title"]</Blazorise.FieldLabel>
         <Blazorise.TextEdit @bind-Text="@Data.Title" Autofocus="true">
             <Feedback>
                 <Blazorise.ValidationError/>
@@ -23,7 +23,7 @@
 </Blazorise.Validation>
 <Blazorise.Validation MessageLocalizer="@LH.Localize">
     <Blazorise.Field>
-        <Blazorise.FieldLabel>@L["DisplayName:Name"]</Blazorise.FieldLabel>
+        <Blazorise.FieldLabel>@L["UniqueName"]</Blazorise.FieldLabel>
         <Blazorise.TextEdit @bind-Text="@Data.Name">
             <Feedback>
                 <Blazorise.ValidationError/>
@@ -33,7 +33,7 @@
 </Blazorise.Validation>
 <Blazorise.Validation MessageLocalizer="@LH.Localize">
     <Blazorise.Field>
-        <Blazorise.FieldLabel>@L["DisplayName:Description"]</Blazorise.FieldLabel>
+        <Blazorise.FieldLabel>@L["Description"]</Blazorise.FieldLabel>
         <Blazorise.TextEdit @bind-Text="@Data.Description">
             <Feedback>
                 <Blazorise.ValidationError/>
@@ -43,7 +43,7 @@
 </Blazorise.Validation>
 <Blazorise.Validation MessageLocalizer="@LH.Localize">
     <Blazorise.Field>
-        <Blazorise.FieldLabel>@L["DisplayName:TemplateFile"]</Blazorise.FieldLabel>
+        <Blazorise.FieldLabel>@L["TemplateFile"]</Blazorise.FieldLabel>
         <Blazorise.TextEdit @bind-Text="@Data.TemplateFile">
             <Feedback>
                 <Blazorise.ValidationError/>
@@ -53,7 +53,7 @@
 </Blazorise.Validation>
 <Blazorise.Validation MessageLocalizer="@LH.Localize">
     <Blazorise.Field>
-        <Blazorise.FieldLabel>@L["DisplayName:PermissionName"]</Blazorise.FieldLabel>
+        <Blazorise.FieldLabel>@L["PermissionName"]</Blazorise.FieldLabel>
         <Blazorise.TextEdit @bind-Text="@Data.PermissionName">
             <Feedback>
                 <Blazorise.ValidationError/>
@@ -62,5 +62,5 @@
     </Blazorise.Field>
 </Blazorise.Validation>
 <Blazorise.Field>
-    <Blazorise.Check TValue="bool" @bind-Checked="Data.IsActive">@L["DisplayName:IsActive"]</Blazorise.Check>
+    <Blazorise.Check TValue="bool" @bind-Checked="Data.IsActive">@L["IsActive"]</Blazorise.Check>
 </Blazorise.Field>

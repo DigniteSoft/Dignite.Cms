@@ -121,6 +121,7 @@ namespace Dignite.Cms.EntityFrameworkCore
                 b.ConfigureByConvention();
                 b.ConfigureObjectCustomizedFields();
 
+                b.Property(q => q.Title).HasMaxLength(Entries.EntryConsts.MaxTitleLength);
                 b.Property(q => q.Slug).HasMaxLength(Entries.EntryConsts.MaxSlugLength);
 
                 //Indexes

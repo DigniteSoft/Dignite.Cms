@@ -11,9 +11,8 @@ namespace Dignite.Cms.Admin.Entries
 {
     public abstract class EntryCreateOrUpdateDtoBase: CustomizableObject
     {
-        public EntryCreateOrUpdateDtoBase()
+        public EntryCreateOrUpdateDtoBase():base()
         {
-            this.CustomizedFields = new CustomizeFieldDictionary();
         }
 
         public EntryCreateOrUpdateDtoBase( Guid sectionId) : this()
@@ -37,6 +36,12 @@ namespace Dignite.Cms.Admin.Entries
         [Required]
         public virtual Guid PageId { get; set; }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        [Required]
+        public virtual string Title { get; set; }
 
         /// <summary>
         /// 是否激活
@@ -85,7 +90,10 @@ namespace Dignite.Cms.Admin.Entries
                 validationErrors.Add(new ValidationResult("请选择页面！"));
             }
 
-            validationErrors.AddRange(base.Validate(validationContext));
+            /*
+             2022年6月5日注释。在BlazorServer模式下创建条目失败
+             */
+           // validationErrors.AddRange(base.Validate(validationContext));
 
             return validationErrors;
         }

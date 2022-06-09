@@ -68,15 +68,34 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Pages
                     },
                     new TableColumn
                     {
-                        Title = L["CreationTime"],
-                        Data = nameof(PageDto.CreationTime),
-                        DisplayFormat="{0:yyyy-MM-dd}"
-                  },
+                        Title = L["Path"],
+                        Data = nameof(PageDto.Path)
+                    },
                     new TableColumn
                     {
-                        Title = L["LastModificationTime"],
-                        Data = nameof(PageDto.LastModificationTime),
-                        DisplayFormat="{0:yyyy-MM-dd}"
+                        Title = L["IsActive"],
+                        Data = nameof(PageDto.IsActive)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["Keywords"],
+                        Data = nameof(PageDto.Keywords),
+                        ValueConverter=(val)=>val.As<PageDto>().Keywords!=null?val.As<PageDto>().Keywords.JoinAsString(","):""
+                    },
+                    new TableColumn
+                    {
+                        Title = L["Description"],
+                        Data = nameof(PageDto.Description)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["TemplateFile"],
+                        Data = nameof(PageDto.TemplateFile)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["CreationTime"],
+                        Data = nameof(PageDto.CreationTime)
                     },
                     new TableColumn
                     {
@@ -91,12 +110,12 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Pages
 
         protected override string GetDeleteConfirmationMessage(PageDto entity)
         {
-            return string.Format(L["RoleDeletionConfirmationMessage"], entity.Name);
+            return string.Format(L["PageDeletionConfirmationMessage"], entity.Name);
         }
 
         protected override ValueTask SetToolbarItemsAsync()
         {
-            Toolbar.AddButton(L["NewPage"],
+            Toolbar.AddButton(L["New"],
                 OpenCreateModalAsync,
                 IconName.Add,
                 requiredPolicyName: CreatePolicyName);

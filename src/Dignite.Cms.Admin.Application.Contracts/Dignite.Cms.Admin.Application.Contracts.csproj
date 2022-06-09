@@ -11,6 +11,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\..\Dignite.Abp\modules\FileManagement\src\Dignite.Abp.FileManagement.Application.Contracts\Dignite.Abp.FileManagement.Application.Contracts.csproj" />
     <ProjectReference Include="..\Dignite.Cms.Application.Contracts.Shared\Dignite.Cms.Application.Contracts.Shared.csproj" />
   </ItemGroup>
 

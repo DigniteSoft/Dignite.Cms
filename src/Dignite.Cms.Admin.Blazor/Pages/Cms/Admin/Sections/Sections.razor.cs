@@ -70,8 +70,23 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
                     },
                     new TableColumn
                     {
-                        Title = L["SectionName"],
+                        Title = L["UniqueName"],
                         Data = nameof(SectionDto.Name)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["IsActive"],
+                        Data = nameof(SectionDto.IsActive)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["TemplateFile"],
+                        Data = nameof(SectionDto.TemplateFile)
+                    },
+                    new TableColumn
+                    {
+                        Title = L["EntryTemplateFile"],
+                        Data = nameof(SectionDto.EntryTemplateFile)
                     },
                     new TableColumn
                     {
@@ -91,7 +106,7 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
 
         protected override ValueTask SetToolbarItemsAsync()
         {
-            Toolbar.AddButton(L["NewSection"],
+            Toolbar.AddButton(L["New"],
                 async ()=>  Navigation.NavigateTo("/cms/admin/sections/create"),
                 IconName.Add,
                 requiredPolicyName: CreatePolicyName);

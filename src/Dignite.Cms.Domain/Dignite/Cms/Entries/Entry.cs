@@ -5,6 +5,9 @@ using Volo.Abp.MultiTenancy;
 
 namespace Dignite.Cms.Entries
 {
+    /// <summary>
+    /// Entry
+    /// </summary>
     public class Entry: FullAuditedEntity<Guid>, IHasCustomizableFields, IMultiTenant
     {
         protected Entry()
@@ -15,6 +18,7 @@ namespace Dignite.Cms.Entries
             Guid id, 
             Guid sectionId,
             Guid pageId,
+            string title,
             bool isActive,
             string slug,
             DateTime publishTime,
@@ -24,6 +28,7 @@ namespace Dignite.Cms.Entries
             this.Id = id;
             this.SectionId = sectionId;
             this.PageId = pageId;
+            this.Title = title;
             this.IsActive = isActive;
             this.Slug = slug;
             this.PublishTime = publishTime;
@@ -41,6 +46,11 @@ namespace Dignite.Cms.Entries
         /// 
         /// </summary>
         public virtual Guid PageId { get; set;}
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public virtual string Title { get; set; }
 
 
         /// <summary>

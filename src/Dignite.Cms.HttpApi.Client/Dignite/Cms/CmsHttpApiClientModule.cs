@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Dignite.Abp.FileManagement;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.Http.Client;
 using Volo.Abp.Modularity;
 using Volo.Abp.VirtualFileSystem;
@@ -7,7 +8,9 @@ namespace Dignite.Cms
 {
     [DependsOn(
         typeof(CmsApplicationContractsModule),
-        typeof(AbpHttpClientModule))]
+        typeof(AbpHttpClientModule),
+        typeof(FileManagementHttpApiClientModule)
+        )]
     public class CmsHttpApiClientModule : AbpModule
     {
         public override void ConfigureServices(ServiceConfigurationContext context)

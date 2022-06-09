@@ -4,12 +4,15 @@ using Volo.Abp.AspNetCore.Mvc;
 using Volo.Abp.Localization;
 using Volo.Abp.Modularity;
 using Microsoft.Extensions.DependencyInjection;
+using Dignite.Abp.FileManagement;
 
 namespace Dignite.Cms
 {
     [DependsOn(
         typeof(CmsApplicationContractsModule),
-        typeof(AbpAspNetCoreMvcModule))]
+        typeof(AbpAspNetCoreMvcModule),
+        typeof(FileManagementHttpApiModule)
+        )]
     public class CmsHttpApiModule : AbpModule
     {
         public override void PreConfigureServices(ServiceConfigurationContext context)
