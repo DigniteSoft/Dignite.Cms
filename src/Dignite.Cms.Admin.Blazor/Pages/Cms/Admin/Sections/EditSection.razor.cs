@@ -35,16 +35,9 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
 
             EditingEntityOutput = await SectionAppService.EditAsync(Id);
             EditingEntity = EditingEntityOutput.Section;
+            await SetToolbarItemsAsync();
         }
 
-        protected async override Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                await base.OnAfterRenderAsync(firstRender);
-                await SetToolbarItemsAsync();
-            }
-        }
 
         private ValueTask SetToolbarItemsAsync()
         {

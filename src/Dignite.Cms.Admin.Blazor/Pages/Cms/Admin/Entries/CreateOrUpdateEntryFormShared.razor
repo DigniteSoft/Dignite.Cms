@@ -48,19 +48,6 @@
         </Card>
     </Column>
     <Column ColumnSize="ColumnSize.Is4">        
-        <Blazorise.Field>
-            <Blazorise.Check TValue="bool" @bind-Checked="@Entry.IsActive">@L["IsActive"]</Blazorise.Check>
-        </Blazorise.Field>
-        <Validation MessageLocalizer="@LH.Localize">
-            <Field>
-                <Blazorise.FieldLabel>@L["Slug"]</Blazorise.FieldLabel>
-                <Blazorise.TextEdit @bind-Text="@Entry.Slug">
-                    <Feedback>
-                        <Blazorise.ValidationError/>
-                    </Feedback>
-                </Blazorise.TextEdit>
-            </Field>
-        </Validation>
         <Validation MessageLocalizer="@LH.Localize">
             <Field>
                 <FieldLabel>@L["PublishTime"]</FieldLabel>
@@ -71,5 +58,18 @@
                 </DateEdit>
             </Field>
         </Validation>
+        <Validation MessageLocalizer="@LH.Localize">
+            <Field>
+                <Blazorise.FieldLabel>@L["Slug"]</Blazorise.FieldLabel>
+                <Blazorise.TextEdit @bind-Text="@Entry.Slug">
+                    <Feedback>
+                        <Blazorise.ValidationError/>
+                    </Feedback>
+                </Blazorise.TextEdit>
+            </Field>
+        </Validation>
+        <Blazorise.Field>
+            <Blazorise.Check TValue="bool" @bind-Checked="@Entry.IsActive">@L["IsActive"]</Blazorise.Check>
+        </Blazorise.Field>
     </Column>
 </Row>

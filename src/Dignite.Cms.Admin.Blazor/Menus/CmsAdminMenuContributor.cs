@@ -21,7 +21,12 @@ namespace Dignite.Cms.Admin.Blazor.Menus
             var l = context.GetLocalizer<CmsResource>();
 
             //Add main menu items.
-            var rootMenuItem = new ApplicationMenuItem(CmsAdminMenus.Prefix, displayName: l["Cms"], url: "~/cms/admin", icon: "fa fa-file-o");
+            var rootMenuItem = new ApplicationMenuItem(
+                CmsAdminMenus.Prefix, 
+                displayName: l["Cms"], 
+                url: "~/cms/admin", 
+                icon: "fa fa-file-o");
+            rootMenuItem.RequirePermissions(CmsPermissions.Entry.Default);
             context.Menu.AddItem(rootMenuItem);
 
 

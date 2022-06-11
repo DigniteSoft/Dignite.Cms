@@ -35,22 +35,16 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
 
             NewEntityOutput = await SectionAppService.NewAsync();
             NewEntity =NewEntityOutput.Section;
+            await SetToolbarItemsAsync();
         }
 
-        protected async override Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                await base.OnAfterRenderAsync(firstRender);
-                await SetToolbarItemsAsync();
-            }
-        }
 
         private ValueTask SetToolbarItemsAsync()
         {
             Toolbar.AddButton(L["Save"],
                 SaveAsync,
-                IconName.Save);
+                IconName.Save,
+                requiredPolicyName: CmsPermissions.Section.Create);
             return ValueTask.CompletedTask;
         }
 

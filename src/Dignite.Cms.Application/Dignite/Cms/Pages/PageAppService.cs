@@ -9,22 +9,22 @@ namespace Dignite.Cms.Pages
 {
     public class PageAppService : CmsAppService, IPageAppService
     {
-        private readonly IPageRepository _siteRepository;
+        private readonly IPageRepository _pageRepository;
 
         public PageAppService(IPageRepository siteRepository)
         {
-            _siteRepository = siteRepository;
+            _pageRepository = siteRepository;
         }
         public async Task<PageDto> GetAsync(Guid id)
         {
-            var result = await _siteRepository.GetAsync(id);
+            var result = await _pageRepository.GetAsync(id);
             await AuthorizationService.CheckAsync(result, CommonOperations.Read);
             return ObjectMapper.Map<Page, PageDto>(result);
         }
 
         public async Task<PageDto> FindByPathAsync(string path)
         {
-            var result = await _siteRepository.FindByPathAsync(path);
+            var result = await _pageRepository.FindByPathAsync(path);
             if (result == null)
                 return null;
             else
@@ -36,7 +36,7 @@ namespace Dignite.Cms.Pages
 
         public async Task<ListResultDto<PageDto>> GetListAsync()
         {
-            var result = await _siteRepository.GetListAsync();
+            var result = await _pageRepository.GetListAsync();
             var list=new List<PageDto>();
             foreach (var p in result)
             {
@@ -76,7 +76,7 @@ namespace Dignite.Cms.Pages
 
         private void AddChildren(PageDto parent, List<PageDto> list)
         {
-            var children = list.Where(p => p.ParentId == parent.ParentId).ToList();
+            var children = list.Where(p => p.ParentId == parent.Id).ToList();
             if (children.Any())
             {
                 parent.Children = children;

@@ -102,12 +102,6 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
                     },
                     new TableColumn
                     {
-                        Title = L["CreationTime"],
-                        Data = nameof(EntryDto.CreationTime),
-                        DisplayFormat="{0:yyyy-MM-dd}"
-                    },
-                    new TableColumn
-                    {
                         Title = L["Actions"],
                         Actions = EntityActions.Get<Sections>()
                     }

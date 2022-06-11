@@ -135,6 +135,7 @@ namespace Dignite.Cms.Admin.Sections
 
 
             //更新条目类型
+            section.IsActive = input.IsActive;
             section.DisplayName = input.DisplayName;
             section.Name = input.Name;
             section.TemplateFile = input.TemplateFile;

@@ -9,7 +9,7 @@ namespace Dignite.Cms.Admin.Pages
     {
         public PageCreateOrUpdateDtoBase() : base(false)
         {
-
+            IsActive = true;
         }
 
 

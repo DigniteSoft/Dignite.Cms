@@ -40,16 +40,9 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Entries
             sectionId = Guid.Parse( HttpUtility.ParseQueryString(uri.Query).Get("SectionId"));
             NewEntityOutput = await EntryAppService.NewAsync(sectionId);
             NewEntity = NewEntityOutput.Entry;
+                await SetToolbarItemsAsync();
         }
 
-        protected async override Task OnAfterRenderAsync(bool firstRender)
-        {
-            if (firstRender)
-            {
-                await base.OnAfterRenderAsync(firstRender);
-                await SetToolbarItemsAsync();
-            }
-        }
 
         private ValueTask SetToolbarItemsAsync()
         {

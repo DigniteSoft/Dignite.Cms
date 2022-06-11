@@ -47,7 +47,7 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
             }
             if (validate)
             {
-                var name = Guid.NewGuid().ToString();
+                var name = shortid.ShortId.Generate();
                 var configuration = new Abp.FieldCustomizing.FieldControls.FieldControlConfigurationDictionary();
                 var fieldContrlProvider = AllFieldControlProviders.Single(fcp => fcp.Name == fieldControlName);
                 Data.FieldDefinitions.Add(new FieldDefinitionEditDto()
@@ -80,7 +80,6 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
                 filedControlConfigurationSelectedParameters.Add("Definition", fd);
                 filedControlConfigurationSelectedType = component.GetType();
             }
-
         }
 
     }
