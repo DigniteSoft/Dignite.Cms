@@ -1,5 +1,5 @@
 ﻿using Dignite.Abp.FieldCustomizing;
-using Dignite.Abp.FieldCustomizing.FieldControls;
+using Dignite.Abp.FieldCustomizing.Fields;
 using JetBrains.Annotations;
 using System;
 using Volo.Abp;
@@ -17,8 +17,8 @@ namespace Dignite.Cms.Sections
             string displayName, 
             string name, 
             string defaultValue,
-            string fieldControlProviderName,
-            FieldControlConfigurationDictionary configuration,  
+            string fieldProviderName,
+            FieldConfigurationDictionary configuration,  
             int position,
             Guid? tenantId)
         {
@@ -27,7 +27,7 @@ namespace Dignite.Cms.Sections
             DisplayName = displayName;
             Name = name;
             DefaultValue = defaultValue;
-            FieldControlProviderName = fieldControlProviderName;
+            FieldProviderName = fieldProviderName;
             Configuration = configuration;
             Position = position;
             TenantId = tenantId;
@@ -60,10 +60,10 @@ namespace Dignite.Cms.Sections
         public string DefaultValue { get; set; }
 
         [NotNull]
-        public string FieldControlProviderName { get; set; }
+        public string FieldProviderName { get; set; }
 
         [NotNull]
-        public virtual FieldControlConfigurationDictionary Configuration { get; set; }
+        public virtual FieldConfigurationDictionary Configuration { get; set; }
 
         public int Position { get; set; }
 

@@ -107,7 +107,7 @@ namespace Dignite.Cms.EntityFrameworkCore
                 //Properties
                 b.Property(q => q.DisplayName).IsRequired().HasMaxLength(Sections.FieldDefinitionConsts.MaxDisplayNameLength);
                 b.Property(q => q.Name).IsRequired().HasMaxLength(Sections.FieldDefinitionConsts.MaxNameLength);
-                b.Property(q => q.FieldControlProviderName).IsRequired().HasMaxLength(Sections.FieldDefinitionConsts.MaxFieldControlProviderNameLength);
+                b.Property(q => q.FieldProviderName).IsRequired().HasMaxLength(Sections.FieldDefinitionConsts.MaxFieldProviderNameLength);
 
                 //Indexes
                 b.HasIndex(q => q.SectionId);

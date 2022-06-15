@@ -1,5 +1,5 @@
 ﻿using Dignite.Abp.FieldCustomizing;
-using Dignite.Abp.FieldCustomizing.FieldControls;
+using Dignite.Abp.FieldCustomizing.Fields;
 using Dignite.Cms.Sections;
 using JetBrains.Annotations;
 using System;
@@ -34,10 +34,10 @@ namespace Dignite.Cms.Admin.Sections
         public string DefaultValue { get; set; }
 
         [Required]
-        [StringLength(FieldDefinitionConsts.MaxFieldControlProviderNameLength)]
-        public string FieldControlProviderName { get; set; }
+        [StringLength(FieldDefinitionConsts.MaxFieldProviderNameLength)]
+        public string FieldProviderName { get; set; }
 
         [Required]
-        public virtual FieldControlConfigurationDictionary Configuration { get; set; }
+        public virtual FieldConfigurationDictionary Configuration { get; set; }
     }
 }

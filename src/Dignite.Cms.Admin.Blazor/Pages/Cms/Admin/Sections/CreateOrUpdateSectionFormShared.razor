@@ -7,7 +7,7 @@
                 @L["FieldControls"]
             </CardHeader>
             <ListGroup Mode="ListGroupMode.Selectable" Flush>
-                @foreach(var fc in AllFieldControlProviders)
+                @foreach(var fc in AllFieldProviders)
                 {
                 <ListGroupItem Name="@fc.Name" Color="Color.Light" @onclick="@(e => AddFieldAsync(e, fc.Name))">@fc.DisplayName</ListGroupItem>
                 }
@@ -56,7 +56,7 @@
                     <!------------- field definitions ------------------------------------->
                     @foreach(var fd in Data.FieldDefinitions)
                     {
-                        var component = fieldControlComponentSelector.Get(fd.FieldControlProviderName);
+                        var component = fieldControlComponentSelector.Get(fd.FieldProviderName);
                         var parameters = new Dictionary<string, object>();
                         parameters.Add("CustomizeField", new Abp.FieldCustomizing.CustomizeField(new Dignite.Cms.Admin.Entries.EntryCreateDto(),fd));
                         <div style="position:relative; margin-bottom:15px;">

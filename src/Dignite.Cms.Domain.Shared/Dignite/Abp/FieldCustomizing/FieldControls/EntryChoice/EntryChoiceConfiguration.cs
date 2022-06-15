@@ -1,9 +1,9 @@
 ﻿
 using System;
 
-namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
+namespace Dignite.Abp.FieldCustomizing.Fields.EntryChoice
 {
-    public class EntryChoiceConfiguration: FieldControlConfigurationBase
+    public class EntryChoiceConfiguration: FieldConfigurationBase
     {
 
         /// <summary>
@@ -11,8 +11,8 @@ namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
         /// </summary>
         public Guid PageId
         {
-            get => _fieldControlConfiguration.GetConfigurationOrDefault<Guid>(EntryChoiceConfigurationNames.PageId);
-            set => _fieldControlConfiguration.SetConfiguration(EntryChoiceConfigurationNames.PageId, value);
+            get => _fieldConfiguration.GetConfigurationOrDefault<Guid>(EntryChoiceConfigurationNames.PageId);
+            set => _fieldConfiguration.SetConfiguration(EntryChoiceConfigurationNames.PageId, value);
         }
 
         /// <summary>
@@ -20,8 +20,8 @@ namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
         /// </summary>
         public Guid SectionId
         {
-            get => _fieldControlConfiguration.GetConfigurationOrDefault<Guid>(EntryChoiceConfigurationNames.SectionId);
-            set => _fieldControlConfiguration.SetConfiguration(EntryChoiceConfigurationNames.SectionId, value);
+            get => _fieldConfiguration.GetConfigurationOrDefault<Guid>(EntryChoiceConfigurationNames.SectionId);
+            set => _fieldConfiguration.SetConfiguration(EntryChoiceConfigurationNames.SectionId, value);
         }
 
 
@@ -31,12 +31,12 @@ namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
         /// </summary>
         public int MaxSelectLimit
         {
-            get => _fieldControlConfiguration.GetConfigurationOrDefault(EntryChoiceConfigurationNames.MaxSelectLimit, 1);
-            set => _fieldControlConfiguration.SetConfiguration(EntryChoiceConfigurationNames.MaxSelectLimit, value);
+            get => _fieldConfiguration.GetConfigurationOrDefault(EntryChoiceConfigurationNames.MaxSelectLimit, 1);
+            set => _fieldConfiguration.SetConfiguration(EntryChoiceConfigurationNames.MaxSelectLimit, value);
         }
 
 
-        public EntryChoiceConfiguration(FieldControlConfigurationDictionary fieldConfiguration)
+        public EntryChoiceConfiguration(FieldConfigurationDictionary fieldConfiguration)
             :base(fieldConfiguration)
         {
         }

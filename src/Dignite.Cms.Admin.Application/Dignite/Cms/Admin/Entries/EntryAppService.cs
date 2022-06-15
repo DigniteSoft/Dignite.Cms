@@ -1,5 +1,5 @@
 ﻿using Dignite.Abp.FieldCustomizing;
-using Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice;
+using Dignite.Abp.FieldCustomizing.Fields.EntryChoice;
 using Dignite.Abp.FileManagement;
 using Dignite.Cms.Blobs;
 using Dignite.Cms.Entries;
@@ -67,7 +67,7 @@ namespace Dignite.Cms.Admin.Entries
                 .Select(fd => new BasicCustomizeFieldDefinition(
                         fd.Name,
                         fd.DisplayName,
-                        fd.FieldControlProviderName,
+                        fd.FieldProviderName,
                         fd.DefaultValue,
                         fd.Configuration
                         )).ToList()
@@ -94,7 +94,7 @@ namespace Dignite.Cms.Admin.Entries
                 .Select(fd => new BasicCustomizeFieldDefinition(
                         fd.Name,
                         fd.DisplayName,
-                        fd.FieldControlProviderName,
+                        fd.FieldProviderName,
                         fd.DefaultValue,
                         fd.Configuration
                         )).ToList()
@@ -381,7 +381,7 @@ namespace Dignite.Cms.Admin.Entries
                     .Select(fd => new BasicCustomizeFieldDefinition(
                         fd.Name,
                         fd.DisplayName,
-                        fd.FieldControlProviderName,
+                        fd.FieldProviderName,
                         fd.DefaultValue,
                         fd.Configuration
                         )).ToList()

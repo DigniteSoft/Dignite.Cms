@@ -7,7 +7,7 @@ namespace Dignite.Cms.Admin.Sections
     {
         public NewSectionOutput()
         {
-            AllFieldProviders = new List<FieldControlProviderDto>();
+            AllFieldProviders = new List<FieldProviderDto>();
         }
 
         public SectionCreateDto Section { get; set; }
@@ -15,6 +15,6 @@ namespace Dignite.Cms.Admin.Sections
         /// <summary>
         /// 所有的字段控件类型集合
         /// </summary>
-        public IReadOnlyList<FieldControlProviderDto> AllFieldProviders { get; set; }
+        public IReadOnlyList<FieldProviderDto> AllFieldProviders { get; set; }
     }
 }

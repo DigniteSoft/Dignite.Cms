@@ -1,28 +1,28 @@
 ﻿
-using Dignite.Abp.FieldCustomizing.FieldControls;
+using Dignite.Abp.FieldCustomizing.Fields;
 
 namespace Dignite.Cms.Admin.Sections
 {
     /// <summary>
     /// 字段控件Provider
     /// </summary>
-    public class FieldControlProviderDto
+    public class FieldProviderDto
     {
-        public FieldControlProviderDto()
+        public FieldProviderDto()
         {
         }
 
-        public FieldControlProviderDto(string formProviderName, string formDisplayName, FieldControlType fieldControlType)
+        public FieldProviderDto(string fieldProviderName, string fieldDisplayName, FieldType fieldType)
         {
-            Name = formProviderName;
-            DisplayName = formDisplayName;
-            FieldControlType = fieldControlType;
+            Name = fieldProviderName;
+            DisplayName = fieldDisplayName;
+            FieldType = fieldType;
         }
 
         public string Name { get; set; }
 
         public string DisplayName { get; set; }
 
-        public FieldControlType FieldControlType { get; set; }
+        public FieldType FieldType { get; set; }
     }
 }

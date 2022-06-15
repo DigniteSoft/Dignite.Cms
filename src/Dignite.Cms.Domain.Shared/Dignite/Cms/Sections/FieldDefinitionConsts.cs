@@ -24,6 +24,6 @@ namespace Dignite.Cms.Sections
         /// Maximum length of the field control provider name property.
         /// Default value: 128
         /// </summary>
-        public const int MaxFieldControlProviderNameLength = 128;
+        public const int MaxFieldProviderNameLength = 128;
     }
 }

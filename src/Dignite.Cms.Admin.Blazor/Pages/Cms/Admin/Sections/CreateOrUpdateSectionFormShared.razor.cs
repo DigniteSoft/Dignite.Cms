@@ -16,12 +16,12 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
     public partial class CreateOrUpdateSectionFormShared
     {
         [Inject] private IFieldControlComponentSelector fieldControlComponentSelector { get; set; }
-        [Inject] private IFieldControlConfigurationComponentSelector fieldControlConfigurationComponentSelector { get; set; }
+        [Inject] private IFieldConfigurationComponentSelector fieldConfigurationComponentSelector { get; set; }
 
         [Parameter] public SectionCreateOrUpdateDtoBase Data { get; set; }
 
         //
-        [Parameter] public IReadOnlyList<FieldControlProviderDto> AllFieldControlProviders { get; set; }
+        [Parameter] public IReadOnlyList<FieldProviderDto> AllFieldProviders { get; set; }
 
         [Parameter] public AbpBlazorMessageLocalizerHelper<CmsResource> LH { get; set; }
         [Parameter] public IStringLocalizer L { get; set; }
@@ -38,7 +38,7 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
 
         //添加新字段
         //现在是点击添加，后期改为拖拽方式
-        private async Task AddFieldAsync(MouseEventArgs e, string fieldControlName)
+        private async Task AddFieldAsync(MouseEventArgs e, string fieldName)
         {
             var validate = true;
             if (SectionValidationsRef != null)
@@ -48,12 +48,12 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
             if (validate)
             {
                 var name = shortid.ShortId.Generate();
-                var configuration = new Abp.FieldCustomizing.FieldControls.FieldControlConfigurationDictionary();
-                var fieldContrlProvider = AllFieldControlProviders.Single(fcp => fcp.Name == fieldControlName);
+                var configuration = new Abp.FieldCustomizing.Fields.FieldConfigurationDictionary();
+                var fieldContrlProvider = AllFieldProviders.Single(fcp => fcp.Name == fieldName);
                 Data.FieldDefinitions.Add(new FieldDefinitionEditDto()
                 {
                     Id = Guid.NewGuid(),
-                    FieldControlProviderName = fieldContrlProvider.Name,
+                    FieldProviderName = fieldContrlProvider.Name,
                     Name = name,
                     DisplayName = fieldContrlProvider.DisplayName,
                     Configuration = configuration
@@ -74,7 +74,7 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
             {
 
                 var fd = Data.FieldDefinitions.Single(df => df.Name == fieldDefinitionName);
-                var component = fieldControlConfigurationComponentSelector.Get(fd.FieldControlProviderName);
+                var component = fieldConfigurationComponentSelector.Get(fd.FieldProviderName);
 
                 filedControlConfigurationSelectedParameters = new Dictionary<string, object>();
                 filedControlConfigurationSelectedParameters.Add("Definition", fd);

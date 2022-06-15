@@ -5,9 +5,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
+namespace Dignite.Abp.FieldCustomizing.Fields.EntryChoice
 {
-    public class EntryChoiceFieldControlProvider : FieldControlProviderBase
+    public class EntryChoiceFieldProvider : FieldBase
     {
 
         public const string ProviderName = "EntryChoice";
@@ -17,9 +17,9 @@ namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
 
         public override string DisplayName => L["EntryChoiceControl"];
 
-        public override FieldControlType ControlType => FieldControlType.Simple;
+        public override FieldType ControlType => FieldType.Simple;
 
-        public override void Validate(FieldControlValidateArgs args)
+        public override void Validate(FieldValidateArgs args)
         {
             var configuration = new EntryChoiceConfiguration(args.FieldDefinition.Configuration);
             var entryIds = new List<Guid>();
@@ -55,7 +55,7 @@ namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
 
         }
 
-        public override FieldControlConfigurationBase GetConfiguration(FieldControlConfigurationDictionary fieldConfiguration)
+        public override FieldConfigurationBase GetConfiguration(FieldConfigurationDictionary fieldConfiguration)
         {
             return new EntryChoiceConfiguration(fieldConfiguration);
         }

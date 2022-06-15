@@ -1,4 +1,4 @@
-﻿using Dignite.Abp.FieldCustomizing.FieldControls;
+﻿using Dignite.Abp.FieldCustomizing.Fields;
 using Dignite.Cms.Sections;
 using Dignite.Cms.Users;
 using Microsoft.AspNetCore.Authorization;
@@ -16,18 +16,18 @@ namespace Dignite.Cms.Admin.Sections
         protected ISiteUserLookupService UserLookupService { get; }
         private readonly ISectionRepository _sectionRepository;
         private readonly ISectionGrantRepository _sectionAuthorizerRepository;
-        private readonly IEnumerable<IFieldControlProvider> _fieldControlProviders;
+        private readonly IEnumerable<IFieldProvider> _fieldProviders;
 
         public SectionAppService(
             ISiteUserLookupService userLookupService,
             ISectionRepository sectionRepository,
             ISectionGrantRepository sectionAuthorizerRepository,
-            IEnumerable<IFieldControlProvider> fieldControlProviders)
+            IEnumerable<IFieldProvider> fieldProviders)
         {
             UserLookupService = userLookupService;
             _sectionRepository = sectionRepository;
             _sectionAuthorizerRepository = sectionAuthorizerRepository;
-            _fieldControlProviders = fieldControlProviders;
+            _fieldProviders = fieldProviders;
         }
 
         /// <summary>
@@ -43,8 +43,8 @@ namespace Dignite.Cms.Admin.Sections
                 IsActive = true,
             };
 
-            output.AllFieldProviders = _fieldControlProviders.Select(p => 
-                new FieldControlProviderDto(
+            output.AllFieldProviders = _fieldProviders.Select(p => 
+                new FieldProviderDto(
                     p.Name,
                     p.DisplayName,
                     p.ControlType
@@ -67,8 +67,8 @@ namespace Dignite.Cms.Admin.Sections
 
 
             output.Section = ObjectMapper.Map<Section, SectionUpdateDto>(section);
-            output.AllFieldProviders = _fieldControlProviders.Select(p =>
-                new FieldControlProviderDto(
+            output.AllFieldProviders = _fieldProviders.Select(p =>
+                new FieldProviderDto(
                     p.Name,
                     p.DisplayName,
                     p.ControlType
@@ -105,7 +105,7 @@ namespace Dignite.Cms.Admin.Sections
                         fd.DisplayName,
                         fd.Name,
                         fd.DefaultValue, 
-                        fd.FieldControlProviderName, 
+                        fd.FieldProviderName, 
                         fd.Configuration,
                         i, 
                         tenantId)
@@ -158,7 +158,7 @@ namespace Dignite.Cms.Admin.Sections
                         fd.DisplayName, 
                         fd.Name, 
                         fd.DefaultValue, 
-                        fd.FieldControlProviderName, 
+                        fd.FieldProviderName, 
                         fd.Configuration,
                         i, 
                         tenantId)

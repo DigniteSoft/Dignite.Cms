@@ -1,5 +1,5 @@
 ﻿
-using Dignite.Abp.FieldCustomizing.FieldControls;
+using Dignite.Abp.FieldCustomizing.Fields;
 using Dignite.Cms.Entries;
 using JetBrains.Annotations;
 using System;
@@ -95,7 +95,7 @@ namespace Dignite.Cms.Sections
             string displayName,
             string name,
             string defaultValue,
-            FieldControlConfigurationDictionary configuration,
+            FieldConfigurationDictionary configuration,
             int position
             )
         {

@@ -76,7 +76,7 @@ namespace Dignite.Cms.Admin.Entries
                 .Select(fd => new BasicCustomizeFieldDefinition(
                         fd.Name,
                         fd.DisplayName,
-                        fd.FieldControlProviderName,
+                        fd.FieldProviderName,
                         fd.DefaultValue,
                         fd.Configuration
                         )).ToList();

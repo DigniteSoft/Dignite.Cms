@@ -1,6 +1,6 @@
 ﻿
 
-namespace Dignite.Abp.FieldCustomizing.FieldControls.EntryChoice
+namespace Dignite.Abp.FieldCustomizing.Fields.EntryChoice
 {
     public class EntryChoiceConfigurationNames
     {

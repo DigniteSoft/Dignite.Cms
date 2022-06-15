@@ -108,7 +108,7 @@ namespace Dignite.Cms.Entries
                     .Select(fd => new BasicCustomizeFieldDefinition(
                         fd.Name,
                         fd.DisplayName,
-                        fd.FieldControlProviderName,
+                        fd.FieldProviderName,
                         fd.DefaultValue,
                         fd.Configuration
                         )).ToList()
@@ -154,7 +154,7 @@ namespace Dignite.Cms.Entries
                 .Select(fd => new BasicCustomizeFieldDefinition(
                     fd.Name,
                     fd.DisplayName,
-                    fd.FieldControlProviderName,
+                    fd.FieldProviderName,
                     fd.DefaultValue,
                     fd.Configuration
                     )).ToList()
