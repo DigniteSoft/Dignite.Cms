@@ -116,23 +116,11 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
             return string.Format(L["EntryDeletionConfirmationMessage"]);
         }
 
-        protected override ValueTask SetToolbarItemsAsync()
+        protected override Task OnInitializedAsync()
         {
-            Toolbar.AddButton(L["New"],
-                async () => Navigation.NavigateTo($"/cms/admin/entries/create?sectionId={Id}"),
-                IconName.Add,
-                requiredPolicyName: CreatePolicyName);
-
-            return base.SetToolbarItemsAsync();
-        }
-
-        protected override Task UpdateGetListInputAsync()
-        {
-            base.UpdateGetListInputAsync();
-
             GetListInput.SectionId = Id;
-
-            return Task.CompletedTask;
+            return base.OnInitializedAsync();
         }
+
     }
 }
