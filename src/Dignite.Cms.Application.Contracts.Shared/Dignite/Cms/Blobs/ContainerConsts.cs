@@ -13,6 +13,6 @@ namespace Dignite.Cms.Blobs
         /// <summary>
         /// 上传文件类型的自定义字段
         /// </summary>
-        public const string FileEditFieldFileBlobContainerName = "Cms.EnterpriseLicensePic";
+        public const string FileEditFieldFileBlobContainerName = "Cms.EntryFiles";
     }
 }
