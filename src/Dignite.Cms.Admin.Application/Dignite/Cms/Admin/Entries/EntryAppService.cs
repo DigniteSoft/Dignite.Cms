@@ -187,6 +187,27 @@ namespace Dignite.Cms.Admin.Entries
             entry.IsActive = input.IsActive;
             entry.CustomizedFields = input.CustomizedFields;
 
+            //上传文件
+            //当前仅支持简单类型字段，后期再增加复杂类型的字段
+            foreach (var fieldFile in input.CustomizedFieldFiles)
+            {
+                var fileList = new List<FileDto>();
+                foreach (var file in fieldFile.Value)
+                {
+
+                    var fileInfo = await _filesAppService.SaveAsync(
+                        ContainerConsts.FileEditFieldFileBlobContainerName,
+                        new SaveStreamInput()
+                        {
+                            EntityType = EntityTypeConsts.Entry,
+                            EntityId = id.ToString(),
+                            File = file
+                        }
+                        );
+                    fileList.Add(fileInfo);
+                }
+                entry.CustomizedFields[fieldFile.Key] = JsonConvert.SerializeObject(fileList, new JsonSerializerSettings { ContractResolver = new CamelCasePropertyNamesContractResolver() });
+            }
 
             await _entryRepository.UpdateAsync(entry);
             return ObjectMapper.Map<Entry, EntryDto>(entry);
@@ -205,7 +226,7 @@ namespace Dignite.Cms.Admin.Entries
             await AuthorizationService.CheckAsync(entry, CommonOperations.Delete);
             await _entryRepository.DeleteAsync(entry);
 
-            //TODO:考虑同步删除文件类型字段中的blob
+            await _filesAppService.DeleteByEntityAsync(EntityTypeConsts.Entry,id.ToString());
         }
 
 

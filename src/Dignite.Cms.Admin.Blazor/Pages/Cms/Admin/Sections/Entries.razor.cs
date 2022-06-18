@@ -121,6 +121,14 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
             GetListInput.SectionId = Id;
             return base.OnInitializedAsync();
         }
+        protected override ValueTask SetToolbarItemsAsync()
+        {
+            Toolbar.AddButton(L["New"],
+                async () => Navigation.NavigateTo($"/cms/admin/entries/create?sectionId={Id}"),
+                IconName.Add,
+                requiredPolicyName: CreatePolicyName);
 
+            return base.SetToolbarItemsAsync();
+        }
     }
 }
