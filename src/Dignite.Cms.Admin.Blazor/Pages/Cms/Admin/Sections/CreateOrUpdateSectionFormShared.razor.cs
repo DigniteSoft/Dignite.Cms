@@ -47,7 +47,7 @@ namespace Dignite.Cms.Admin.Blazor.Pages.Cms.Admin.Sections
             }
             if (validate)
             {
-                var name = shortid.ShortId.Generate();
+                var name = Nanoid.Nanoid.Generate("abcdefghijklmnopqrstuvwxyz", 10);
                 var configuration = new Abp.FieldCustomizing.Fields.FieldConfigurationDictionary();
                 var fieldContrlProvider = AllFieldProviders.Single(fcp => fcp.Name == fieldName);
                 Data.FieldDefinitions.Add(new FieldDefinitionEditDto()
