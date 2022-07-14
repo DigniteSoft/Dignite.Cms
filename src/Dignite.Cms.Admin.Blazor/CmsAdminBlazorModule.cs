@@ -42,7 +42,6 @@ namespace Dignite.Cms.Admin.Blazor
             {
                 options.AdditionalAssemblies.Add(typeof(CmsAdminBlazorModule).Assembly);
             });
-            context.Services.AddAntDesign();
         }
 
         public override void PostConfigureServices(ServiceConfigurationContext context)
